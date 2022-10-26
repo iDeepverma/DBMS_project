@@ -1,10 +1,12 @@
 package com.shop.demo.model;
 
 public class CustomerOrderItem {
-    private int lineNo;
+//    private int lineNo;
     private CustomerOrder customerOrder;
     private int quantity;
-    private int pricePerItem;
+//    private int pricePerItem;
+
+    private int sellingPrice;
     private String additionalInfo;
     private Product product;
 
@@ -15,14 +17,22 @@ public class CustomerOrderItem {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+//
 
-    public int getPricePerItem() {
-        return pricePerItem;
+    public int getSellingPrice() {
+        return sellingPrice;
     }
 
-    public void setPricePerItem(int pricePerItem) {
-        this.pricePerItem = pricePerItem;
+    public void setSellingPrice(int sellingPrice) {
+        this.sellingPrice = sellingPrice;
     }
+//    public int getPricePerItem() {
+//        return pricePerItem;
+//    }
+//
+//    public void setPricePerItem(int pricePerItem) {
+//        this.pricePerItem = pricePerItem;
+//    }
 
     public String getAdditionalInfo() {
         return additionalInfo;
@@ -40,13 +50,13 @@ public class CustomerOrderItem {
         this.product = product;
     }
 
-    public int getLineNo() {
-        return lineNo;
-    }
-
-    public void setLineNo(int lineNo) {
-        this.lineNo = lineNo;
-    }
+//    public int getLineNo() {
+//        return lineNo;
+//    }
+//
+//    public void setLineNo(int lineNo) {
+//        this.lineNo = lineNo;
+//    }
 
     public CustomerOrder getCustomerOrder() {
         return customerOrder;

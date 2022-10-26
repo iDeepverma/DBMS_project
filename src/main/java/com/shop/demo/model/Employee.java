@@ -16,10 +16,17 @@ public class Employee {
     private int salary;
     private LocalDateTime joinDate;
     private String role;
-    private String houseNo;
-    private String street;
-    private String city;
-    private int pincode;
+
+    private String address;
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
 
     public int getEmpolyeeID() {
         return empolyeeID;
@@ -85,35 +92,4 @@ public class Employee {
         this.role = role;
     }
 
-    public String getHouseNo() {
-        return houseNo;
-    }
-
-    public void setHouseNo(String houseNo) {
-        this.houseNo = houseNo;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public int getPincode() {
-        return pincode;
-    }
-
-    public void setPincode(int pincode) {
-        this.pincode = pincode;
-    }
 }
