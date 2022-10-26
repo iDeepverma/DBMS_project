@@ -74,7 +74,7 @@ create table Product(
  	warrantyLenght int,
  	warrantyCoverage LONGTEXT,
  	MRP int,
- 	-- Current_Price int,
+ 	costPrice int,
  	variant int,
  	amountInStock int,
  	PRIMARY KEY (productID),
