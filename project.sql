@@ -2,10 +2,11 @@ create table Supplier(
 	name varchar(255),
  	supplierID int,
  	phone int,
- 	houseNo int,
- 	street int,
- 	city varchar(255),
- 	pin int,
+ 	address varchar(255),
+ 	-- houseNo int,
+ 	-- street int,
+ 	-- city varchar(255),
+ 	-- pin int,
  	moneySpent int,
  	ordersFulfilled int,
 	email varchar(255),
@@ -15,119 +16,127 @@ create table Supplier(
 
 create table ProductSuppliers(
 	supplierID int,
-	ProductID int,
-	FOREIGN KEY (supplier_id) REFERENCES Supplier(supplier_id) ON DELETE CASCADE,
-	FOREIGN KEY (Product_id) REFERENCES Product(Product_id) ON DELETE CASCADE,
-	PRIMARY KEY(supplier_id,Product_id)
+	productID int,
+	FOREIGN KEY (supplierID) REFERENCES Supplier(supplierID) ON DELETE CASCADE,
+	FOREIGN KEY (productID) REFERENCES Product(productID) ON DELETE CASCADE,
+	PRIMARY KEY(supplierID,productID)
 );
 
-create table Supply_Order_Item(
-	Line_No int,
-	Supply_Order_id int,
-	Quantity int,
-	Total int,
-	Product_id int,
-	Additional_Info LONGTEXT,
-	PRIMARY KEY(Line_No,Supply_Order_id),
-	FOREIGN KEY (Supply_Order_id) REFERENCES Supply_Order(Order_id) ON DELETE CASCADE,
-	FOREIGN KEY (Product_id) REFERENCES Product(Product_id) ON DELETE CASCADE
+create table SupplyOrderItem(
+	-- lineNo int,
+	supplyOrderID int,
+	quantity int,
+	total int,
+	productID int,
+	additionalInfo LONGTEXT,
+	PRIMARY KEY(productID,supplyOrderID),
+	FOREIGN KEY (supplyOrderID) REFERENCES supplyOrder(orderID) ON DELETE CASCADE,
+	FOREIGN KEY (productID) REFERENCES Product(productID) ON DELETE CASCADE
 
 );
 
-create table Supply_Order(
-	Order_id int,
-	Order_Date date,
-	Delivery_Date date,
-	Delivery_Status varchar(255),
-	total_amount int,
-	supplier_id int,
-	placed_by int,
-	PRIMARY KEY(Order_id),
-	FOREIGN KEY (supplier_id) REFERENCES Supplier(supplier_id) ON DELETE CASCADE,
-	FOREIGN KEY (placed_by) REFERENCES Employee(emp_id) ON DELETE CASCADE
+create table SupplyOrder(
+	orderID int,
+	orderDate date,
+	deliveryDate date,
+	deliveryStatus varchar(255),
+	totalAmount int,
+	supplierID int,
+	placedBy int,
+	PRIMARY KEY(orderID),
+	FOREIGN KEY (supplierID) REFERENCES Supplier(supplierID) ON DELETE CASCADE,
+	FOREIGN KEY (placedBy) REFERENCES Employee(empID) ON DELETE CASCADE
 );
 
 create table Employee(
-	emp_id int,
+	empID int,
 	name varchar(255),
-	date_of_birth date,
+	dateOfBirth date,
 	email varchar(255),
 	phone int,
 	salary  int,
-	join_date date,
+	joinDate date,
 	role varchar(255),
-	house_no int,
-	street int,
-	city int,
-	pin int,
-	PRIMARY KEY(emp_id)
+	address varchar(255),
+	-- houseNo int,
+	-- street int,
+	-- city int,
+	-- pin int,
+	PRIMARY KEY(empID)
 
 
 );
 
 create table Product(
- 	Product_id int,
- 	Name varchar(255),
- 	Description LONGTEXT,
- 	Category varchar(255),
- 	Warranty_Lenght int,
- 	Warranty_Coverage LONGTEXT,
+ 	productID int,
+ 	description LONGTEXT,
+ 	-- category varchar(255),
+ 	warrantyLenght int,
+ 	warrantyCoverage LONGTEXT,
  	MRP int,
  	-- Current_Price int,
- 	Variant int,
- 	amt_int_stock int,
- 	PRIMARY KEY (Product_id)
+ 	variant int,
+ 	amountInStock int,
+ 	PRIMARY KEY (productID),
+ 	FOREIGN KEY name varchar(255) REFERENCES ProductCategory(name) ON DELETE CASCADE
     
 );
 
-create table Customer_Order(
-	Order_id int,
-	Order_Date date,
-	transaction_id int,
-	mode_of_payment varchar(255),
-	Total int,
-	Customer_Id int,
-	served_by int,
-	PRIMARY KEY(Order_id),
-	FOREIGN KEY (Customer_Id) REFERENCES Customer(Customer_Id) ON DELETE CASCADE,
-	FOREIGN KEY (served_by) REFERENCES Employee(emp_id) ON DELETE CASCADE
+create table ProductCategory(
+	name varchar(255),
+	category varchar(255),
+	PRIMARY KEY (name,category), 
+);
+
+create table CustomerOrder(
+	orderID int,
+	orderDate date,
+	transactionID int,
+	modeOfPayment varchar(255),
+	total int,
+	customerID int,
+	servedBy int,
+	PRIMARY KEY(orderID),
+	FOREIGN KEY (customerID) REFERENCES Customer(customerID) ON DELETE CASCADE,
+	FOREIGN KEY (servedBy) REFERENCES Employee(empID) ON DELETE CASCADE
 );
 	
 create table Customer(
-	Customer_Id int,
-	Name varchar(255),
-	Phone int,
-	Email varchar(255),
-	date_of_birth date,
-	House_Number int,
-	Street int,
-	City varchar(255),
-	Pin int,
-	PRIMARY KEY(Customer_Id)
+	customerID int,
+	name varchar(255),
+	phone int,
+	email varchar(255),
+	dateOfBirth date,
+	address varchar(255),
+	-- houseNo int,
+	-- street int,
+	-- city varchar(255),
+	-- pin int,
+	PRIMARY KEY(customerID)
 );
 
-create table Inventory_item(
-	item_id int,
-	Product_id int,
-	Supply_Order_id int,
-	Line_No int,
-	Order_id int,
-	PRIMARY KEY(item_id,Product_id),
-	FOREIGN KEY (Product_id) REFERENCES Product(Product_id),
-	FOREIGN KEY (Supply_Order_id) REFERENCES Supply_Order(Order_id) ON DELETE CASCADE,
-	FOREIGN KEY (Line_No) REFERENCES Customer_Order_Item(Line_No) ON DELETE CASCADE,
-	FOREIGN KEY (Order_id) REFERENCES Customer_Order_Item(Order_id) ON DELETE CASCADE
+create table inventoryItem(
+	itemID int,
+	productID int,
+	supplyOrderID int,
+	-- lineNo int,
+	orderID int,
+	PRIMARY KEY(itemID,productID),
+	FOREIGN KEY (productID) REFERENCES Product(productID),
+	FOREIGN KEY (supplyOrderID) REFERENCES supplyOrder(orderID) ON DELETE CASCADE,
+	-- FOREIGN KEY (lineNo) REFERENCES customerOrderItem(lineNo) ON DELETE CASCADE,
+	FOREIGN KEY (orderID) REFERENCES customerOrderItem(orderID) ON DELETE CASCADE
 );
 
-create table Customer_Order_Item(
-	Line_No int,
-	Order_id int,
-	Quantity int,
-	price_per_item int,
-	Product_id int,
-	Additional_Info LONGTEXT,
-	PRIMARY KEY(Line_No,Order_id),
-	FOREIGN KEY (Order_id) REFERENCES Customer_Order(Order_id) ON DELETE CASCADE,
-	FOREIGN KEY (Product_id) REFERENCES Product(Product_id) ON DELETE CASCADE
+create table customerOrderItem(
+	-- lineNo int,
+	orderID int,
+	quantity int,
+	sellingPrice int,
+	productID int,
+	additionalInfo LONGTEXT,
+	PRIMARY KEY(productID,orderID),
+	FOREIGN KEY (orderID) REFERENCES CustomerOrder(orderID) ON DELETE CASCADE,
+	FOREIGN KEY (productID) REFERENCES Product(productID) ON DELETE CASCADE
 
 );
