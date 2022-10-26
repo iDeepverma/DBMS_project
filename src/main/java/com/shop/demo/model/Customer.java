@@ -8,11 +8,8 @@ public class Customer {
     private int phone;
     private String email;
     private LocalDateTime DOB;
-    private int houseNo;
-    private String street;
-    private String city;
-    private int pincode;
 
+    private String address;
     public int getCustomerID() {
         return customerID;
     }
@@ -53,35 +50,4 @@ public class Customer {
         this.DOB = DOB;
     }
 
-    public int getHouseNo() {
-        return houseNo;
-    }
-
-    public void setHouseNo(int houseNo) {
-        this.houseNo = houseNo;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public int getPincode() {
-        return pincode;
-    }
-
-    public void setPincode(int pincode) {
-        this.pincode = pincode;
-    }
 }

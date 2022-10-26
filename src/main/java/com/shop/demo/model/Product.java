@@ -3,13 +3,14 @@ package com.shop.demo.model;
 
 public class Product {
     private int productID;
-    private String name;
+    private ProductCategory productCategory;
     private String description;
-    private String category;
+//    private String category;
     private int warrantyLength;
     private int warrantyCoverage;
     private int MRP;
-    private int currentPrice;
+//    private int currentPrice;
+    private int costPrice;
     private int variant;
     private int amountInStock;
 
@@ -21,12 +22,12 @@ public class Product {
         this.productID = productID;
     }
 
-    public String getName() {
-        return name;
+    public ProductCategory getProductCategory() {
+        return productCategory;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setProductCategory(ProductCategory productCategory) {
+        this.productCategory = productCategory;
     }
 
     public String getDescription() {
@@ -37,13 +38,6 @@ public class Product {
         this.description = description;
     }
 
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
 
     public int getWarrantyLength() {
         return warrantyLength;
@@ -69,13 +63,14 @@ public class Product {
         this.MRP = MRP;
     }
 
-    public int getCurrentPrice() {
-        return currentPrice;
+    public int getCostPrice() {
+        return costPrice;
     }
 
-    public void setCurrentPrice(int currentPrice) {
-        this.currentPrice = currentPrice;
+    public void setCostPrice(int costPrice) {
+        this.costPrice = costPrice;
     }
+
 
     public int getVariant() {
         return variant;
