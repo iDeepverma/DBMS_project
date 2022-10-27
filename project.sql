@@ -51,7 +51,7 @@ create table SupplyOrder(
 create table Employee(
 	empID int,
 	name varchar(255),
-	dateOfBirth date,
+	DOB date,
 	email varchar(255),
 	phone int,
 	salary  int,
