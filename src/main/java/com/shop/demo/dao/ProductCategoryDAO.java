@@ -7,15 +7,15 @@ import java.util.List;
 
 public interface ProductCategoryDAO {
     List<Product> getAllProductByCategory(String category);
-//    select * from Product where name = (select name from ProductCategory where category = category);
+//    select * from Product where Product.name = (select ProductCategory.name from ProductCategory where ProductCategory.category = category);
 
     int insertProductCategory(ProductCategory productCategory);
 //    INSERT INTO ProductCategory VALUES (productCategory);
 
     int deleteProductCategory(String name);
-//    DELETE FROM ProductCategory WHERE name =name;
+//    DELETE FROM ProductCategory WHERE ProductCategory.name=name;
 
     String getProductCategory(String name);
-//    select category from ProductCategory where name =name;
+//    select category from ProductCategory where ProductCategory.name =name;
 
 }

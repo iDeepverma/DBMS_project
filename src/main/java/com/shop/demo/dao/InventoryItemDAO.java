@@ -18,14 +18,14 @@ public interface InventoryItemDAO {
 
 
     int getStock(Product product);
-
-
-    int markItemSold(int itemID);
-
+        //Discuss qith deep
+    //Take product_id as input too;
+    int markItemSold(int itemID,int product);
+//    UPDATE PRODUCT SET amountInStock = amountInStock-1 WHERE InventoryItem.itemID = itemID AND InventoryItem.productID = product;
 
 
     int updateItem(int itemID,int productID, InventoryItem inventoryItem);
-//    UPDATE InventoryItem SET supplyOrderID=?, orderID=?  WHERE itemID=itemID AND productID=productID;
+//    UPDATE InventoryItem SET supplyOrderID=?, orderID=?  WHERE InventoryItem.itemID=itemID AND InventoryItem.productID=productID;
 
 
 }

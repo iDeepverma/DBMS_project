@@ -27,5 +27,5 @@ public interface EmployeeDAO {
 //    select * from Employee ;
 
     Employee getOwner();
-//    select * from Employee where role="Owner"
+//    select * from Employee where role="Owner";
 }
