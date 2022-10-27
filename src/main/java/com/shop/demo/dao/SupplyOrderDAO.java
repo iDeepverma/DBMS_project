@@ -26,6 +26,6 @@ public interface SupplyOrderDAO {
 //    UPDATE SupplyOrder SET deliveryDate=date WHERE orderID=id;
 
     List<SupplyOrderItem> getSupplyItem(SupplyOrder supplyOrder);
-    // SELECT * FROM SupplyOrderItem WHERE supplyorder.orderID ???= SupplyOrderItem.supplyOrderID;
+    // SELECT * FROM SupplyOrderItem WHERE supplyOrder.orderID= SupplyOrderItem.supplyOrderID;
 
 }
