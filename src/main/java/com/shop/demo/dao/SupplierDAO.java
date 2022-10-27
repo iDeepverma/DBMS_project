@@ -7,4 +7,8 @@ public interface SupplierDAO {
     int deleteSupplier(int id);
     int updateSupplier(int id,Supplier supplier);
     Supplier getSupplierByID(int id);
+
+    int updateMoney(int id, int money);
+    int updateOrdersFullfilled(int id, int orders);
+
 }

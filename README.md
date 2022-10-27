@@ -9,3 +9,4 @@ To solve `javax.validation` package symbol not found error mannually add the fol
 		</dependency>
 
  - Note: Java Version used is 11
+ - Computer generated bill for customers
