@@ -30,7 +30,7 @@ create table SupplyOrderItem(
 	productID int,
 	additionalInfo LONGTEXT,
 	PRIMARY KEY(productID,supplyOrderID),
-	FOREIGN KEY (supplyOrderID) REFERENCES supplyOrder(orderID) ON DELETE CASCADE,
+	FOREIGN KEY (supplyOrderID) REFERENCES SupplyOrder(orderID) ON DELETE CASCADE,
 	FOREIGN KEY (productID) REFERENCES Product(productID) ON DELETE CASCADE
 
 );
@@ -76,16 +76,17 @@ create table Product(
  	MRP int,
  	costPrice int,
  	variant int,
- 	amountInStock int,                
+ 	amountInStock int,
+ 	name varchar(255),                 
  	PRIMARY KEY (productID),
- 	FOREIGN KEY name varchar(255) REFERENCES ProductCategory(name) ON DELETE CASCADE
+ 	FOREIGN KEY (name) REFERENCES ProductCategory(name) ON DELETE CASCADE
     
 );
 
 create table ProductCategory(
 	name varchar(255),
 	category varchar(255),
-	PRIMARY KEY name
+	PRIMARY KEY (name)
 );
 
 create table CustomerOrder(
@@ -123,9 +124,9 @@ create table InventoryItem(
 	orderID int,
 	PRIMARY KEY(itemID,productID),
 	FOREIGN KEY (productID) REFERENCES Product(productID),
-	FOREIGN KEY (supplyOrderID) REFERENCES supplyOrder(orderID) ON DELETE CASCADE,
+	FOREIGN KEY (supplyOrderID) REFERENCES SupplyOrder(orderID) ON DELETE CASCADE,
 	-- FOREIGN KEY (lineNo) REFERENCES customerOrderItem(lineNo) ON DELETE CASCADE,
-	FOREIGN KEY (orderID) REFERENCES customerOrderItem(orderID) ON DELETE CASCADE
+	FOREIGN KEY (orderID) REFERENCES CustomerOrderItem(orderID) ON DELETE CASCADE
 );
 
 create table CustomerOrderItem(
