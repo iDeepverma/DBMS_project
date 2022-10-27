@@ -6,6 +6,11 @@ import com.shop.demo.model.Supplier;
 
 public interface ProductSupplierDAO {
     int insertProductSuppliers(ProductSuppliers productSuppliers);
+    //INSERT INTO ProductSuppliers VALUES (productSuppliers);
     int deleteProductSuppliers(Product product, Supplier supplier);
-    ProductSuppliers getProductSupplierByID(int id);
+    //DELETE FROM ProductSuppliers WHERE product.productID = ProductSuppliers.productID AND supplier.supplierID=ProductSuppliers.supplierID;
+    ProductSuppliers getProductsOfSuppliers(int supplierID);
+    //SELECT * FROM ProductSuppliers WHERE ProductSuppliers.supplierID = id;
+    ProductSuppliers getSuppliersOfProduct(int productID);
+    //SELECT * FROM ProductSuppliers WHERE ProductSuppliers.productID = productID;
 }
