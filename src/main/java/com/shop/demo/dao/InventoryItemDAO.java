@@ -7,10 +7,25 @@ import java.util.List;
 
 public interface InventoryItemDAO {
     int insertItem(InventoryItem inventoryItem);
-    int deleteItem(int id);
-    InventoryItem getItemByProduct(Product product);
+//    INSERT INTO InventoryItem VALUES (inventoryItem);
+
+    int deleteItem(int itemID,int productID);
+//    DELETE FROM InventoryItem WHERE itemID=itemID AND productID=productID;
+
+//change kia h phele (product product ) tha
+    InventoryItem getItemByProduct(int product);
+//    select * from InventoryItem where productID=product;
+
 
     int getStock(Product product);
-    int markItemSold(int id);
-    int updateItem(int id, InventoryItem inventoryItem);
+
+
+    int markItemSold(int itemID);
+
+
+
+    int updateItem(int itemID,int productID, InventoryItem inventoryItem);
+//    UPDATE InventoryItem SET supplyOrderID=?, orderID=?  WHERE itemID=itemID AND productID=productID;
+
+
 }

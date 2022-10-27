@@ -76,7 +76,7 @@ create table Product(
  	MRP int,
  	costPrice int,
  	variant int,
- 	amountInStock int,
+ 	amountInStock int,                
  	PRIMARY KEY (productID),
  	FOREIGN KEY name varchar(255) REFERENCES ProductCategory(name) ON DELETE CASCADE
     
@@ -115,7 +115,7 @@ create table Customer(
 	PRIMARY KEY(customerID)
 );
 
-create table inventoryItem(
+create table InventoryItem(
 	itemID int,
 	productID int,
 	supplyOrderID int,
@@ -128,7 +128,7 @@ create table inventoryItem(
 	FOREIGN KEY (orderID) REFERENCES customerOrderItem(orderID) ON DELETE CASCADE
 );
 
-create table customerOrderItem(
+create table CustomerOrderItem(
 	-- lineNo int,
 	orderID int,
 	quantity int,

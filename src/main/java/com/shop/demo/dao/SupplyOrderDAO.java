@@ -8,12 +8,24 @@ import java.util.List;
 
 public interface SupplyOrderDAO {
     int insertSupplyOrder(SupplyOrder supplyOrder);
+//    INSERT INTO SupplierOrder VALUES (supplierOrder);
+
     int deleteSupplyOrder(int id);
+//    DELETE FROM SupplierOrder WHERE orderID = id;
+
     int updateSupplyOrder(int id, SupplyOrder supplyOrder);
+//    UPDATE SupplyOrder SET orderDate=?, deliveryDate=?,deliveryStatus=?, totalAmount=?,supplierID=?,placedBy=? WHERE orderID=id;
+
     int getSupplyOrderByID(int id);
+//    select * from SupplyOrder where orderID=id;
 
     int updateDeliveryStatus(int id, String deliveryStatus);
+//    UPDATE SupplyOrder SET deliveryStatus=deliveryStatus WHERE orderID=id;
+
     int updateDeliveryDate(int id, LocalDateTime date);
+//    UPDATE SupplyOrder SET deliveryDate=date WHERE orderID=id;
 
     List<SupplyOrderItem> getSupplyItem(SupplyOrder supplyOrder);
+    // SELECT * FROM SupplyOrderItem WHERE supplyorder.orderID ???= SupplyOrderItem.supplyOrderID;
+
 }
