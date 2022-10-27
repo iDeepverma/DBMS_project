@@ -85,7 +85,7 @@ create table Product(
 create table ProductCategory(
 	name varchar(255),
 	category varchar(255),
-	PRIMARY KEY (name,category), 
+	PRIMARY KEY name
 );
 
 create table CustomerOrder(

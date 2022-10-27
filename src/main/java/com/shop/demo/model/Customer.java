@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 public class Customer {
     private int customerID;
     private String name;
-    private int phone;
+    private String phone;
     private String email;
     private LocalDateTime DOB;
 
@@ -26,12 +26,20 @@ public class Customer {
         this.name = name;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getEmail() {

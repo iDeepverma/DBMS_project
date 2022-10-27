@@ -5,11 +5,9 @@ public class Product {
     private int productID;
     private ProductCategory productCategory;
     private String description;
-//    private String category;
     private int warrantyLength;
     private int warrantyCoverage;
     private int MRP;
-//    private int currentPrice;
     private int costPrice;
     private int variant;
     private int amountInStock;
