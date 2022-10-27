@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Employee {
-    private int empolyeeID;
+    private int empID;
     private String name;
     private LocalDateTime DOB;
     private String email;
@@ -28,12 +28,12 @@ public class Employee {
     }
 
 
-    public int getEmpolyeeID() {
-        return empolyeeID;
+    public int getEmpID() {
+        return empID;
     }
 
-    public void setEmpolyeeID(int empolyeeID) {
-        this.empolyeeID = empolyeeID;
+    public void setEmpID(int empID) {
+        this.empID = empID;
     }
 
     public String getName() {

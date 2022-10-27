@@ -139,5 +139,4 @@ create table CustomerOrderItem(
 	PRIMARY KEY(productID,orderID),
 	FOREIGN KEY (orderID) REFERENCES CustomerOrder(orderID) ON DELETE CASCADE,
 	FOREIGN KEY (productID) REFERENCES Product(productID) ON DELETE CASCADE
-
 );
