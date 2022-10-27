@@ -76,7 +76,7 @@ create table Product(
  	MRP int,
  	costPrice int,
  	variant int,
- 	amountInStock int,
+ 	amountInStock int,                
  	PRIMARY KEY (productID),
  	FOREIGN KEY name varchar(255) REFERENCES ProductCategory(name) ON DELETE CASCADE
     
