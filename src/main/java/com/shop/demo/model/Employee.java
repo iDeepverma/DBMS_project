@@ -3,18 +3,18 @@ package com.shop.demo.model;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @AllArgsConstructor
 public class Employee {
     private int empID;
     private String name;
-    private LocalDate DOB;
+    private LocalDateTime DOB;
     private String email;
     private String phone;
     private int salary;
-    private LocalDate joinDate;
+    private LocalDateTime joinDate;
     private String role;
 
     private String address;
@@ -44,11 +44,11 @@ public class Employee {
         this.name = name;
     }
 
-    public LocalDate getDOB() {
+    public LocalDateTime getDOB() {
         return DOB;
     }
 
-    public void setDOB(LocalDate date) {
+    public void setDOB(LocalDateTime date) {
         this.DOB = date;
     }
 
@@ -76,11 +76,11 @@ public class Employee {
         this.salary = salary;
     }
 
-    public LocalDate getJoinDate() {
+    public LocalDateTime getJoinDate() {
         return joinDate;
     }
 
-    public void setJoinDate(LocalDate joinDate) {
+    public void setJoinDate(LocalDateTime joinDate) {
         this.joinDate = joinDate;
     }
 
