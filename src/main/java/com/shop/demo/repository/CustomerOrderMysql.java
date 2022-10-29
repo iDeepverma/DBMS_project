@@ -13,7 +13,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Repository("mysql_repo")
+@Repository("customerOrder_mysql_repo")
 public class CustomerOrderMysql implements CustomerOrderDAO{
 
 //    orderID int AUTO_INCREMENT,
