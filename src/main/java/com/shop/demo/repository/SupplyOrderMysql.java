@@ -65,12 +65,12 @@ public class SupplyOrderMysql implements SupplyOrderDAO {
     }
 
     @Override
-    public List<SupplyOrder> getSupplyOrderByID(int id) {
+    public SupplyOrder getSupplyOrderByID(int id) {
         String query="select * from SupplyOrder where orderID=?;";
         Object[] args=new Object[]{
           id
         };
-        return jdbcTemplate.query(query,args, BeanPropertyRowMapper.newInstance(SupplyOrder.class));
+        return jdbcTemplate.queryForObject(query,args, BeanPropertyRowMapper.newInstance(SupplyOrder.class));
 
     }
 
