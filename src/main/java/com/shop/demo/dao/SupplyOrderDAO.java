@@ -16,7 +16,7 @@ public interface SupplyOrderDAO {
     int updateSupplyOrder(int id, SupplyOrder supplyOrder);
 //    UPDATE SupplyOrder SET orderDate=?, deliveryDate=?,deliveryStatus=?, totalAmount=?,supplierID=?,placedBy=? WHERE orderID=id;
 
-    int getSupplyOrderByID(int id);
+    SupplyOrder getSupplyOrderByID(int id);
 //    select * from SupplyOrder where orderID=id;
 
     int updateDeliveryStatus(int id, String deliveryStatus);
