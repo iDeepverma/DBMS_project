@@ -9,7 +9,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-@Repository("mysql_repo")
+@Repository("inventoryItem_mysql_repo")
 
 public class InventoryItemMysql implements InventoryItemDAO {
 

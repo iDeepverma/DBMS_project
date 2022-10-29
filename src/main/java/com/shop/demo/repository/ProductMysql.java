@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 
-@Repository("mysql_repo")
+@Repository("product_mysql_repo")
 public class ProductMysql implements ProductDAO{
     @Autowired
     JdbcTemplate jdbcTemplate;

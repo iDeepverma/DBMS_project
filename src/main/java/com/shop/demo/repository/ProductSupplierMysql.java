@@ -10,7 +10,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-@Repository("mysql_repo")
+@Repository("productSupplier_mysql_repo")
 public class ProductSupplierMysql implements ProductSupplierDAO {
 
 //    supplierID int,

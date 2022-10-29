@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 //        productID int,
 //        additionalInfo LONGTEXT,
 
-@Repository("mysql_repo")
+@Repository("supplyOrderItem_mysql_repo")
 public class SupplyOrderItemMysql implements SupplyOrderItemDAO{
     @Autowired
     JdbcTemplate jdbcTemplate;

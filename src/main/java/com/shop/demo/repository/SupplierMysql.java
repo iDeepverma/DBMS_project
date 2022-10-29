@@ -19,7 +19,7 @@ import org.springframework.stereotype.Repository;
 //        PRIMARY KEY (supplierID)
 //        );
 
-@Repository("mysql_repo")
+@Repository("supplier_mysql_repo")
 public class SupplierMysql implements SupplierDAO {
     @Autowired
     JdbcTemplate jdbcTemplate;

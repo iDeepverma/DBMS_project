@@ -8,7 +8,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-@Repository("mysql_repo")
+@Repository("customer_mysql_repo")
 public class CustomerMysql implements CustomerDAO {
 
     @Autowired
@@ -57,7 +57,7 @@ public class CustomerMysql implements CustomerDAO {
 
     @Override
     public int updateCustomer(int id, Customer customer) {
-        String query="UPDATE Customer SET name=?,phone=?,email=?,dateOfBirth=?,address=? WHERE customerID = ?;";
+        String query="UPDATE Customer SET name=?,phone=?,email=?,dOB=?,address=? WHERE customerID = ?;";
         Object[] args = new Object[]{
                 customer.getName(),
                 customer.getPhone(),

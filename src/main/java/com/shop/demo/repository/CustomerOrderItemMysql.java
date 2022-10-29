@@ -17,7 +17,7 @@ import java.util.List;
 //        productID int,
 //        additionalInfo LONGTEXT,
 
-@Repository("mysql_repo")
+@Repository("customerOrderItem_mysql_repo")
 public class CustomerOrderItemMysql implements CustomerOrderItemDAO{
     @Autowired
     JdbcTemplate jdbcTemplate;
