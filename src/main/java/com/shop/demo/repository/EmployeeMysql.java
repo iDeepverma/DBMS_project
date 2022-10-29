@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Objects;
 
-@Repository("mysql_repo")
+@Repository("employee_mysql_repo")
 public class EmployeeMysql implements EmployeeDAO {
 
     @Autowired

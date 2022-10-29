@@ -2,13 +2,14 @@ package com.shop.demo.repository;
 
 import com.shop.demo.dao.CustomerDAO;
 import com.shop.demo.model.Customer;
-import com.shop.demo.model.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-@Repository("mysql_repo")
+import java.util.List;
+
+@Repository("customer_mysql_repo")
 public class CustomerMysql implements CustomerDAO {
 
     @Autowired
@@ -57,7 +58,7 @@ public class CustomerMysql implements CustomerDAO {
 
     @Override
     public int updateCustomer(int id, Customer customer) {
-        String query="UPDATE Customer SET name=?,phone=?,email=?,dateOfBirth=?,address=? WHERE customerID = ?;";
+        String query="UPDATE Customer SET name=?,phone=?,email=?,DOB=?,address=? WHERE customerID = ?;";
         Object[] args = new Object[]{
                 customer.getName(),
                 customer.getPhone(),
@@ -76,5 +77,11 @@ public class CustomerMysql implements CustomerDAO {
                 id
         };
         return jdbcTemplate.update(query,args);
+    }
+
+    @Override
+    public List<Customer> getAllCustomer() {
+        String query = "select * from Customer;";
+        return jdbcTemplate.query(query,BeanPropertyRowMapper.newInstance(Customer.class));
     }
 }
