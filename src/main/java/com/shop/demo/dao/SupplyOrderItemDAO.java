@@ -13,5 +13,5 @@ public interface SupplyOrderItemDAO {
     int updateSupplyOrderItem(int productID, int supplyOrderID, SupplyOrderItem supplyOrderItem);
     //UPDATE SupplyOrderItem SET SupplyOrderItem=supplyOrderItem WHERE SupplyOrderItem.productID = productID AND SupplyOrderItem.supplyOrderID=supplyOrderItem;
     SupplyOrderItem getSupplyOrderItemByID(int productID, int supplyOrderID);
-    //SELECT * FROM SupplyOrderItem WHERE SupplyOrderItem.productId = ProductID AND SupplyOrderItem.supplierID=supplyOrderID;
+    //SELECT * FROM SupplyOrderItem WHERE SupplyOrderItem.productId = ProductID AND SupplyOrderItem.supplierID=?;
 }

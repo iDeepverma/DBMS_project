@@ -14,8 +14,7 @@ public class EmployeeService {
     private EmployeeDAO employeeDAO;
 
     @Autowired
-    public EmployeeService(@Qualifier("mysql_repo") EmployeeDAO employeeDAO){
-        this.employeeDAO = employeeDAO;
+    public EmployeeService(@Qualifier("mysql_repo") EmployeeDAO employeeDAO) {this.employeeDAO = employeeDAO;
     }
 
     public int insertEmployee(Employee employee){

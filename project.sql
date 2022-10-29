@@ -41,7 +41,7 @@ create table ProductCategory(
 create table Product(
  	productID int AUTO_INCREMENT,
  	description LONGTEXT,
- 	warrantyLenght int,
+ 	warrantyLength int,
  	warrantyCoverage LONGTEXT,
  	MRP int,
  	costPrice int,
