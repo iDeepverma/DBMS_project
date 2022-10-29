@@ -1,7 +1,7 @@
 create table Supplier(
 	name varchar(255),
  	supplierID int AUTO_INCREMENT,
- 	phone int,
+ 	phone varchar(15),
  	address varchar(255),
  	moneySpent int,
  	ordersFulfilled int,
@@ -11,7 +11,7 @@ create table Supplier(
 create table Customer(
 	customerID int AUTO_INCREMENT,
 	name varchar(255),
-	phone int,
+	phone varchar(15),
 	email varchar(255),
 	DOB date,
 	address varchar(255),
@@ -24,7 +24,7 @@ create table Employee(
 	name varchar(255),
 	DOB date,
 	email varchar(255),
-	phone int,
+	phone varchar(15),
 	salary  int,
 	joinDate date,
 	role varchar(255),
@@ -41,7 +41,7 @@ create table ProductCategory(
 create table Product(
  	productID int AUTO_INCREMENT,
  	description LONGTEXT,
- 	warrantyLenght int,
+ 	warrantyLength int,
  	warrantyCoverage LONGTEXT,
  	MRP int,
  	costPrice int,
