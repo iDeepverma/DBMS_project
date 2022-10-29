@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface InventoryItemDAO {
     int insertItem(InventoryItem inventoryItem);
-//    INSERT INTO InventoryItem VALUES (inventoryItem);
+//    INSERT INTO InventoryItem() VALUES (inventoryItem);
 
     int deleteItem(int itemID,int productID);
 //    DELETE FROM InventoryItem WHERE itemID=itemID AND productID=productID;
@@ -18,8 +18,7 @@ public interface InventoryItemDAO {
 
 
     int getStock(Product product);
-        //Discuss qith deep
-    //Take product_id as input too;
+    //SELECT amountInStock FROM Product WHERE Product.productID=?;
     int markItemSold(int itemID,int product);
 //    UPDATE PRODUCT SET amountInStock = amountInStock-1 WHERE InventoryItem.itemID = itemID AND InventoryItem.productID = product;
 
