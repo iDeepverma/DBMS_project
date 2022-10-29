@@ -15,5 +15,5 @@ public interface CustomerOrderItemDAO {
     List<CustomerOrderItem> getCustomerOrderItemByCustomerOrder(CustomerOrder customerOrder);
     //SELECT * FROM CustomerOrderItem WHERE CustomerOrderItem.orderID = customerOrder.orderID;
     int getProfitPerOrderItem(CustomerOrderItem customerOrderItem);
-    //SELECT profitperorderitem as (customerOrderItem.quantity*(customerOrderItem.sellingPrice-Product.costPrice)) FROM Product WHERE customerOrderItem.productID=Product.productID;
+    //SELECT (customerOrderItem.quantity*(customerOrderItem.sellingPrice-Product.costPrice)) as profitperorderitem FROM Product WHERE customerOrderItem.productID=Product.productID;
 }
