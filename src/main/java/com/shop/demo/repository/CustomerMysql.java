@@ -57,7 +57,7 @@ public class CustomerMysql implements CustomerDAO {
 
     @Override
     public int updateCustomer(int id, Customer customer) {
-        String query="UPDATE Customer SET name=?,phone=?,email=?,dOB=?,address=? WHERE customerID = ?;";
+        String query="UPDATE Customer SET name=?,phone=?,email=?,DOB=?,address=? WHERE customerID = ?;";
         Object[] args = new Object[]{
                 customer.getName(),
                 customer.getPhone(),
