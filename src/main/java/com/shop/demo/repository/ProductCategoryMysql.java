@@ -16,9 +16,6 @@ import java.util.List;
 
 public class ProductCategoryMysql implements ProductCategoryDAO {
 
-//    name varchar(255),
-//    category varchar(255),
-
     @Autowired
     JdbcTemplate jdbcTemplate;
 

@@ -9,27 +9,20 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 @Repository("mysql_repo")
 
 public class SupplyOrderMysql implements SupplyOrderDAO {
 
-//    orderID int AUTO_INCREMENT,
-//    orderDate date,
-//    deliveryDate date,
-//    deliveryStatus varchar(255),
-//    totalAmount int,
-//    supplierID int,
-//    placedBy int,
 
     @Autowired
     JdbcTemplate jdbcTemplate;
     @Override
     public int insertSupplyOrder(SupplyOrder supplyOrder) {
-        String query="INSERT INTO SupplierOrder(orderID,orderDate,deliveryDate,deliveryStatus,totalAmount,supplierID,placedBy) VALUES (?,?,?,?,?,?,?);";
+        String query="INSERT INTO SupplierOrder(orderDate,deliveryDate,deliveryStatus,totalAmount,supplierID,placedBy) VALUES (?,?,?,?,?,?);";
         Object[] args=new Object[]{
-                supplyOrder.getOrderID(),
                 supplyOrder.getOrderDate(),
                 supplyOrder.getDeliveryDate(),
                 supplyOrder.getDeliveryStatus(),
@@ -85,10 +78,10 @@ public class SupplyOrderMysql implements SupplyOrderDAO {
     }
 
     @Override
-    public int updateDeliveryDate(int id, LocalDateTime date) {
+    public int updateDeliveryDate(int id, LocalDate date) {
         String query="UPDATE SupplyOrder SET deliveryDate=? WHERE orderID=?;";
         Object[] args=new Object[]{
-                date,
+                date.toString(),
                 id
         };
         return jdbcTemplate.update(query,args);
