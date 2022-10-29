@@ -4,6 +4,15 @@ public class SupplyOrderItem {
 //    private int lineNo;
     private SupplyOrder supplyOrder;
     private int quantity;
+
+    public SupplyOrder getSupplyOrder() {
+        return supplyOrder;
+    }
+
+    public void setSupplyOrder(SupplyOrder supplyOrder) {
+        this.supplyOrder = supplyOrder;
+    }
+
     private int total;
     private Product product;
     private String additionalInfo;
