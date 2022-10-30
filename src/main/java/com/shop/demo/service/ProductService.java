@@ -6,9 +6,13 @@ import com.shop.demo.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
+@Service
 public class ProductService {
     private ProductDAO productDAO;
     @Autowired
@@ -30,7 +34,11 @@ public class ProductService {
         return productDAO.deleteProduct(id);
     }
 
-    public int getQuantityByProductByDate(Product product, LocalDateTime startDate) {
+    public int getQuantityByProductByDate(Product product, LocalDate startDate) {
         return productDAO.getQuantityByProductByDate(product, startDate);
+    }
+
+    public List<Product> getAllProduct(){
+        return productDAO.getAllProduct();
     }
 }

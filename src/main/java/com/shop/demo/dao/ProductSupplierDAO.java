@@ -4,6 +4,8 @@ import com.shop.demo.model.Product;
 import com.shop.demo.model.ProductSuppliers;
 import com.shop.demo.model.Supplier;
 
+import java.util.List;
+
 public interface ProductSupplierDAO {
     int insertProductSuppliers(ProductSuppliers productSuppliers);
     //INSERT INTO ProductSuppliers VALUES (productSuppliers);
@@ -12,5 +14,7 @@ public interface ProductSupplierDAO {
     ProductSuppliers getProductsOfSuppliers(int supplierID);
     //SELECT * FROM ProductSuppliers WHERE ProductSuppliers.supplierID = id;
     ProductSuppliers getSuppliersOfProduct(int productID);
+
+    List<ProductSuppliers> getAllProductSuppliers();
     //SELECT * FROM ProductSuppliers WHERE ProductSuppliers.productID = productID;
 }
