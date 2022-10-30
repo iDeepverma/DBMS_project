@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class CustomerOrderService {
         return customerOrderDAO.updateCustomerOrder(id,customerOrder);
     }
 
-    public int getCustomerOrderByID(int id) {
+    public CustomerOrder getCustomerOrderByID(int id) {
         return customerOrderDAO.getCustomerOrderByID(id);
     }
 
@@ -42,7 +43,7 @@ public class CustomerOrderService {
         return customerOrderDAO.getEmployeeByOrder(customerOrder);
     }
 
-    public List<CustomerOrder> getCustomerOrderBetweenDates(LocalDateTime startingDate, LocalDateTime endingDate) {
+    public List<CustomerOrder> getCustomerOrderBetweenDates(LocalDate startingDate, LocalDate endingDate) {
         return customerOrderDAO.getCustomerOrderBetweenDates(startingDate,endingDate);
     }
     public int getProfitPerOrder(CustomerOrder customerOrder) {
