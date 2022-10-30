@@ -26,5 +26,7 @@ public interface CustomerOrderDAO {
     List<CustomerOrder> getCustomerOrderBetweenDates(LocalDateTime startingDate, LocalDateTime endingDate);
     //SELECT * FROM CustomerOrder WHERE orderDate BETWEEN startingDate AND endingDate;
     int getProfitPerOrder(CustomerOrder customerOrder);
+
+    List<CustomerOrder> getAllCustomerOrder();
     //SELECT SUM((quantity*(CustomerOrderItem.sellingPrice-Product.costPrice))) as profit FROM Product,CustomerOrderItem WHERE CustomerOrderItem.orderID=customerOrder.orderID AND Product.productID = CustomerOrderItem.productID;
 }

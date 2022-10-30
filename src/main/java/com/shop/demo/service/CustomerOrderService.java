@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+
 @Service
 public class CustomerOrderService {
     private CustomerOrderDAO customerOrderDAO;
@@ -48,5 +49,9 @@ public class CustomerOrderService {
     }
     public int getProfitPerOrder(CustomerOrder customerOrder) {
         return customerOrderDAO.getProfitPerOrder(customerOrder);
+    }
+
+    public List<CustomerOrder> getAllCustomerOrder() {
+        return  customerOrderDAO.getAllCustomerOrder();
     }
 }
