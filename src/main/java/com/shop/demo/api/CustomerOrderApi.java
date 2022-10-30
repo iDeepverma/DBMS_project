@@ -47,10 +47,7 @@ public class CustomerOrderApi<customer> {
 //        return customerOrderService.getEmployeeByOrder(customerOrder);
 //    }
 
-    @GetMapping
-    public List<CustomerOrder> getAllCustomerOrder() {
-        return customerOrderService.getAllCustomerOrder();
-    }
+
 
 
 }
