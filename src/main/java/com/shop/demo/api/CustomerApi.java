@@ -27,18 +27,18 @@ public class CustomerApi {
     public Customer getCustomerByID(@PathVariable("id") int id) {
         return customerService.getCustomerByID(id);
     }
-    @GetMapping(path="/phone/{phone}")
+    @GetMapping(path="phone/{phone}")
     public Customer getCustomerByNumber(@PathVariable("phone") String phone) {
-        return getCustomerByNumber(phone);
+        return customerService.getCustomerByNumber(phone);
     }
 
-    @GetMapping(path = "/mail/{mail}")
+    @GetMapping(path = "mail/{mail}")
     public Customer getCustomerByEmail(@PathVariable("mail") String email) {
         return customerService.getCustomerByEmail(email);
     }
 
     @PutMapping(path = "{id}")
-    public int updateCustomer(@PathVariable("id") int id, Customer customer) {
+    public int updateCustomer(@PathVariable("id") int id,@RequestBody Customer customer) {
         return customerService.updateCustomer(id,customer);
     }
 

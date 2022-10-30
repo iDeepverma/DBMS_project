@@ -43,7 +43,7 @@ public class CustomerOrderApi<customer> {
 //    }
 
 //    @GetMapping
-//    public Employee getEmployeeByOrder(CustomerOrder customerOrder) {
+//    public Employee getEmployeeByOrder(@RequestBody CustomerOrder customerOrder) {
 //        return customerOrderService.getEmployeeByOrder(customerOrder);
 //    }
 
