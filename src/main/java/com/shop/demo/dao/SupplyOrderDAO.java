@@ -3,6 +3,7 @@ package com.shop.demo.dao;
 import com.shop.demo.model.SupplyOrder;
 import com.shop.demo.model.SupplyOrderItem;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public interface SupplyOrderDAO {
     int updateDeliveryStatus(int id, String deliveryStatus);
 //    UPDATE SupplyOrder SET deliveryStatus=deliveryStatus WHERE orderID=id;
 
-    int updateDeliveryDate(int id, LocalDateTime date);
+    int updateDeliveryDate(int id, LocalDate date);
 //    UPDATE SupplyOrder SET deliveryDate=date WHERE orderID=id;
 
     List<SupplyOrderItem> getSupplyItem(SupplyOrder supplyOrder);

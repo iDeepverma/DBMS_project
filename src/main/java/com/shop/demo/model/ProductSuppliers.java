@@ -11,21 +11,19 @@ public class ProductSuppliers {
     private Product product;
     private Supplier supplier;
 
-    public Product getProductID() {
+    public Product getProduct() {
         return product;
     }
 
-    public void setProductID(Product productID) {
-        this.product = productID;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
-    public Supplier getSupplierID() {
+    public Supplier getSupplier() {
         return supplier;
     }
 
-    public void setSupplierID(Supplier supplierID) {
-        this.supplier = supplierID;
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
     }
-
-
 }

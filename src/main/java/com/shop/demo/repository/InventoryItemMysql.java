@@ -22,9 +22,8 @@ public class InventoryItemMysql implements InventoryItemDAO {
     JdbcTemplate jdbcTemplate;
     @Override
     public int insertItem(InventoryItem inventoryItem) {
-        String query="INSERT INTO InventoryItem(itemID,productID,supplyOrderID,orderID) VALUES (?,?,?,?);";
+        String query="INSERT INTO InventoryItem(productID,supplyOrderID,orderID) VALUES (?,?,?);";
         Object[] args=new Object[]{
-          inventoryItem.getItemID(),
           inventoryItem.getProduct(),
           inventoryItem.getSupplyOrder(),
           inventoryItem.getCustomerOrderItem()
@@ -63,7 +62,6 @@ public class InventoryItemMysql implements InventoryItemDAO {
     public int markItemSold(int itemID, int product) {
         String query="UPDATE PRODUCT SET amountInStock = amountInStock-1 WHERE InventoryItem.itemID =? AND InventoryItem.productID = ?;";
         Object[] args=new Object[]{
-
           itemID,product
         };
         return jdbcTemplate.update(query,args);
@@ -73,8 +71,10 @@ public class InventoryItemMysql implements InventoryItemDAO {
     public int updateItem(int itemID, int productID, InventoryItem inventoryItem) {
         String query =" UPDATE InventoryItem SET supplyOrderID=?, orderID=?  WHERE InventoryItem.itemID=? AND InventoryItem.productID=?;";
         Object[] args=new Object[]{
-                inventoryItem.getSupplyOrder(),
-                inventoryItem.getCustomerOrderItem(),
+                inventoryItem.getSupplyOrder().getOrderID(),
+                inventoryItem.getCustomerOrderItem().getCustomerOrder().getOrderID(),
+                itemID,
+                productID
         };
         return jdbcTemplate.update(query ,args);
     }

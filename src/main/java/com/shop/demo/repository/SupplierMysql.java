@@ -4,6 +4,7 @@ import com.shop.demo.dao.SupplierDAO;
 import com.shop.demo.model.CustomerOrder;
 import com.shop.demo.model.Supplier;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -68,7 +69,12 @@ public class SupplierMysql implements SupplierDAO {
         Object[] args = new Object[]{
                 id
         };
-        return jdbcTemplate.queryForObject(query,args, BeanPropertyRowMapper.newInstance(Supplier.class));
+        try {
+            return jdbcTemplate.queryForObject(query, args, BeanPropertyRowMapper.newInstance(Supplier.class));
+        }
+        catch (EmptyResultDataAccessException e){
+            return null;
+        }
     }
 
     @Override
@@ -78,7 +84,7 @@ public class SupplierMysql implements SupplierDAO {
                 money,
                 id
         };
-        return jdbcTemplate.queryForObject(query,args,BeanPropertyRowMapper.newInstance(Integer.class));
+        return jdbcTemplate.update(query,args);
     }
 
     @Override
@@ -88,6 +94,6 @@ public class SupplierMysql implements SupplierDAO {
                 orders,
                 id
         };
-        return jdbcTemplate.queryForObject(query,args,BeanPropertyRowMapper.newInstance(Integer.class));
+        return jdbcTemplate.update(query,args);
     }
 }

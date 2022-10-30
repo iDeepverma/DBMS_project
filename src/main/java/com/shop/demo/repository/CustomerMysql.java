@@ -19,9 +19,8 @@ public class CustomerMysql implements CustomerDAO {
 
     @Override
     public int insertCustomer(Customer customer) {
-        String query = "INSERT INTO Customer(customerID,name,phone,email,DOB,address) VALUES (?,?,?,?,?,?);";
+        String query = "INSERT INTO Customer(name,phone,email,DOB,address) VALUES (?,?,?,?,?);";
         Object[] args = new Object[] {
-                customer.getCustomerID(),
                 customer.getName(),
                 customer.getPhone(),
                 customer.getEmail(),

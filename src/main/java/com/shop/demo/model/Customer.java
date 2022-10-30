@@ -58,5 +58,4 @@ public class Customer {
     public void setDOB(LocalDate DOB) {
         this.DOB = DOB;
     }
-
 }
