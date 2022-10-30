@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 public class ProductSupplierService {
     private ProductSupplierDAO productSupplierDAO;
     @Autowired
-    public ProductSupplierService(@Qualifier("productSupplierService_mysql_repo") ProductSupplierDAO productSupplierDAO) {this.productSupplierDAO = productSupplierDAO;
+    public ProductSupplierService(@Qualifier("productSupplier_mysql_repo") ProductSupplierDAO productSupplierDAO) {this.productSupplierDAO = productSupplierDAO;
     }
     public int insertProductSuppliers(ProductSuppliers productSuppliers) {
         return productSupplierDAO.insertProductSuppliers(productSuppliers);

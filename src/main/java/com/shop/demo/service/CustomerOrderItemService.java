@@ -17,8 +17,8 @@ public class CustomerOrderItemService {
     private CustomerOrderItemDAO customerOrderItemDAO;
 
     @Autowired
-    public  CustomerOrderItemService(@Qualifier("customerOrderItem_mysql_repo") CustomerOrderDAO customerOrderDAO) { this.customerOrderItemDAO = customerOrderItemDAO;
-    }
+
+    public  CustomerOrderItemService(@Qualifier("customerOrderItem_mysql_repo") CustomerOrderItemDAO customerOrderItemDAO) { this.customerOrderItemDAO = customerOrderItemDAO;}
     public int insertCustomerOrderItem(CustomerOrderItem customerOrderItem) {
         return customerOrderItemDAO.insertCustomerOrderItem(customerOrderItem);
     }

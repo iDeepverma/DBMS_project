@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -30,12 +31,12 @@ public class CustomerOrderMysql implements CustomerOrderDAO{
         String query = "INSERT INTO CustomerOrder(orderID , orderDate, transactionID, modeOfPayment,total,customerID, servedBy) VALUES (?,?,?,?,?,?,?);";
         Object[] args = new Object[] {
             customerOrder.getOrderID(),
-            customerOrder.getDate(),
+            customerOrder.getDate().toString(),
             customerOrder.getTransactionID(),
             customerOrder.getModeOfPayment(),
             customerOrder.getTotal(),
-            customerOrder.getCustomer(),
-            customerOrder.getEmployee()
+            customerOrder.getCustomer().getCustomerID(),
+            customerOrder.getEmployee().getEmpID()
         };
         return jdbcTemplate.update(query,args);
     }
@@ -53,25 +54,25 @@ public class CustomerOrderMysql implements CustomerOrderDAO{
     public int updateCustomerOrder(int id, CustomerOrder customerOrder) {
         String query = "UPDATE CustomerOrder SET orderDate=?, transactionID=?, modeOfPayment=?, total=?, customerID=?, servedBy=? WHERE orderID=?;";
         Object[] args = new Object[]{
-                customerOrder.getDate(),
+                customerOrder.getDate().toString(),
                 customerOrder.getTransactionID(),
                 customerOrder.getModeOfPayment(),
                 customerOrder.getTotal(),
-                customerOrder.getCustomer(),
-                customerOrder.getEmployee(),
+                customerOrder.getCustomer().getCustomerID(),
+                customerOrder.getEmployee().getEmpID(),
                 id
         };
         return jdbcTemplate.update(query,args);
     }
 
     @Override
-    public int getCustomerOrderByID(int id) {
+    public CustomerOrder getCustomerOrderByID(int id) {
         //needs to be ressolved
-        String query = "SELECT customerID FROM CustomerOrder WHERE orderID = ?;";
+        String query = "SELECT * FROM CustomerOrder WHERE orderID = ?;";
         Object[] args = new Object[]{
                 id
         };
-        return jdbcTemplate.queryForObject(query,args,BeanPropertyRowMapper.newInstance(Integer.class));
+        return jdbcTemplate.queryForObject(query,args,BeanPropertyRowMapper.newInstance(CustomerOrder.class));
     }
 
     @Override
@@ -87,16 +88,16 @@ public class CustomerOrderMysql implements CustomerOrderDAO{
     public Employee getEmployeeByOrder(CustomerOrder customerOrder) {
         String query ="SELECT * FROM Employee WHERE Employee.empID = ?;";
         Object[] args =new Object[]{
-          customerOrder.getEmployee()
+          customerOrder.getEmployee().getEmpID()
         };
         return jdbcTemplate.queryForObject(query,args,BeanPropertyRowMapper.newInstance(Employee.class));
     }
 
     @Override
-    public List<CustomerOrder> getCustomerOrderBetweenDates(LocalDateTime startingDate, LocalDateTime endingDate) {
+    public List<CustomerOrder> getCustomerOrderBetweenDates(LocalDate startingDate, LocalDate endingDate) {
         String query="SELECT * FROM CustomerOrder WHERE orderDate BETWEEN ? AND ?;";
         Object[] args=new Object[]{
-                startingDate, endingDate
+                startingDate.toString(), endingDate.toString()
         };
         return jdbcTemplate.query(query,args,BeanPropertyRowMapper.newInstance(CustomerOrder.class));
     }
