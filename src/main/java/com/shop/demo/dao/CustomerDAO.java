@@ -2,8 +2,6 @@ package com.shop.demo.dao;
 
 import com.shop.demo.model.Customer;
 
-import java.util.List;
-
 public interface CustomerDAO {
     int insertCustomer(Customer customer);
     //INSERT INTO Customer VALUES (customer);
@@ -16,8 +14,6 @@ public interface CustomerDAO {
     int updateCustomer(int id,Customer customer);
     //UPDATE Customer SET name=?,phone=?,email=?,dateOfBirth=?,address=? WHERE customerID = id;
     int deleteCustomer(int id);
-
-    List<Customer> getAllCustomer();
     //DELETE FROM Customer WHERE customerID = id;
 }
 

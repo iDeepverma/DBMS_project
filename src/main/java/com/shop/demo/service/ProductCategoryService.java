@@ -7,10 +7,9 @@ import com.shop.demo.model.ProductCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
-@Service
+
 public class ProductCategoryService {
     private ProductCategoryDAO productCategoryDAO;
     @Autowired
