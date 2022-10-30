@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CustomerService {
     private CustomerDAO customerDAO;
@@ -40,6 +42,9 @@ public class CustomerService {
         return customerDAO.deleteCustomer(id);
     }
 
+    public List<Customer> getAllCustomer(){
+        return customerDAO.getAllCustomer();
+    }
 
 
 }
