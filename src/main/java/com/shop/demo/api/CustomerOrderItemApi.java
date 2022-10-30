@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/customerorderitem")
+@RequestMapping("api/v1/customerOrderItem")
 public class CustomerOrderItemApi {
 
     private CustomerOrderItemService customerOrderItemService;
@@ -20,7 +20,7 @@ public class CustomerOrderItemApi {
     }
 
     @PostMapping
-    public int insertCustomerOrderItem(CustomerOrderItem customerOrderItem) {
+    public int insertCustomerOrderItem(@RequestBody CustomerOrderItem customerOrderItem) {
         return customerOrderItemService.insertCustomerOrderItem(customerOrderItem);
     }
 

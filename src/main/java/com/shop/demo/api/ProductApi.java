@@ -21,7 +21,7 @@ public class ProductApi {
     }
 
     @PostMapping
-    public int insertProduct(Product product) {
+    public int insertProduct(@RequestBody Product product) {
         return productService.insertProduct(product);
     }
 

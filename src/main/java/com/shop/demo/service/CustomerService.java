@@ -25,7 +25,7 @@ public class CustomerService {
         return customerDAO.getCustomerByID(id);
     }
     public Customer getCustomerByNumber(String phone) {
-        return getCustomerByNumber(phone);
+        return customerDAO.getCustomerByNumber(phone);
     }
 
 

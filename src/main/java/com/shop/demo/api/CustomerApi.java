@@ -19,7 +19,7 @@ public class CustomerApi {
     }
 
     @PostMapping
-    public int insertCustomer(Customer customer) {
+    public int insertCustomer(@RequestBody Customer customer) {
         return customerService.insertCustomer(customer);
     }
 
