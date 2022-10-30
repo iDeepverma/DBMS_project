@@ -90,7 +90,7 @@ public class CustomerOrderMysql implements CustomerOrderDAO{
         Object[] args =new Object[]{
           customerOrder.getEmployee().getEmpID()
         };
-        return jdbcTemplate.queryForObject(query,args,BeanPropertyRowMapper.newInstance(Employee.class));
+        return jdbcTemplate.queryForObject(query,BeanPropertyRowMapper.newInstance(Employee.class),args);
     }
 
     @Override
@@ -109,5 +109,11 @@ public class CustomerOrderMysql implements CustomerOrderDAO{
           customerOrder.getOrderID()
         };
            return jdbcTemplate.queryForObject(query,args,BeanPropertyRowMapper.newInstance(Integer.class));
+    }
+
+    @Override
+    public List<CustomerOrder> getAllCustomerOrder() {
+        String query = "select * from CustomerOrder ;";
+        return jdbcTemplate.query(query,BeanPropertyRowMapper.newInstance(CustomerOrder.class));
     }
 }

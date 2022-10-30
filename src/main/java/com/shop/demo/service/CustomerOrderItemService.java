@@ -9,14 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class CustomerOrderItemService {
     private CustomerOrderItemDAO customerOrderItemDAO;
 
     @Autowired
-    public  CustomerOrderItemService(@Qualifier("customerOrderItem_mysql_repo") CustomerOrderDAO customerOrderDAO) {this.customerOrderItemDAO = customerOrderItemDAO;
+    public  CustomerOrderItemService(@Qualifier("customerOrderItem_mysql_repo") CustomerOrderDAO customerOrderDAO) { this.customerOrderItemDAO = customerOrderItemDAO;
     }
     public int insertCustomerOrderItem(CustomerOrderItem customerOrderItem) {
         return customerOrderItemDAO.insertCustomerOrderItem(customerOrderItem);
