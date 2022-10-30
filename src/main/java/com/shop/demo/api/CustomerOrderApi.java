@@ -32,7 +32,7 @@ public class CustomerOrderApi<customer> {
     }
 
     @GetMapping("{id}")
-    public int getCustomerOrderByID(@PathVariable("id") int id) {
+    public CustomerOrder getCustomerOrderByID(@PathVariable("id") int id) {
         return customerOrderService.getCustomerOrderByID(id);
     }
 

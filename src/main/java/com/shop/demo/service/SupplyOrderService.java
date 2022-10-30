@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -42,7 +43,7 @@ public class SupplyOrderService {
         return supplyOrderDAO.updateDeliveryStatus(id, deliveryStatus);
     }
 
-    public int updateDeliveryDate(int id, LocalDateTime date) {
+    public int updateDeliveryDate(int id, LocalDate date) {
         return supplyOrderDAO.updateDeliveryDate(id, date);
     }
 
