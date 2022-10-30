@@ -7,7 +7,9 @@ import com.shop.demo.model.Supplier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.stereotype.Service;
 
+@Service
 public class SupplierService {
     private SupplierDAO supplierDAO;
     @Autowired
@@ -22,18 +24,18 @@ public class SupplierService {
     }
 
     public int updateSupplier(int id, Supplier supplier) {
-        return updateSupplier(id,supplier);
+        return supplierDAO.updateSupplier(id,supplier);
     }
 
     public Supplier getSupplierByID(int id) {
-        return getSupplierByID(id);
+        return supplierDAO.getSupplierByID(id);
     }
 
     public int updateMoney(int id, int money) {
-        return updateMoney(id,money);
+        return supplierDAO.updateMoney(id,money);
     }
 
     public int updateOrdersFullfilled(int id, int orders) {
-        return updateOrdersFullfilled(id,orders);
+        return supplierDAO.updateOrdersFullfilled(id,orders);
     }
 }
