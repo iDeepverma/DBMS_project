@@ -1,14 +1,15 @@
 package com.shop.demo.repository;
 
 import com.shop.demo.dao.ProductDAO;
-import com.shop.demo.model.Employee;
 import com.shop.demo.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Repository("product_mysql_repo")
 public class ProductMysql implements ProductDAO{
@@ -67,12 +68,19 @@ public class ProductMysql implements ProductDAO{
     }
 
     @Override
-    public int getQuantityByProductByDate(Product product, LocalDateTime startDate) {
+    public int getQuantityByProductByDate(Product product, LocalDate startDate) {
         String query = "SELECT sum(quantity) FROM CustomerOrderItem, CustomerOrder WHERE CustomerOrderItem.productID=? AND CustomerOrderItem.orderID = CustomerOrder.orderID AND CustomerOrder.orderDate >= ?;";
         Object[] args = new Object[]{
                 product.getProductID(),
                 startDate
         };
         return jdbcTemplate.queryForObject(query, BeanPropertyRowMapper.newInstance(Integer.class));
+    }
+
+    @Override
+    public List<Product> getAllProduct(){
+        String query = "select * from Product ;";
+        return jdbcTemplate.query(query,BeanPropertyRowMapper.newInstance(Product.class));
+
     }
 }

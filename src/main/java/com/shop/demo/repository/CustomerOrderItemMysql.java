@@ -1,9 +1,9 @@
 package com.shop.demo.repository;
 
 import com.shop.demo.dao.CustomerOrderItemDAO;
+import com.shop.demo.model.Customer;
 import com.shop.demo.model.CustomerOrder;
 import com.shop.demo.model.CustomerOrderItem;
-import com.shop.demo.model.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -62,5 +62,11 @@ public class CustomerOrderItemMysql implements CustomerOrderItemDAO{
                 customerOrderItem.getProduct().getProductID()
         };
         return jdbcTemplate.queryForObject(query,args, BeanPropertyRowMapper.newInstance(Integer.class));
+    }
+
+    @Override
+    public List<CustomerOrderItem> getAllCustomerOrderItem(){
+        String query = "select * from CustomerOrderItem ;";
+        return jdbcTemplate.query(query,BeanPropertyRowMapper.newInstance(CustomerOrderItem.class));
     }
 }

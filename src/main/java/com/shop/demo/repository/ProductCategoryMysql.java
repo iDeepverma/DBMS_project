@@ -1,10 +1,7 @@
 package com.shop.demo.repository;
 
 import com.shop.demo.dao.ProductCategoryDAO;
-import com.shop.demo.model.CustomerOrder;
-import com.shop.demo.model.Employee;
-import com.shop.demo.model.Product;
-import com.shop.demo.model.ProductCategory;
+import com.shop.demo.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -56,4 +53,10 @@ public class ProductCategoryMysql implements ProductCategoryDAO {
         return jdbcTemplate.queryForObject(query,args,BeanPropertyRowMapper.newInstance(String.class));
     }
 
+    @Override
+    public List<ProductCategory> getAllProductCategory(){
+        String query = "select * from ProductCategory ;";
+        return jdbcTemplate.query(query,BeanPropertyRowMapper.newInstance(ProductCategory.class));
+
+    }
 }

@@ -9,6 +9,7 @@ import java.util.List;
 
 //@RestController
 //@RequestMapping("api/v1/order")
+
 public class CustomerOrderApi<customer> {
 
     private CustomerOrderService customerOrderService;
@@ -43,7 +44,7 @@ public class CustomerOrderApi<customer> {
 //    }
 
 //    @GetMapping
-//    public Employee getEmployeeByOrder(CustomerOrder customerOrder) {
+//    public Employee getEmployeeByOrder(@RequestBody CustomerOrder customerOrder) {
 //        return customerOrderService.getEmployeeByOrder(customerOrder);
 //    }
 
