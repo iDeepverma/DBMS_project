@@ -57,8 +57,10 @@ public class CustomerOrderItemMysql implements CustomerOrderItemDAO{
 
     @Override
     public int getProfitPerOrderItem(CustomerOrderItem customerOrderItem) {
-        String query = "SELECT (customerOrderItem.quantity*(customerOrderItem.sellingPrice-Product.costPrice)) as profitperorderitem FROM Product WHERE Product.productID=?;";
+        String query = "SELECT (?*(?-Product.costPrice)) as profitperorderitem FROM Product WHERE Product.productID=?;";
         Object[] args = new Object[]{
+                customerOrderItem.getQuantity(),
+                customerOrderItem.getSellingPrice(),
                 customerOrderItem.getProduct().getProductID()
         };
         return jdbcTemplate.queryForObject(query,args, BeanPropertyRowMapper.newInstance(Integer.class));
