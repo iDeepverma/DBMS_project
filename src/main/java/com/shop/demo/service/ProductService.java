@@ -6,10 +6,9 @@ import com.shop.demo.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-@Service
+
 public class ProductService {
     private ProductDAO productDAO;
     @Autowired
