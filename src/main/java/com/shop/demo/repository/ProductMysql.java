@@ -34,7 +34,7 @@ public class ProductMysql implements ProductDAO{
 
     @Override
     public Product getProductByID(int id) {
-        String query="select * from Product where productID=id;";
+        String query="select * from Product where productID=?;";
         Object[] args = new Object[]{
                 id
         };

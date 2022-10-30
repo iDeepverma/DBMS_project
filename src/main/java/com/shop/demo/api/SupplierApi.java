@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -24,6 +25,12 @@ public class SupplierApi {
         return supplierService.insertSupplier(supplier);
     }
 
+    @GetMapping
+    public List<Supplier> getAllSupplier(){
+        return supplierService.getAllSupplier();
+    }
+
+
     @GetMapping(path  = "{id}")
     public Supplier getSupplierByID(@PathVariable("id") int id){
         return supplierService.getSupplierByID(id);
@@ -39,9 +46,9 @@ public class SupplierApi {
         return supplierService.deleteSupplier(id);
     }
 
-    @GetMapping(path = "{id}/{money}")
-    public int updateMoney(@PathVariable("id") int id, @PathVariable("money") int money){
-        return supplierService.updateMoney(id, money);
+    @GetMapping(path = "money/")
+    public int updateMoney(@RequestParam HashMap<String,String> param){
+        return supplierService.updateMoney(Integer.parseInt(param.get("id")), Integer.parseInt(param.get("money")));
     }
 
     @GetMapping(path = "update/")

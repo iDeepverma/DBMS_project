@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SupplierService {
     private SupplierDAO supplierDAO;
@@ -38,4 +40,6 @@ public class SupplierService {
     public int updateOrdersFullfilled(int id, int orders) {
         return supplierDAO.updateOrdersFullfilled(id,orders);
     }
+
+    public List<Supplier> getAllSupplier(){return supplierDAO.getAllSupplier();}
 }
