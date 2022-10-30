@@ -17,14 +17,16 @@ public class CustomerOrderItemService {
     private CustomerOrderItemDAO customerOrderItemDAO;
 
     @Autowired
-    public  CustomerOrderItemService(@Qualifier("customerOrderItem_mysql_repo") CustomerOrderItemDAO customerOrderItemDAO) { this.customerOrderItemDAO = customerOrderItemDAO;
+    public CustomerOrderItemService(@Qualifier("customerOrderItem_mysql_repo") CustomerOrderItemDAO customerOrderItemDAO) {
+        this.customerOrderItemDAO = customerOrderItemDAO;
     }
+
     public int insertCustomerOrderItem(CustomerOrderItem customerOrderItem) {
         return customerOrderItemDAO.insertCustomerOrderItem(customerOrderItem);
     }
 
     public int deleteCustomerOrderItem(int id, int productID) {
-        return customerOrderItemDAO.deleteCustomerOrderItem(id,productID);
+        return customerOrderItemDAO.deleteCustomerOrderItem(id, productID);
     }
 
     public List<CustomerOrderItem> getCustomerOrderItemByCustomerOrder(CustomerOrder customerOrder) {
@@ -33,5 +35,9 @@ public class CustomerOrderItemService {
 
     public int getProfitPerOrderItem(CustomerOrderItem customerOrderItem) {
         return customerOrderItemDAO.getProfitPerOrderItem(customerOrderItem);
+    }
+
+    public List<CustomerOrderItem> getAllCustomerOrderItem() {
+        return customerOrderItemDAO.getAllCustomerOrderItem();
     }
 }

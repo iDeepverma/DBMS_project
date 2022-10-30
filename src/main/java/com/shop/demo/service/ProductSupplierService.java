@@ -8,7 +8,11 @@ import com.shop.demo.model.Supplier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.stereotype.Service;
 
+import java.util.List;
+
+@Service
 public class ProductSupplierService {
     private ProductSupplierDAO productSupplierDAO;
     @Autowired
@@ -29,4 +33,6 @@ public class ProductSupplierService {
     public ProductSuppliers getSuppliersOfProduct(int productID) {
         return productSupplierDAO.getSuppliersOfProduct(productID);
     }
+
+    public List<ProductSuppliers> getAllProductSuppliers(){return productSupplierDAO.getAllProductSuppliers();}
 }
