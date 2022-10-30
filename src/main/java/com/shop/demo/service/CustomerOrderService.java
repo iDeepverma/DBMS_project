@@ -9,10 +9,12 @@ import com.shop.demo.model.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Service
 public class CustomerOrderService {
     private CustomerOrderDAO customerOrderDAO;
     @Autowired
@@ -47,5 +49,9 @@ public class CustomerOrderService {
     }
     public int getProfitPerOrder(CustomerOrder customerOrder) {
         return getProfitPerOrder(customerOrder);
+    }
+
+    public List<CustomerOrder> getAllCustomerOrder() {
+        return  customerOrderDAO.getAllCustomerOrder();
     }
 }

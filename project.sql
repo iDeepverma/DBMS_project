@@ -87,7 +87,7 @@ create table SupplyOrderItem(
 
 create table CustomerOrder(
 	orderID int AUTO_INCREMENT,
-	orderDate date,
+	date date,
 	transactionID int,
 	modeOfPayment varchar(255),
 	total int,
