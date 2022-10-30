@@ -17,6 +17,7 @@ public class CustomerService {
     @Autowired
     public CustomerService(@Qualifier("customer_mysql_repo") CustomerDAO customerDAO){ this.customerDAO=customerDAO;}
 
+
     public int insertCustomer(Customer customer){ return  customerDAO.insertCustomer(customer);}
 
     public Customer getCustomerByID(int id){ return  customerDAO.getCustomerByID(id);}
