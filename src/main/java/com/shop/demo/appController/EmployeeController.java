@@ -121,6 +121,7 @@ public class EmployeeController {
         return "stockAvailability";
     }
 
+
     @GetMapping ("/dashboard")
     public String showDashboard()
     {
@@ -166,7 +167,5 @@ public class EmployeeController {
         customerDAO.updateCustomer(id, customer);
         return "redirect:/customers/";
     }
-
-
 
 }
