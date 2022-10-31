@@ -121,4 +121,52 @@ public class EmployeeController {
         return "stockAvailability";
     }
 
+    @GetMapping ("/dashboard")
+    public String showDashboard()
+    {
+        return "dashboard/dashboard";
+    }
+    @GetMapping ("/customers")
+    public String listCustomers(Model model)
+    {
+        List<Customer> customers = customerDAO.getAllCustomer();
+        model.addAttribute("customers", customers);
+        return "dashboard/customers/customerList";
+    }
+
+    @GetMapping ("/customers/create")
+    public String createCustomer(Model model)
+    {
+        Customer customer = new Customer();
+        model.addAttribute("customer", customer);
+        return "dashboard/customers/customerCreate.html";
+    }
+    @PostMapping ("/customers/create")
+    public String createCustomerPost(@ModelAttribute("customer") Customer customer)
+    {
+        customerDAO.insertCustomer(customer);
+        return "redirect:/customers/";
+    }
+    @GetMapping ("/customers/delete/{id}")
+    public String deleteCustomer(@PathVariable("id") int id)
+    {
+        customerDAO.deleteCustomer(id);
+        return "redirect:/customers/";
+    }
+    @GetMapping ("/customers/edit/{id}")
+    public String editCustomer(@PathVariable("id") int id, Model model)
+    {
+        Customer customer = customerDAO.getCustomerByID(id);
+        model.addAttribute("customer", customer);
+        return "dashboard/customers/customerEdit.html";
+    }
+    @PostMapping ("/customers/edit/{id}")
+    public String editCustomerPost(@PathVariable("id") int id, @ModelAttribute("customer") Customer customer)
+    {
+        customerDAO.updateCustomer(id, customer);
+        return "redirect:/customers/";
+    }
+
+
+
 }
