@@ -1,11 +1,7 @@
 package com.shop.demo.appController;
 
-import com.shop.demo.dao.CustomerOrderDAO;
-import com.shop.demo.dao.EmployeeDAO;
-import com.shop.demo.dao.ProductDAO;
-import com.shop.demo.model.CustomerOrder;
-import com.shop.demo.model.Employee;
-import com.shop.demo.model.Product;
+import com.shop.demo.dao.*;
+import com.shop.demo.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -15,9 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class EmployeeController {
@@ -34,6 +28,12 @@ public class EmployeeController {
 
     @Autowired
     private ProductDAO productDAO;
+
+    @Autowired
+    private ProductCategoryDAO productCategoryDAO;
+
+    @Autowired
+    private CustomerDAO customerDAO;
     @GetMapping ("/getAllEmployee")
     public String getAllEmployee(Model model)
     {
@@ -71,8 +71,6 @@ public class EmployeeController {
     public String employeeDetails(Model model,@RequestParam("id") String id){
         Employee employee = employeeDAO.getEmployeeByID(Integer.parseInt(id));
         List<CustomerOrder> customerOrders= employeeDAO.getServedOrdersByEmployee(Integer.parseInt(id));
-        List<Product> products = productDAO.getAllProduct();
-        model.addAttribute("products",products);
         int x = 0;
         for(int i=0;i<customerOrders.size();i++){
             x = x + customerOrders.get(i).getTotal();
@@ -80,6 +78,45 @@ public class EmployeeController {
         model.addAttribute("employee",employee);
         model.addAttribute("total",x);
         return "test";
+    }
+    @GetMapping("/productByCategory")
+    public String productByCategory(Model model){
+        List<List<Product>>productCategorri = new ArrayList<>();
+        List<ProductCategory>category;
+        category = productCategoryDAO.getAllProductCategory();
+        for(int i=0;i<category.size();i++){
+            List<Product>temp =new Vector<Product>();
+            temp = productCategoryDAO.getAllProductByCategory(category.get(i).getCategory());
+            for(int j=0;j<temp.size();j++){
+                System.out.println(temp.get(j).getProductID()+ " ");
+            }
+            System.out.println(category.get(i).getCategory());
+            productCategorri.add(temp);
+        }
+        model.addAttribute("productCategorri",productCategorri);
+        model.addAttribute("category", category);
+        return "test";
+    }
+    @GetMapping("/allCustomer")
+    public String allCustomer(Model model){
+        List<Customer> customers =customerDAO.getAllCustomer();
+        model.addAttribute( "customer",customers);
+        return "allCustomer";
+    }
+
+    @GetMapping("/stockAvailability")
+    public String stockAvailability(Model model){
+        List<Product>temp = productDAO.getAllProduct();
+        List<String>category = new ArrayList<>();
+        List<Integer>stocks = new ArrayList<>();
+        for(int i=0;i<temp.size();i++){
+            System.out.println(temp.get(i).getProductCategory().getName());
+            category.add(temp.get(i).getProductCategory().getName());
+            stocks.add(temp.get(i).getAmountInStock());
+        }
+        model.addAttribute("names",category);
+        model.addAttribute("stocks",stocks);
+        return "stockAvailability";
     }
 
 }
