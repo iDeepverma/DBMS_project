@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head th:insert="base :: header"></head>
+
+<body>
+    <div th:replace="base :: navbar"></div>
+
+    <main>
+        <div class="contentAllProd">
+            <h3 class="sec-head">Books list</h3>
+            <hr>
+            <div class="productCard">
+                <div class="card" th:each="product: ${products}">
+                    <img src="https://cdn.shopify.com/s/files/1/0598/7919/4823/products/71AvQd3VzqL._SS1500_750x.jpg?v=1654514896" alt="error">
+                    <div class="sectionHome">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <h3 th:text="${product.getProductID()}"></h3>
+                            </li>
+                            <li class="list-group-item itm2">
+                                <h4 th:text="${product.getVariant()}"></h4>
+                            </li>
+                            <li class="list-group-item itm2">
+                                <h4 th:text="${product.getWarrantyLength()}"></h4>
+                            </li>
+                            <li class="list-group-item itm2">
+                                <h4 th:text="${product.getMRP()}"></h4>
+                            </li>
+                            <li class="list-group-item itm2">
+                                <h4>Some Text</h4>
+                            </li>
+                        </ul>
+                        <div class="card-body">
+                            <a th:href="@{/productdetail/${product.getProductID()}}" class="btn btn-primary" style="text-align: center;">View
+                                Product</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <div th:replace="base :: footer"></div>
+</body>
+
+</html>
