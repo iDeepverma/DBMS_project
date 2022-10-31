@@ -5,8 +5,11 @@ import com.shop.demo.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -81,7 +84,21 @@ public class ProductMysql implements ProductDAO{
     @Override
     public List<Product> getAllProduct(){
         String query = "select * from Product ;";
-        return jdbcTemplate.query(query,BeanPropertyRowMapper.newInstance(Product.class));
+        return jdbcTemplate.query(query,new RowMapper<Product>() {
+
+            public Product mapRow(ResultSet rs, int rowNum) throws SQLException {
+                Product product = new Product();
+//                student.setId(rs.getInt(1));
+//                student.setName(rs.getString(2));
+//                student.setDepartment(rs.getString(3));
+                product.setProductID(rs.getInt(1));
+                product.setDescription(rs.getString(2));
+                product.setWarrantyLength(rs.getInt(3));
+                product.setWarrantyCoverage(rs.getString(4));
+                product.
+                return product;
+            }
+        });
 
     }
 }

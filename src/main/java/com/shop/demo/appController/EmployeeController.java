@@ -4,6 +4,7 @@ import com.shop.demo.dao.*;
 import com.shop.demo.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
+
 
 @Controller
 public class EmployeeController {
@@ -39,14 +41,13 @@ public class EmployeeController {
     {
         List<Employee> employees =employeeDAO.getAllEmployee();
         model.addAttribute( "employees",employees);
-        return "test";
+        return "allEmployee";
 
     }
 
     @GetMapping("/getAllEmployee/new")
     public String CreateEmployee(Model model)
     {
-        System.out.println("form called");
         Employee employee=new Employee();
         model.addAttribute("employee",employee);
         return "save";
@@ -54,23 +55,23 @@ public class EmployeeController {
 
     @PostMapping("/i/")
     public String insertEmployee(@ModelAttribute Employee employee) {
-        System.out.println("Email : " + employee.getEmail());
-        System.out.println("Recieved post");
+
         int x = employeeDAO.insertEmployee(employee);
         return "redirect:/getAllEmployee/";
     }
-//    @GetMapping("/getOwner")
-//    public String getOwner(Model model){
-//        Employee owner = new Employee();
-////              owner = employeeDAO.getOwner();
-//              model.addAttribute("owner",owner);
-//              return "test";
-//    }
+
 
     @GetMapping("/employeeDetails")
     public String employeeDetails(Model model,@RequestParam("id") String id){
-        Employee employee = employeeDAO.getEmployeeByID(Integer.parseInt(id));
+        Employee employee;
+        try{
+            employee = employeeDAO.getEmployeeByID(Integer.parseInt(id));
+        }
+        catch (EmptyResultDataAccessException e){
+            return "errror";
+        }
         List<CustomerOrder> customerOrders= employeeDAO.getServedOrdersByEmployee(Integer.parseInt(id));
+
         int x = 0;
         for(int i=0;i<customerOrders.size();i++){
             x = x + customerOrders.get(i).getTotal();
@@ -103,6 +104,7 @@ public class EmployeeController {
         model.addAttribute( "customer",customers);
         return "allCustomer";
     }
+
 
     @GetMapping("/stockAvailability")
     public String stockAvailability(Model model){

@@ -2,13 +2,13 @@ package com.shop.demo.model;
 
 public class CustomerOrderItem {
 //    private int lineNo;
-    private CustomerOrder customerOrder;
+    private CustomerOrder orderID;
     private int quantity;
 //    private int pricePerItem;
 
     private int sellingPrice;
     private String additionalInfo;
-    private Product product;
+    private Product productID;
 
     public int getQuantity() {
         return quantity;
@@ -43,11 +43,11 @@ public class CustomerOrderItem {
     }
 
     public Product getProduct() {
-        return product;
+        return productID;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProduct(Product productID) {
+        this.productID = productID;
     }
 
 //    public int getLineNo() {
@@ -59,10 +59,10 @@ public class CustomerOrderItem {
 //    }
 
     public CustomerOrder getCustomerOrder() {
-        return customerOrder;
+        return orderID;
     }
 
-    public void setCustomerOrder(CustomerOrder customerOrder) {
-        this.customerOrder = customerOrder;
+    public void setCustomerOrder(CustomerOrder orderID) {
+        this.orderID = orderID;
     }
 }

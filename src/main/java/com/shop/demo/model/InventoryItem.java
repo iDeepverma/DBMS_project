@@ -1,10 +1,14 @@
 package com.shop.demo.model;
 
 public class InventoryItem {
+
     private int itemID;
-    private Product product;
-    private SupplyOrder supplyOrder;
-    private CustomerOrderItem customerOrderItem;
+
+    private Product productID;
+
+    private SupplyOrder supplyOrderID;
+
+    private CustomerOrderItem orderID;
 
     public int getItemID() {
         return itemID;
@@ -15,26 +19,27 @@ public class InventoryItem {
     }
 
     public Product getProduct() {
-        return product;
+        return productID;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProduct(Product productID) {
+        this.productID = productID;
     }
 
     public SupplyOrder getSupplyOrder() {
-        return supplyOrder;
+        return supplyOrderID;
     }
 
-    public void setSupplyOrder(SupplyOrder supplyOrder) {
-        this.supplyOrder = supplyOrder;
+    public void setSupplyOrder(SupplyOrder supplyOrderID) {
+        this.supplyOrderID = supplyOrderID;
     }
 
     public CustomerOrderItem getCustomerOrderItem() {
-        return customerOrderItem;
+        return orderID;
     }
 
-    public void setCustomerOrderItem(CustomerOrderItem customerOrderItem) {
-        this.customerOrderItem = customerOrderItem;
+    public void setCustomerOrderItem(CustomerOrderItem orderID) {
+        this.orderID = orderID;
+
     }
 }
