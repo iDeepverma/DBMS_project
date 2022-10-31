@@ -3,6 +3,9 @@ package com.shop.demo.model;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
+
+import java.sql.Date;
+import java.text.DateFormat;
 import java.time.LocalDate;
 
 @NoArgsConstructor
@@ -48,8 +51,8 @@ public class Employee {
         return DOB;
     }
 
-    public void setDOB(LocalDate date) {
-        this.DOB = date;
+    public void setDOB(LocalDate DOB) {
+        this.DOB = DOB;
     }
 
     public String getEmail() {

@@ -10,8 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@RestController
-@RequestMapping("api/v1/supplier")
+//@RestController
+//@RequestMapping("api/v1/supplier")
 public class SupplierApi {
     private SupplierService supplierService;
 
