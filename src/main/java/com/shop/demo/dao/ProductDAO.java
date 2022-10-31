@@ -4,6 +4,7 @@ import com.shop.demo.model.Product;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 public interface ProductDAO {
@@ -19,7 +20,7 @@ public interface ProductDAO {
     int deleteProduct(int id);
 //    DELETE FROM Product WHERE productID = id;
 
-    int getQuantityByProductByDate(Product product, LocalDate startDate);
+    int getQuantityByProductByDate(Product product, Date startDate);
 
     List<Product> getAllProduct();
     //SELECT sum(quantity) FROM CustomerOrderItem, CustomerOrder WHERE product.productID = CustomerOrderItem.productID AND CustomerOrderItem.orderID = CustomerOrder.orderID AND CustomerOrder.orderDate >= startDate;

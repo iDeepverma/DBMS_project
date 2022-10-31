@@ -23,7 +23,7 @@ public class CustomerMysql implements CustomerDAO {
                 customer.getName(),
                 customer.getPhone(),
                 customer.getEmail(),
-                customer.getDOB().toString(),
+                customer.getDOB(),
                 customer.getAddress()
         };
         return jdbcTemplate.update(query,args);
@@ -63,7 +63,7 @@ public class CustomerMysql implements CustomerDAO {
                 customer.getName(),
                 customer.getPhone(),
                 customer.getEmail(),
-                customer.getDOB().toString(),
+                customer.getDOB(),
                 customer.getAddress(),
                 id
         };

@@ -5,6 +5,7 @@ import com.shop.demo.model.SupplyOrderItem;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 public interface SupplyOrderDAO {
@@ -23,7 +24,7 @@ public interface SupplyOrderDAO {
     int updateDeliveryStatus(int id, String deliveryStatus);
 //    UPDATE SupplyOrder SET deliveryStatus=deliveryStatus WHERE orderID=id;
 
-    int updateDeliveryDate(int id, LocalDate date);
+    int updateDeliveryDate(int id, Date date);
 //    UPDATE SupplyOrder SET deliveryDate=date WHERE orderID=id;
 
     List<SupplyOrderItem> getSupplyItem(SupplyOrder supplyOrder);

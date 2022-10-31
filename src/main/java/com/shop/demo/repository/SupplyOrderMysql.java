@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 @Repository("supplyOrder_mysql_repo")
 
@@ -78,10 +79,10 @@ public class SupplyOrderMysql implements SupplyOrderDAO {
     }
 
     @Override
-    public int updateDeliveryDate(int id, LocalDate date) {
+    public int updateDeliveryDate(int id, Date date) {
         String query="UPDATE SupplyOrder SET deliveryDate=? WHERE orderID=?;";
         Object[] args=new Object[]{
-                date.toString(),
+                date,
                 id
         };
         return jdbcTemplate.update(query,args);

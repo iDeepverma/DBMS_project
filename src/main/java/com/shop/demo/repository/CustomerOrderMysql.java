@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Repository("customerOrder_mysql_repo")
@@ -31,7 +32,7 @@ public class CustomerOrderMysql implements CustomerOrderDAO{
         String query = "INSERT INTO CustomerOrder(orderID , orderDate, transactionID, modeOfPayment,total,customerID, servedBy) VALUES (?,?,?,?,?,?,?);";
         Object[] args = new Object[] {
             customerOrder.getOrderID(),
-            customerOrder.getDate().toString(),
+            customerOrder.getDate(),
             customerOrder.getTransactionID(),
             customerOrder.getModeOfPayment(),
             customerOrder.getTotal(),
@@ -54,7 +55,7 @@ public class CustomerOrderMysql implements CustomerOrderDAO{
     public int updateCustomerOrder(int id, CustomerOrder customerOrder) {
         String query = "UPDATE CustomerOrder SET orderDate=?, transactionID=?, modeOfPayment=?, total=?, customerID=?, servedBy=? WHERE orderID=?;";
         Object[] args = new Object[]{
-                customerOrder.getDate().toString(),
+                customerOrder.getDate(),
                 customerOrder.getTransactionID(),
                 customerOrder.getModeOfPayment(),
                 customerOrder.getTotal(),
@@ -94,10 +95,10 @@ public class CustomerOrderMysql implements CustomerOrderDAO{
     }
 
     @Override
-    public List<CustomerOrder> getCustomerOrderBetweenDates(LocalDate startingDate, LocalDate endingDate) {
+    public List<CustomerOrder> getCustomerOrderBetweenDates(Date startingDate,Date endingDate) {
         String query="SELECT * FROM CustomerOrder WHERE orderDate BETWEEN ? AND ?;";
         Object[] args=new Object[]{
-                startingDate.toString(), endingDate.toString()
+                startingDate, endingDate
         };
         return jdbcTemplate.query(query,args,BeanPropertyRowMapper.newInstance(CustomerOrder.class));
     }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Repository("product_mysql_repo")
@@ -68,7 +69,7 @@ public class ProductMysql implements ProductDAO{
     }
 
     @Override
-    public int getQuantityByProductByDate(Product product, LocalDate startDate) {
+    public int getQuantityByProductByDate(Product product, Date startDate) {
         String query = "SELECT sum(quantity) FROM CustomerOrderItem, CustomerOrder WHERE CustomerOrderItem.productID=? AND CustomerOrderItem.orderID = CustomerOrder.orderID AND CustomerOrder.orderDate >= ?;";
         Object[] args = new Object[]{
                 product.getProductID(),
