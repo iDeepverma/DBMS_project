@@ -16,6 +16,8 @@ public interface ProductCategoryDAO {
 //    DELETE FROM ProductCategory WHERE ProductCategory.name=name;
 
     String getProductCategory(String name);
+
+    List<ProductCategory> getAllProductCategory();
 //    select category from ProductCategory where ProductCategory.name =name;
 
 }

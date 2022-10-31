@@ -1,7 +1,6 @@
 package com.shop.demo.repository;
 
 import com.shop.demo.dao.ProductSupplierDAO;
-import com.shop.demo.model.InventoryItem;
 import com.shop.demo.model.Product;
 import com.shop.demo.model.ProductSuppliers;
 import com.shop.demo.model.Supplier;
@@ -9,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository("productSupplier_mysql_repo")
 public class ProductSupplierMysql implements ProductSupplierDAO {
@@ -54,5 +55,12 @@ public class ProductSupplierMysql implements ProductSupplierDAO {
                 productID
         };
         return jdbcTemplate.queryForObject(query,args, BeanPropertyRowMapper.newInstance(ProductSuppliers.class));
+    }
+
+    @Override
+    public List<ProductSuppliers> getAllProductSuppliers(){
+        String query = "select * from ProductSuppliers ;";
+        return jdbcTemplate.query(query,BeanPropertyRowMapper.newInstance(ProductSuppliers.class));
+
     }
 }

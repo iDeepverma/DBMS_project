@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public class ProductCategoryService {
     private ProductCategoryDAO productCategoryDAO;
@@ -28,4 +29,6 @@ public class ProductCategoryService {
     public String getProductCategory(String name) {
         return productCategoryDAO.getProductCategory(name);
     }
+
+    public List<ProductCategory> getAllProductCategory(){ return productCategoryDAO.getAllProductCategory();}
 }

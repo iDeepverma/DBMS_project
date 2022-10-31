@@ -6,6 +6,8 @@ public class ProductCategory {
     private String name;
     private  String category;
 
+
+
     public String getCategory() {
         return category;
     }
