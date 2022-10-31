@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -41,7 +42,7 @@ public class ProductApi {
     }
 
     @GetMapping(path = "/quantity/{date}")
-    public int getQuantityByProductByDate(@RequestBody Product product,@PathVariable("date") LocalDate startDate) {
+    public int getQuantityByProductByDate(@RequestBody Product product,@PathVariable("date") Date startDate) {
         return productService.getQuantityByProductByDate(product, startDate);
     }
 

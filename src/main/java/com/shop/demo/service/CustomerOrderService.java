@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -45,7 +46,7 @@ public class CustomerOrderService {
         return customerOrderDAO.getEmployeeByOrder(customerOrder);
     }
 
-    public List<CustomerOrder> getCustomerOrderBetweenDates(LocalDate startingDate, LocalDate endingDate) {
+    public List<CustomerOrder> getCustomerOrderBetweenDates(Date startingDate, Date endingDate) {
         return customerOrderDAO.getCustomerOrderBetweenDates(startingDate,endingDate);
     }
     public int getProfitPerOrder(CustomerOrder customerOrder) {

@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 public class SupplyOrderService {
@@ -43,7 +44,7 @@ public class SupplyOrderService {
         return supplyOrderDAO.updateDeliveryStatus(id, deliveryStatus);
     }
 
-    public int updateDeliveryDate(int id, LocalDate date) {
+    public int updateDeliveryDate(int id, Date date) {
         return supplyOrderDAO.updateDeliveryDate(id, date);
     }
 
