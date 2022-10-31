@@ -5,23 +5,33 @@ import com.shop.demo.dao.ProductDAO;
 import com.shop.demo.model.Employee;
 import com.shop.demo.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Date;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+@Controller
 public class EmployeeController {
+
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), true));
+    }
     @Autowired
-    private EmployeeDAO dao;
+    private EmployeeDAO employeeDAO;
 
     @GetMapping ("/getAllEmployee")
     public String getAllEmployee(Model model)
     {
-        List<Employee> employee =dao.getAllEmployee();
-        model.addAttribute( "employee",employee);
+        List<Employee> employees =employeeDAO.getAllEmployee();
+        model.addAttribute( "employees",employees);
         return "test";
 
 
@@ -30,22 +40,18 @@ public class EmployeeController {
     @GetMapping("/getAllEmployee/new")
     public String CreateEmployee(Model model)
     {
+        System.out.println("form called");
         Employee employee=new Employee();
-        System.out.println(employee.getEmpID());
-        System.out.println(employee.getName());
-        System.out.println(employee.getDOB());
         model.addAttribute("employee",employee);
         return "save";
     }
 
-    @PostMapping("/InsertEmployee")
-    public int InsertEmployee(@ModelAttribute("employee") Employee employee) {
-        System.out.println(employee.getEmpID());
-        System.out.println(employee.getName());
-        System.out.println(employee.getDOB());
-        int x = dao.insertEmployee(employee);
-        System.out.println(x);
-        return x;
+    @PostMapping("/i/")
+    public String InsertEmployee(@ModelAttribute Employee employee) {
+        System.out.println("Email : " + employee.getEmail());
+        System.out.println("Recieved post");
+        int x = employeeDAO.insertEmployee(employee);
+        return "redirect:/getAllEmployee/";
     }
 
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns: th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <title></title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
@@ -15,8 +15,8 @@
 
     </thead>
     <tbody>
-    <tr th:each="product: ${product}">
-        <td th:text="${product.getProductCategory().getName()}"></td>
+    <tr th:each="e: ${employees}">
+        <td th:text="${e.getEmpID()}"></td>
 
     </tr>
 
