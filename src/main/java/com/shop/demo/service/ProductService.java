@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -34,7 +35,7 @@ public class ProductService {
         return productDAO.deleteProduct(id);
     }
 
-    public int getQuantityByProductByDate(Product product, LocalDate startDate) {
+    public int getQuantityByProductByDate(Product product, Date startDate) {
         return productDAO.getQuantityByProductByDate(product, startDate);
     }
 
