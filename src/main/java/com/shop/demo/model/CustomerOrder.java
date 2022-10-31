@@ -13,8 +13,8 @@ public class CustomerOrder {
     private int transactionID;
     private String modeOfPayment;
     private int total;
-    private Customer customerID;
-    private Employee servedBy;
+    private int customerID;
+    private int servedBy;
 
     public int getOrderID() {
         return orderID;
@@ -56,21 +56,19 @@ public class CustomerOrder {
         this.total = total;
     }
 
-    public Customer getCustomerID() {
+    public int getCustomerID() {
         return customerID;
     }
 
     public void setCustomerID(int customerID) {
-        CustomerMysql customerMysql = new CustomerMysql();
-        this.customerID = customerMysql.getCustomerByID(customerID);
+        this.customerID = customerID;
     }
 
-    public Employee getServedBy() {
+    public int getServedBy() {
         return servedBy;
     }
 
     public void setServedBy(int servedBy) {
-        EmployeeMysql employeeMysql = new EmployeeMysql();
-        this.servedBy = employeeMysql.getEmployeeByID(servedBy);
+        this.servedBy = servedBy;
     }
 }

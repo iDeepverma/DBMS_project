@@ -36,8 +36,8 @@ public class CustomerOrderMysql implements CustomerOrderDAO{
             customerOrder.getTransactionID(),
             customerOrder.getModeOfPayment(),
             customerOrder.getTotal(),
-            customerOrder.getCustomerID().getCustomerID(),
-            customerOrder.getServedBy().getEmpID()
+            customerOrder.getCustomerID(),
+            customerOrder.getServedBy()
         };
         return jdbcTemplate.update(query,args);
     }
@@ -59,8 +59,8 @@ public class CustomerOrderMysql implements CustomerOrderDAO{
                 customerOrder.getTransactionID(),
                 customerOrder.getModeOfPayment(),
                 customerOrder.getTotal(),
-                customerOrder.getCustomerID().getCustomerID(),
-                customerOrder.getServedBy().getEmpID(),
+                customerOrder.getCustomerID(),
+                customerOrder.getServedBy(),
                 id
         };
         return jdbcTemplate.update(query,args);
@@ -89,7 +89,7 @@ public class CustomerOrderMysql implements CustomerOrderDAO{
     public Employee getEmployeeByOrder(CustomerOrder customerOrder) {
         String query ="SELECT * FROM Employee WHERE Employee.empID = ?;";
         Object[] args =new Object[]{
-          customerOrder.getServedBy().getEmpID()
+          customerOrder.getServedBy()
         };
         return jdbcTemplate.queryForObject(query,args,BeanPropertyRowMapper.newInstance(Employee.class));
     }

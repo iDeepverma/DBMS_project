@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository("productCategory_mysql_repo")
-
 public class ProductCategoryMysql implements ProductCategoryDAO {
 
     @Autowired

@@ -27,9 +27,10 @@
 
   </thead>
   <tbody>
-  <td th:text="${employee.getName()}"></td>
-  <td th:text="${total}"></td>
-
+  <tr th:each="employee: ${employees}">
+    <td th:text="${employee.getName()}"></td>
+    <td th:text="${total}"></td>
+  </tr>
   </tbody>
 </table>
 <div class="row">

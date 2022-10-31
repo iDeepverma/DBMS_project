@@ -21,10 +21,10 @@ public class CustomerOrderItemMysql implements CustomerOrderItemDAO{
     public int insertCustomerOrderItem(CustomerOrderItem customerOrderItem) {
         String query = "INSERT INTO CustomerOrderItem(orderID,quantity,sellingPrice,productID,additionInfo) VALUES (?,?,?,?,?);";
         Object[] args = new Object[] {
-          customerOrderItem.getOrderID().getOrderID(),
+          customerOrderItem.getOrderID(),
           customerOrderItem.getQuantity(),
           customerOrderItem.getSellingPrice(),
-          customerOrderItem.getProductID().getProductID(),
+          customerOrderItem.getProductID(),
           customerOrderItem.getAdditionalInfo()
         };
         return jdbcTemplate.update(query,args);
@@ -55,7 +55,7 @@ public class CustomerOrderItemMysql implements CustomerOrderItemDAO{
         Object[] args = new Object[]{
                 customerOrderItem.getQuantity(),
                 customerOrderItem.getSellingPrice(),
-                customerOrderItem.getProductID().getProductID()
+                customerOrderItem.getProductID()
         };
         return jdbcTemplate.queryForObject(query,args, BeanPropertyRowMapper.newInstance(Integer.class));
     }

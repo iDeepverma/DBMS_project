@@ -59,8 +59,8 @@ public class InventoryItemMysql implements InventoryItemDAO {
     public int updateItem(int itemID,  InventoryItem inventoryItem) {
         String query =" UPDATE InventoryItem SET supplyOrderID=?, orderID=?  WHERE InventoryItem.itemID=?;";
         Object[] args=new Object[]{
-                inventoryItem.getSupplyOrderID().getOrderID(),
-                inventoryItem.getOrderID().getOrderID(),
+                inventoryItem.getSupplyOrderID(),
+                inventoryItem.getOrderID(),
                 itemID
         };
         return jdbcTemplate.update(query ,args);

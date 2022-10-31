@@ -22,8 +22,8 @@ public class ProductSupplierMysql implements ProductSupplierDAO {
     public int insertProductSuppliers(ProductSuppliers productSuppliers) {
         String query ="INSERT INTO ProductSuppliers(supplierID , productID) VALUES (?,?);";
         Object[] args=new Object[]{
-                productSuppliers.getSupplier().getSupplierID(),
-                productSuppliers.getProduct().getProductID()
+                productSuppliers.getSupplierID(),
+                productSuppliers.getProductID()
         };
         return jdbcTemplate.update(query,args);
     }

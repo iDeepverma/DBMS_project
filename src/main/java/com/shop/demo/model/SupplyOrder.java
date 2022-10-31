@@ -13,8 +13,8 @@ public class SupplyOrder {
     private Date deliveryDate;
     private String deliveryStatus;
     private int totalAmount;
-    private Supplier supplierID;
-    private Employee placedBy;
+    private int supplierID;
+    private int placedBy;
 
     public int getOrderID() {
         return orderID;
@@ -56,21 +56,19 @@ public class SupplyOrder {
         this.totalAmount = totalAmount;
     }
 
-    public Supplier getSupplierID() {
+    public int getSupplierID() {
         return supplierID;
     }
 
     public void setSupplierID(int supplierID) {
-        SupplierMysql supplierMysql = new SupplierMysql();
-        this.supplierID = supplierMysql.getSupplierByID(supplierID);
+        this.supplierID = supplierID;
     }
 
-    public Employee getPlacedBy() {
+    public int getPlacedBy() {
         return placedBy;
     }
 
     public void setPlacedBy(int placedBy) {
-        EmployeeMysql employeeMysql = new EmployeeMysql();
-        this.placedBy = employeeMysql.getEmployeeByID(placedBy);
+        this.placedBy = placedBy;
     }
 }

@@ -5,19 +5,18 @@ import com.shop.demo.repository.ProductMysql;
 
 public class CustomerOrderItem {
 
-    private CustomerOrder orderID;
+    private int orderID;
     private int quantity;
     private int sellingPrice;
     private String additionalInfo;
-    private Product productID;
+    private int productID;
 
-    public CustomerOrder getOrderID() {
+    public int getOrderID() {
         return orderID;
     }
 
     public void setOrderID(int orderID) {
-        CustomerOrderMysql customerOrderMysql = new CustomerOrderMysql();
-        this.orderID = customerOrderMysql.getCustomerOrderByID(orderID);
+        this.orderID = orderID;
     }
 
     public int getQuantity() {
@@ -44,12 +43,11 @@ public class CustomerOrderItem {
         this.additionalInfo = additionalInfo;
     }
 
-    public Product getProductID() {
+    public int getProductID() {
         return productID;
     }
 
     public void setProductID(int productID) {
-        ProductMysql productMysql = new ProductMysql();
-        this.productID = productMysql.getProductByID(productID);
+        this.productID = productID;
     }
 }

@@ -108,17 +108,18 @@ public class EmployeeController {
 
     @GetMapping("/stockAvailability")
     public String stockAvailability(Model model){
+        System.out.println("stock Avaialability called");
         List<Product>temp = productDAO.getAllProduct();
         List<String>category = new ArrayList<>();
         List<Integer>stocks = new ArrayList<>();
         for(int i=0;i<temp.size();i++){
-            System.out.println(temp.get(i).getName().getName());
-            category.add(temp.get(i).getName().getName());
+            System.out.println(temp.get(i).getName());
+            category.add(temp.get(i).getName());
             stocks.add(temp.get(i).getAmountInStock());
         }
         model.addAttribute("names",category);
         model.addAttribute("stocks",stocks);
-        return "stockAvailability";
+        return "stocksAvailability";
     }
 
 }
