@@ -10,7 +10,7 @@ public class SupplyOrder {
     private Date deliveryDate;
     private String deliveryStatus;
     private int totalAmount;
-    private Supplier supplier;
+    private Supplier supplierID;
     private Employee placedBy;
 
     public int getOrderID() {
@@ -54,11 +54,11 @@ public class SupplyOrder {
     }
 
     public Supplier getSupplier() {
-        return supplier;
+        return supplierID;
     }
 
-    public void setSupplier(Supplier supplier) {
-        this.supplier = supplier;
+    public void setSupplier(Supplier supplierID) {
+        this.supplierID = supplierID;
     }
 
     public Employee getPlacedBy() {

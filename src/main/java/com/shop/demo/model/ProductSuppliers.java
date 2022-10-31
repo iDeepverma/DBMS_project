@@ -8,22 +8,22 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class ProductSuppliers {
-    private Product product;
-    private Supplier supplier;
+    private Product productID;
+    private Supplier supplierID;
 
     public Product getProduct() {
-        return product;
+        return productID;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProduct(Product productID) {
+        this.productID = productID;
     }
 
     public Supplier getSupplier() {
-        return supplier;
+        return supplierID;
     }
 
-    public void setSupplier(Supplier supplier) {
-        this.supplier = supplier;
+    public void setSupplier(Supplier supplierID) {
+        this.supplierID = supplierID;
     }
 }

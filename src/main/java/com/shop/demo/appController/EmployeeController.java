@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+
 @Controller
 public class EmployeeController {
 
@@ -103,6 +104,7 @@ public class EmployeeController {
         model.addAttribute( "customer",customers);
         return "allCustomer";
     }
+
 
     @GetMapping("/stockAvailability")
     public String stockAvailability(Model model){

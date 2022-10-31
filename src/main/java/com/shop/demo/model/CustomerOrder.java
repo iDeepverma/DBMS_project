@@ -6,12 +6,12 @@ import java.util.Date;
 
 public class CustomerOrder {
     private int orderID;
-    private Date date;
+    private Date orderDate;
     private int transactionID;
     private String modeOfPayment;
     private int total;
-    private Customer customer;
-    private Employee employee;
+    private Customer customerID;
+    private Employee servedBy;
 
     public int getOrderID() {
         return orderID;
@@ -22,11 +22,11 @@ public class CustomerOrder {
     }
 
     public Date getDate() {
-        return date;
+        return orderDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDate(Date orderDate) {
+        this.orderDate = orderDate;
     }
 
     public int getTransactionID() {
@@ -54,18 +54,18 @@ public class CustomerOrder {
     }
 
     public Customer getCustomer() {
-        return customer;
+        return customerID;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setCustomer(Customer customerID) {
+        this.customerID = customerID;
     }
 
     public Employee getEmployee() {
-        return employee;
+        return servedBy;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setEmployee(Employee servedBy) {
+        this.servedBy = servedBy;
     }
 }
