@@ -27,7 +27,7 @@ public class SupplyOrderMysql implements SupplyOrderDAO {
                 supplyOrder.getDeliveryDate(),
                 supplyOrder.getDeliveryStatus(),
                 supplyOrder.getTotalAmount(),
-                supplyOrder.getSupplier(),
+                supplyOrder.getSupplierID(),
                 supplyOrder.getPlacedBy()
         };
         return jdbcTemplate.update(query,args);
@@ -50,7 +50,7 @@ public class SupplyOrderMysql implements SupplyOrderDAO {
                 supplyOrder.getDeliveryDate(),
                 supplyOrder.getDeliveryStatus(),
                 supplyOrder.getTotalAmount(),
-                supplyOrder.getSupplier(),
+                supplyOrder.getSupplierID(),
                 supplyOrder.getPlacedBy(),
                 id
         };

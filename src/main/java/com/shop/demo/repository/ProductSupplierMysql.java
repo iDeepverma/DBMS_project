@@ -22,7 +22,7 @@ public class ProductSupplierMysql implements ProductSupplierDAO {
     public int insertProductSuppliers(ProductSuppliers productSuppliers) {
         String query ="INSERT INTO ProductSuppliers(supplierID , productID) VALUES (?,?);";
         Object[] args=new Object[]{
-                productSuppliers.getSupplier().getSupplierId(),
+                productSuppliers.getSupplier().getSupplierID(),
                 productSuppliers.getProduct().getProductID()
         };
         return jdbcTemplate.update(query,args);
@@ -33,7 +33,7 @@ public class ProductSupplierMysql implements ProductSupplierDAO {
         String query ="DELETE FROM ProductSuppliers WHERE ProductSuppliers.productID=? AND ProductSuppliers.supplierID=?;";
         Object[] args =new Object[]{
                 product.getProductID(),
-                supplier.getSupplierId()
+                supplier.getSupplierID()
         };
         return jdbcTemplate.update(query,args);
     }

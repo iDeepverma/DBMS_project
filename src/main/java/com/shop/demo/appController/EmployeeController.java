@@ -112,8 +112,8 @@ public class EmployeeController {
         List<String>category = new ArrayList<>();
         List<Integer>stocks = new ArrayList<>();
         for(int i=0;i<temp.size();i++){
-            System.out.println(temp.get(i).getProductCategory().getName());
-            category.add(temp.get(i).getProductCategory().getName());
+            System.out.println(temp.get(i).getName().getName());
+            category.add(temp.get(i).getName().getName());
             stocks.add(temp.get(i).getAmountInStock());
         }
         model.addAttribute("names",category);

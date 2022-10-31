@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 
+import java.util.List;
+
 public class InventoryItemService {
     private InventoryItemDAO inventoryItemDAO;
     @Autowired
@@ -17,22 +19,15 @@ public class InventoryItemService {
         return inventoryItemDAO.insertItem(inventoryItem);
     }
     public int deleteItem(int itemID, int productID) {
-        return inventoryItemDAO.deleteItem(itemID, productID);
+        return inventoryItemDAO.deleteItem(itemID);
     }
 
-    public InventoryItem getItemByProduct(int product) {
+    public List<InventoryItem> getItemByProduct(int product) {
         return inventoryItemDAO.getItemByProduct(product);
     }
 
-    public int getStock(Product product) {
-        return inventoryItemDAO.getStock(product);
-    }
-
-    public int markItemSold(int itemID, int product) {
-        return inventoryItemDAO.markItemSold(itemID, product);
-    }
 
     public int updateItem(int itemID, int productID, InventoryItem inventoryItem) {
-        return inventoryItemDAO.updateItem(itemID , productID , inventoryItem);
+        return inventoryItemDAO.updateItem(itemID , inventoryItem);
     }
 }

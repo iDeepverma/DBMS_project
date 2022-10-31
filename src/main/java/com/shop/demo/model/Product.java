@@ -25,11 +25,11 @@ public class Product {
         this.productID = productID;
     }
 
-    public ProductCategory getProductCategory() {
+    public ProductCategory getName() {
         return name;
     }
 
-    public void setProductCategory(String name) {
+    public void setName(String name) {
 
         ProductCategoryMysql productCategoryMysql = new ProductCategoryMysql();
 

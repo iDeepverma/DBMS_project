@@ -1,5 +1,8 @@
 package com.shop.demo.model;
 
+import com.shop.demo.repository.CustomerMysql;
+import com.shop.demo.repository.EmployeeMysql;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -21,11 +24,11 @@ public class CustomerOrder {
         this.orderID = orderID;
     }
 
-    public Date getDate() {
+    public Date getOrderDate() {
         return orderDate;
     }
 
-    public void setDate(Date orderDate) {
+    public void setOrderDate(Date orderDate) {
         this.orderDate = orderDate;
     }
 
@@ -53,19 +56,21 @@ public class CustomerOrder {
         this.total = total;
     }
 
-    public Customer getCustomer() {
+    public Customer getCustomerID() {
         return customerID;
     }
 
-    public void setCustomer(Customer customerID) {
-        this.customerID = customerID;
+    public void setCustomerID(int customerID) {
+        CustomerMysql customerMysql = new CustomerMysql();
+        this.customerID = customerMysql.getCustomerByID(customerID);
     }
 
-    public Employee getEmployee() {
+    public Employee getServedBy() {
         return servedBy;
     }
 
-    public void setEmployee(Employee servedBy) {
-        this.servedBy = servedBy;
+    public void setServedBy(int servedBy) {
+        EmployeeMysql employeeMysql = new EmployeeMysql();
+        this.servedBy = employeeMysql.getEmployeeByID(servedBy);
     }
 }
