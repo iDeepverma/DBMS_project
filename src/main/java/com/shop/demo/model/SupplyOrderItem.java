@@ -2,19 +2,19 @@ package com.shop.demo.model;
 
 public class SupplyOrderItem {
 //    private int lineNo;
-    private SupplyOrder supplyOrder;
+    private SupplyOrder supplyOrderID;
     private int quantity;
 
     public SupplyOrder getSupplyOrder() {
-        return supplyOrder;
+        return supplyOrderID;
     }
 
-    public void setSupplyOrder(SupplyOrder supplyOrder) {
-        this.supplyOrder = supplyOrder;
+    public void setSupplyOrder(SupplyOrder supplyOrderID) {
+        this.supplyOrderID = supplyOrderID;
     }
 
     private int total;
-    private Product product;
+    private Product productID;
     private String additionalInfo;
 
 
@@ -36,11 +36,11 @@ public class SupplyOrderItem {
     }
 
     public Product getProduct() {
-        return product;
+        return productID;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProduct(Product productID) {
+        this.productID = productID;
     }
 
     public String getAdditionalInfo() {
