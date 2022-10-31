@@ -9,6 +9,8 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 //        create table Supplier(
 //        name varchar(255),
 //        supplierID int AUTO_INCREMENT,
@@ -26,10 +28,9 @@ public class SupplierMysql implements SupplierDAO {
     JdbcTemplate jdbcTemplate;
     @Override
     public int insertSupplier(Supplier supplier) {
-        String query = "INSERT INTO Supplier(name,supplierID,phone,address,moneySpent,ordersFulfilled,email) VALUES (?,?,?,?,?,?,?);";
+        String query = "INSERT INTO Supplier(name,phone,address,moneySpent,ordersFulfilled,email) VALUES (?,?,?,?,?,?);";
         Object[] args = new Object[] {
                 supplier.getName(),
-                supplier.getSupplierId(),
                 supplier.getPhone(),
                 supplier.getAddress(),
                 supplier.getMoneySpent(),
@@ -73,6 +74,7 @@ public class SupplierMysql implements SupplierDAO {
             return jdbcTemplate.queryForObject(query, args, BeanPropertyRowMapper.newInstance(Supplier.class));
         }
         catch (EmptyResultDataAccessException e){
+            System.out.println("Supplier Id doesnt exist");
             return null;
         }
     }
@@ -96,4 +98,12 @@ public class SupplierMysql implements SupplierDAO {
         };
         return jdbcTemplate.update(query,args);
     }
+
+    @Override
+    public List<Supplier> getAllSupplier() {
+        String query = "SELECT * FROM Supplier;";
+        return jdbcTemplate.query(query,BeanPropertyRowMapper.newInstance(Supplier.class));
+    }
+
+
 }

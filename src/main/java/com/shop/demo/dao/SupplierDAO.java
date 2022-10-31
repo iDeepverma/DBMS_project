@@ -2,6 +2,8 @@ package com.shop.demo.dao;
 
 import com.shop.demo.model.Supplier;
 
+import java.util.List;
+
 public interface SupplierDAO {
     int insertSupplier(Supplier supplier);
 //    INSERT INTO Supplier VALUES (supplier);
@@ -20,5 +22,7 @@ public interface SupplierDAO {
 
     int updateOrdersFullfilled(int id, int orders);
 //    UPDATE Supplier SET ordersFulfilled=orders WHERE supplierID=id;
+
+    List<Supplier> getAllSupplier();
 
 }
