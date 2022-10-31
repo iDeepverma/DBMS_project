@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class Product {
     private int productID;
-    private ProductCategory productCategory;
+    private ProductCategory name;
     private String description;
     private int warrantyLength;
-    private int warrantyCoverage;
+    private String warrantyCoverage;
     private int MRP;
     private int costPrice;
     private int variant;
@@ -26,14 +26,14 @@ public class Product {
     }
 
     public ProductCategory getProductCategory() {
-        return productCategory;
+        return name;
     }
 
-    public void setProductCategory(String productCategory) {
+    public void setProductCategory(String name) {
 
         ProductCategoryMysql productCategoryMysql = new ProductCategoryMysql();
 
-        this.productCategory = productCategoryMysql.getProductCategoryByName(productCategory);
+        this.name= productCategoryMysql.getProductCategoryByName(name);
     }
 
     public String getDescription() {
@@ -53,11 +53,15 @@ public class Product {
         this.warrantyLength = warrantyLength;
     }
 
-    public int getWarrantyCoverage() {
+    public void setProductCategory(ProductCategory name) {
+        this.name = name;
+    }
+
+    public String getWarrantyCoverage() {
         return warrantyCoverage;
     }
 
-    public void setWarrantyCoverage(int warrantyCoverage) {
+    public void setWarrantyCoverage(String warrantyCoverage) {
         this.warrantyCoverage = warrantyCoverage;
     }
 

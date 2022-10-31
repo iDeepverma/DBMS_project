@@ -116,8 +116,8 @@ create table InventoryItem(
 	productID int,
 	supplyOrderID int,
 	orderID int,
-	PRIMARY KEY(itemID,productID),
+	PRIMARY KEY(itemID),
 	FOREIGN KEY (productID) REFERENCES Product(productID),
 	FOREIGN KEY (supplyOrderID) REFERENCES SupplyOrder(orderID) ON DELETE CASCADE,
-	FOREIGN KEY (orderID) REFERENCES CustomerOrderItem(orderID) ON DELETE CASCADE
+	FOREIGN KEY (orderID) REFERENCES CustomerOrder(orderID) ON DELETE CASCADE
 );
