@@ -2,13 +2,14 @@ package com.shop.demo.model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 public class Customer {
     private int customerID;
     private String name;
     private String phone;
     private String email;
-    private LocalDate DOB;
+    private Date DOB;
 
     private String address;
     public int getCustomerID() {
@@ -51,11 +52,11 @@ public class Customer {
         this.email = email;
     }
 
-    public LocalDate getDOB() {
+    public Date getDOB() {
         return DOB;
     }
 
-    public void setDOB(LocalDate DOB) {
+    public void setDOB(Date DOB) {
         this.DOB = DOB;
     }
 }

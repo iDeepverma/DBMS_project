@@ -2,10 +2,11 @@ package com.shop.demo.model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 public class CustomerOrder {
     private int orderID;
-    private LocalDate date;
+    private Date date;
     private int transactionID;
     private String modeOfPayment;
     private int total;
@@ -20,11 +21,11 @@ public class CustomerOrder {
         this.orderID = orderID;
     }
 
-    public LocalDate getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

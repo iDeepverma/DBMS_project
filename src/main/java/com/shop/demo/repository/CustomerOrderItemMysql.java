@@ -11,12 +11,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-//        orderID int,
-//        quantity int,
-//        sellingPrice int,
-//        productID int,
-//        additionalInfo LONGTEXT,
-
 @Repository("customerOrderItem_mysql_repo")
 public class CustomerOrderItemMysql implements CustomerOrderItemDAO{
     @Autowired

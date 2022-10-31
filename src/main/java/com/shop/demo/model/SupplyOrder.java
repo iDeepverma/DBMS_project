@@ -2,11 +2,12 @@ package com.shop.demo.model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 public class SupplyOrder {
     private int orderID;
-    private LocalDate orderDate;
-    private LocalDate deliveryDate;
+    private Date orderDate;
+    private Date deliveryDate;
     private String deliveryStatus;
     private int totalAmount;
     private Supplier supplier;
@@ -20,20 +21,20 @@ public class SupplyOrder {
         this.orderID = orderID;
     }
 
-    public LocalDate getOrderDate() {
-        return orderDate;
-    }
-
-    public void setOrderDate(LocalDate orderDate) {
-        this.orderDate = orderDate;
-    }
-
-    public LocalDate getDeliveryDate() {
+    public Date getDeliveryDate() {
         return deliveryDate;
     }
 
-    public void setDeliveryDate(LocalDate deliveryDate) {
+    public void setDeliveryDate(Date deliveryDate) {
         this.deliveryDate = deliveryDate;
+    }
+
+    public Date getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
     }
 
     public String getDeliveryStatus() {
