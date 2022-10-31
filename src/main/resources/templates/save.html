@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Add employees</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+<body>
+hi
+<form method="post"  th:action="@{/i/}" th:object="${employee}" >
+    <label> employeeID </label>
+    <input type="text" th:field="*{empID}" placeholder="Enter Employee ID">
+    <label> name</label>
+    <input type="text" th:field="*{name}" placeholder="Enter name">
+    <label>DOB</label>
+    <input type="text" th:field="*{DOB}" placeholder="Enter DOB">
+    <label>email</label>
+    <input type="text" th:field="*{email}" placeholder="Enter email">
+    <label>phone</label>
+    <input type="text" th:field="*{phone}" placeholder="Enter phone number">
+    <label>salary</label>
+    <input type="text" th:field="*{salary}" placeholder="Enter salary">
+    <label>joinDate</label>
+    <input type="text" th:field="*{joinDate}" placeholder="Enter joinDate">
+    <label>role</label>
+    <input type="text" th:field="*{role}" placeholder="Enter role">
+    <label>address</label>
+    <input type="text" th:field="*{address}" placeholder="Enter address">
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</body>
+</html>

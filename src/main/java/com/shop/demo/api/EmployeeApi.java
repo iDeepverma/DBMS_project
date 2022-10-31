@@ -9,8 +9,8 @@ import java.util.List;
 
 
 
-@RestController
-@RequestMapping("api/v1/employee")
+//@RestController
+//@RequestMapping("api/v1/employee")
 public class EmployeeApi {
     private EmployeeService employeeService;
 
@@ -21,6 +21,7 @@ public class EmployeeApi {
 
     @GetMapping
     public List<Employee> getAllEmployee(){
+
         return employeeService.getAllEmployee();
     }
 

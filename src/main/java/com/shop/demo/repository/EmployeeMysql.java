@@ -25,11 +25,11 @@ public class EmployeeMysql implements EmployeeDAO {
         String query = "INSERT INTO Employee(name,DOB,email,phone,salary,joinDate,role,address) VALUES(?,?,?,?,?,?,?,?);";
         Object[] args = new Object[] {
                 employee.getName(),
-                employee.getDOB().toString(),
+                employee.getDOB(),
                 employee.getEmail(),
                 employee.getPhone(),
                 employee.getSalary(),
-                employee.getJoinDate().toString(),
+                employee.getJoinDate(),
                 employee.getRole(),
                 employee.getAddress()
         };
@@ -50,11 +50,11 @@ public class EmployeeMysql implements EmployeeDAO {
         String query = "UPDATE Employee SET name=?, DOB=?,email=?,phone=?,salary=?,joinDate=?,role=?,address=?  WHERE empID=?;";
         Object[] args = new Object[]{
                 employee.getName(),
-                employee.getDOB().toString(),
+                employee.getDOB(),
                 employee.getEmail(),
                 employee.getPhone(),
                 employee.getSalary(),
-                employee.getJoinDate().toString(),
+                employee.getJoinDate(),
                 employee.getRole(),
                 employee.getAddress(),
                 id
