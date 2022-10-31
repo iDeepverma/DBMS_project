@@ -17,6 +17,8 @@ public interface ProductCategoryDAO {
 
     String getProductCategory(String name);
 
+    ProductCategory getProductCategoryByName(String name);
+
     List<ProductCategory> getAllProductCategory();
 //    select category from ProductCategory where ProductCategory.name =name;
 

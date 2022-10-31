@@ -1,6 +1,11 @@
 package com.shop.demo.model;
 
 
+import com.shop.demo.dao.ProductCategoryDAO;
+import com.shop.demo.repository.ProductCategoryMysql;
+import com.shop.demo.service.ProductCategoryService;
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class Product {
     private int productID;
     private ProductCategory productCategory;
@@ -24,8 +29,11 @@ public class Product {
         return productCategory;
     }
 
-    public void setProductCategory(ProductCategory productCategory) {
-        this.productCategory = productCategory;
+    public void setProductCategory(String productCategory) {
+
+        ProductCategoryMysql productCategoryMysql = new ProductCategoryMysql();
+
+        this.productCategory = productCategoryMysql.getProductCategoryByName(productCategory);
     }
 
     public String getDescription() {
