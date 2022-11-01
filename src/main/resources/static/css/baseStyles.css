@@ -2,15 +2,19 @@
 
 @import "utils.css";
 
-@import "navbar.css";
 
 @import "footer.css";
+
+@import "navbar.css";
 
 @import "animation.css";
 
 @import "home.css";
 
 @import "allProducts.css";
+
+@import "bg_animation.css";
+
 
 * {
     margin: 0;
@@ -20,16 +24,30 @@
     font-family: 'Poppins', sans-serif;
 }
 
-html{
+html {
     min-height: 100%;
+    overflow: scroll;
+    overflow-x: hidden;
+    overflow: -moz-scrollbars-none;
+    -ms-overflow-style: none;
 }
 
-main{
+
+html::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #FF0000;
+}
+
+main {
     margin-top: 70px;
     position: relative;
 }
 
-body{
+body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
