@@ -86,6 +86,7 @@ public class ProductMysql implements ProductDAO{
         return jdbcTemplate.query(query, BeanPropertyRowMapper.newInstance(Product.class));
     }
 
+
     @Override
     public int markItemSold(int product) {
         String query="UPDATE Product SET amountInStock = amountInStock-1 WHERE Product.productID = ?;";
@@ -94,7 +95,6 @@ public class ProductMysql implements ProductDAO{
         };
         return jdbcTemplate.update(query,args);
     }
-
     @Override
     public int getStock(int product) {
         String query="SELECT amountInStock FROM Product WHERE Product.productID=?; ";

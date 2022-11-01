@@ -36,6 +36,10 @@ public class EmployeeController {
 
     @Autowired
     private CustomerDAO customerDAO;
+
+    @Autowired
+    private CustomerOrderItemDAO customerOrderItemDAO;
+
     @GetMapping ("/getAllEmployee")
     public String getAllEmployee(Model model)
     {
@@ -169,4 +173,35 @@ public class EmployeeController {
         return "redirect:/customers/";
     }
 
+    @GetMapping("/performance")
+    public String performance(Model model){
+        List<ProductCategory>category = productCategoryDAO.getAllProductCategory();
+        List<Long>profit = new ArrayList<>();
+        List<Long>revenue = new ArrayList<>();
+        List<String>Category = new ArrayList<>();
+        int temp = 0;
+        for(int i=0;i<category.size();i++){
+            long totalrevenue = 0,totalprofit = 0;
+            String eachcat = category.get(i).getCategory();
+            List<Product>temp1 = productCategoryDAO.getAllProductByCategory(eachcat);
+            List<CustomerOrderItem>allitems = customerOrderItemDAO.getAllCustomerOrderItem();
+            for(int j=0;j<temp1.size();j++){
+                long id = temp1.get(j).getProductID();
+                for(int k=0;k<allitems.size();k++){
+                    if(allitems.get(k).getProductID() ==  id){
+                        totalrevenue = totalrevenue + (allitems.get(k).getQuantity())*(allitems.get(k).getSellingPrice());
+                        System.out.println(totalrevenue);
+                        totalprofit = totalprofit + (allitems.get(k).getQuantity()*(allitems.get(k).getSellingPrice() - productDAO.getProductByID(allitems.get(i).getProductID()).getCostPrice()));
+                    }
+                }
+            }
+            profit.add(totalprofit);
+            revenue.add(totalrevenue);
+            Category.add(eachcat);
+        }
+        model.addAttribute("profit",profit);
+        model.addAttribute("revenue",revenue);
+        model.addAttribute("Category",Category);
+        return "performance";
+    }
 }
