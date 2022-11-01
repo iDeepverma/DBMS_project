@@ -21,7 +21,7 @@ public class SupplyOrderMysql implements SupplyOrderDAO {
     JdbcTemplate jdbcTemplate;
     @Override
     public int insertSupplyOrder(SupplyOrder supplyOrder) {
-        String query="INSERT INTO SupplierOrder(orderDate,deliveryDate,deliveryStatus,totalAmount,supplierID,placedBy) VALUES (?,?,?,?,?,?);";
+        String query="INSERT INTO SupplyOrder(orderDate,deliveryDate,deliveryStatus,totalAmount,supplierID,placedBy) VALUES (?,?,?,?,?,?);";
         Object[] args=new Object[]{
                 supplyOrder.getOrderDate(),
                 supplyOrder.getDeliveryDate(),
@@ -94,5 +94,11 @@ public class SupplyOrderMysql implements SupplyOrderDAO {
                 supplyOrder.getOrderID()
         };
         return jdbcTemplate.query(query,args, BeanPropertyRowMapper.newInstance(SupplyOrderItem.class));
+    }
+
+    @Override
+    public List<SupplyOrder> getAllSupplyOrders(){
+        String query="SELECT * FROM SupplyOrder";
+        return jdbcTemplate.query(query , BeanPropertyRowMapper.newInstance(SupplyOrder.class));
     }
 }

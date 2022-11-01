@@ -30,4 +30,6 @@ public interface SupplyOrderDAO {
     List<SupplyOrderItem> getSupplyItem(SupplyOrder supplyOrder);
     // SELECT * FROM SupplyOrderItem WHERE supplyOrder.orderID= SupplyOrderItem.supplyOrderID;
 
+    List<SupplyOrder>getAllSupplyOrders();
+
 }

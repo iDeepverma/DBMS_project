@@ -51,4 +51,7 @@ public class SupplyOrderService {
     public List<SupplyOrderItem> getSupplyItem(SupplyOrder supplyOrder) {
         return supplyOrderDAO.getSupplyItem(supplyOrder);
     }
+    public List<SupplyOrder> getAllSupplyOrders(){
+        return supplyOrderDAO.getAllSupplyOrders();
+    }
 }
