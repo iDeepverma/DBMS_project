@@ -10,8 +10,8 @@ import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
-@RestController
-@RequestMapping("api/v1/product")
+//@RestController
+//@RequestMapping("api/v1/product")
 public class ProductApi {
 
     private ProductService productService;
@@ -42,8 +42,8 @@ public class ProductApi {
     }
 
     @GetMapping(path = "/quantity/{date}")
-    public int getQuantityByProductByDate(@RequestBody Product product,@PathVariable("date") Date startDate) {
-        return productService.getQuantityByProductByDate(product, startDate);
+    public int getQuantityByProductByDate(@RequestBody int productID,@PathVariable("date") Date startDate) {
+        return productService.getQuantityByProductByDate(productID, startDate);
     }
 
     @GetMapping

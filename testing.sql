@@ -8,11 +8,11 @@ INSERT INTO Customer VALUES (3, 'Thomas' , 98432429, 'THomas@gmail.com', '2003-1
 INSERT INTO Customer VALUES (4, 'Geeta' , 9142829, 'Geeta@gmail.com', '1999-1-1', 'latur');
 INSERT INTO Customer VALUES (5, 'Aahna' , 9421829, 'Aahna@gmail.com', '1998-10-9', 'nashik');
 
-INSERT INTO Employee VALUES (1,'Ram','2006-11-11','',0,0,'2006-11-11','Owner', '');
-INSERT INTO Employee VALUES (2,'SHRIRam','2006-11-11','',0,0,'2006-11-11','Employee', '');
-INSERT INTO Employee VALUES (3,'xJANKIRam','2006-11-11','',0,0,'2006-11-11','Employee', '');
-INSERT INTO Employee VALUES (4,'RamSITA','2006-11-11','',0,0,'2006-11-11','Employee', '');
-INSERT INTO Employee VALUES (5,'SITARam','2006-11-11','',0,0,'2006-11-11','Employee', '');
+INSERT INTO Employee VALUES (1,'Ram','2006-11-11','','',0,'2006-11-11',1, '','1234');
+INSERT INTO Employee VALUES (2,'SHRIRam','2006-11-11','','',0,'2006-11-11',0,'', '1234');
+INSERT INTO Employee VALUES (3,'JANKIRam','2006-11-11','','',0,'2006-11-11',0,'', '1234');
+INSERT INTO Employee VALUES (4,'RamSITA','2006-11-11','','',0,'2006-11-11',0,'', '1234');
+INSERT INTO Employee VALUES (5,'SITARam','2006-11-11','','',0,'2006-11-11',0,'', '1234');
 
 INSERT INTO ProductCategory VALUES ('M1 pro 6g' , 'Phone');
 INSERT INTO ProductCategory VALUES ('Samsung charger' , 'Charger');
@@ -20,11 +20,11 @@ INSERT INTO ProductCategory VALUES ('Asus ROG' , 'Laptop');
 INSERT INTO ProductCategory VALUES ('SONY LED' , 'TV');
 INSERT INTO ProductCategory VALUES ('LG smart' , 'Refrigirator');
 
-INSERT INTO Product VALUES (1,'',0,'', 1400,1100, 1, 10, 'M1 pro 6g');
-INSERT INTO Product VALUES (2,'',0,'', 1400,900, 1, 21, 'Samsung charger');
-INSERT INTO Product VALUES (3,'',0,'', 1400,1200, 1, 11, 'Asus ROG');
-INSERT INTO Product VALUES (4,'',0,'', 2500,1300, 1, 30, 'SONY LED');
-INSERT INTO Product VALUES (5,'',0,'', 3000,2500, 1, 40, 'LG smart');
+INSERT INTO Product VALUES (1,'',0,'', 1400,1100, 1, 10, 'M1 pro 6g','');
+INSERT INTO Product VALUES (2,'',0,'', 1400,900, 1, 21, 'Samsung charger','');
+INSERT INTO Product VALUES (3,'',0,'', 1400,1200, 1, 11, 'Asus ROG','');
+INSERT INTO Product VALUES (4,'',0,'', 2500,1300, 1, 30, 'SONY LED','');
+INSERT INTO Product VALUES (5,'',0,'', 3000,2500, 1, 40, 'LG smart','');
 
 INSERT INTO ProductSuppliers VALUES(1 , 2);
 INSERT INTO ProductSuppliers VALUES(1 , 3);
@@ -70,3 +70,16 @@ INSERT INTO InventoryItem VALUES(1,2,1,1);
 INSERT INTO InventoryItem VALUES(2,1,2,2);
 INSERT INTO InventoryItem VALUES(3,4,5,2);
 INSERT INTO InventoryItem VALUES(4,5,5,3);
+
+--delete  from User;
+--delete  from InventoryItem;
+--delete  from CustomerOrderItem;
+--delete  from CustomerOrder;
+--delete  from SupplyOrderItem;
+--delete  from SupplyOrder;
+--delete  from ProductSuppliers;
+--delete  from Product;
+--delete  from ProductCategory;
+--delete  from Employee;
+--delete  from Customer;
+--delete  from Supplier;

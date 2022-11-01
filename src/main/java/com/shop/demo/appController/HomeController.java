@@ -15,18 +15,18 @@ import java.util.List;
 public class HomeController {
 
     @Autowired
-    private ProductDAO dao1;
+    private ProductDAO productDAO;
 
     @Autowired
-    private ProductCategoryDAO dao2;
+    private ProductCategoryDAO productCategoryDAO;
 
-    @GetMapping("/")
+    @GetMapping({"/","/home"})
     public String homepage(Model model){
 
-        List<Product> products =dao1.getAllProduct();
+        List<Product> products =productDAO.getAllProduct();
         model.addAttribute( "products",products);
 
-        List<ProductCategory> categories =dao2.getAllProductCategory();
+        List<ProductCategory> categories =productCategoryDAO.getAllProductCategory();
         model.addAttribute( "categories",categories);
 
         return "home";

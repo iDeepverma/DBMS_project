@@ -15,12 +15,12 @@ public class UserMysql implements UserDAO {
     JdbcTemplate jdbcTemplate;
 
     @Override
-    public void createUser(String username, String password, boolean isEmployee) {
-        String sql = "INSERT INTO User(username, password, isEmployee) VALUES (?,?,?)";
+    public void createUser(String username, String password, boolean isAdmin) {
+        String sql = "INSERT INTO User(username, password, isAdmin) VALUES (?,?,?)";
         Object[] args = new Object[]{
                 username,
                 password,
-                isEmployee
+                isAdmin
         };
         jdbcTemplate.update(sql,args);
     }
@@ -38,8 +38,8 @@ public class UserMysql implements UserDAO {
     public void updateUser(String username, User user) {
         String sql = "UPDATE User SET password=? WHERE username=?";
         Object[] args = new Object[]{
-                username,
-                user.getPassword()
+                user.getPassword(),
+                username
         };
         jdbcTemplate.update(sql,args);
     }

@@ -20,8 +20,18 @@ public class Employee {
     private String phone;
     private int salary;
     private Date joinDate;
-    private String role;
+    private int role;
     private String address;
+
+    private String password;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public void setEmpID(int empID) {
         this.empID = empID;
@@ -51,9 +61,7 @@ public class Employee {
         this.joinDate = joinDate;
     }
 
-    public void setRole(String role) {
-        this.role = role;
-    }
+
 
     public void setAddress(String address) {
         this.address = address;
@@ -87,8 +95,12 @@ public class Employee {
         return joinDate;
     }
 
-    public String getRole() {
+    public int getRole() {
         return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
     }
 
     public String getAddress() {

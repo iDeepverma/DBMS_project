@@ -36,7 +36,11 @@ public class ProductController {
     public String individualProductDetails(@PathVariable("id") int id , Model model){
         Product products = productDAO.getProductByID(id);
         model.addAttribute("product",products);
-        return "productDetails";
+
+        List<ProductCategory> categories = dao2.getAllProductCategory();
+        model.addAttribute("categories", categories);
+
+        return "productDetail";
     }
 
     @GetMapping("/productByCategory")

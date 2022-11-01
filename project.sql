@@ -1,3 +1,16 @@
+Drop table if exists User ;
+Drop table if exists InventoryItem;
+Drop table if exists CustomerOrderItem;
+Drop table if exists CustomerOrder;
+Drop table if exists SupplyOrderItem;
+Drop table if exists SupplyOrder;
+Drop table if exists ProductSuppliers;
+Drop table if exists Product;
+drop table if exists ProductCategory;
+drop table if exists Employee;
+drop table if exists Customer;
+drop table if exists Supplier;
+
 create table Supplier(
 	name varchar(255),
  	supplierID int AUTO_INCREMENT,
@@ -27,8 +40,9 @@ create table Employee(
 	phone varchar(15),
 	salary  int,
 	joinDate date,
-	role varchar(255),
+	role int,
 	address varchar(255),
+	password varchar(255),
 	PRIMARY KEY(empID)
 );
 
@@ -48,6 +62,7 @@ create table Product(
  	variant int,
  	amountInStock int,
  	name varchar(255),
+ 	photoPath varchar(1024),
  	PRIMARY KEY (productID),
  	FOREIGN KEY (name) REFERENCES ProductCategory(name) ON DELETE CASCADE
 
@@ -121,3 +136,10 @@ create table InventoryItem(
 	FOREIGN KEY (supplyOrderID) REFERENCES SupplyOrder(orderID) ON DELETE CASCADE,
 	FOREIGN KEY (orderID) REFERENCES CustomerOrder(orderID) ON DELETE CASCADE
 );
+
+create table User(
+    username varchar(256) PRIMARY KEY,
+    password varchar(256),
+    isAdmin boolean
+);
+

@@ -35,8 +35,8 @@ public class ProductService {
         return productDAO.deleteProduct(id);
     }
 
-    public int getQuantityByProductByDate(Product product, Date startDate) {
-        return productDAO.getQuantityByProductByDate(product, startDate);
+    public int getQuantityByProductByDate(int productID, Date startDate) {
+        return productDAO.getQuantityByProductByDate(productID, startDate);
     }
 
     public List<Product> getAllProduct(){

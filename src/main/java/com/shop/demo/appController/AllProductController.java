@@ -24,13 +24,16 @@ public class AllProductController {
 
         List<Product> products =productDAO.getAllProduct();
         model.addAttribute( "products",products);
-
+        List<ProductCategory> categories = productCategoryDAO.getAllProductCategory();
+        model.addAttribute("categories", categories);
         return "allProducts";
     }
     @GetMapping("allProducts/{category}")
     public String allProductsofCategories(@PathVariable("category") String category, Model model){
         List<Product>productsbycategory = productCategoryDAO.getAllProductByCategory(category);
         model.addAttribute("products",productsbycategory);
+        List<ProductCategory> categories = productCategoryDAO.getAllProductCategory();
+        model.addAttribute("categories", categories);
         return "allProducts";
     }
 }
