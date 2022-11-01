@@ -32,12 +32,12 @@ public class CustomerOrderMysql implements CustomerOrderDAO{
         String query = "INSERT INTO CustomerOrder(orderID , orderDate, transactionID, modeOfPayment,total,customerID, servedBy) VALUES (?,?,?,?,?,?,?);";
         Object[] args = new Object[] {
             customerOrder.getOrderID(),
-            customerOrder.getDate(),
+            customerOrder.getOrderDate(),
             customerOrder.getTransactionID(),
             customerOrder.getModeOfPayment(),
             customerOrder.getTotal(),
-            customerOrder.getCustomer().getCustomerID(),
-            customerOrder.getEmployee().getEmpID()
+            customerOrder.getCustomerID(),
+            customerOrder.getServedBy()
         };
         return jdbcTemplate.update(query,args);
     }
@@ -55,12 +55,12 @@ public class CustomerOrderMysql implements CustomerOrderDAO{
     public int updateCustomerOrder(int id, CustomerOrder customerOrder) {
         String query = "UPDATE CustomerOrder SET orderDate=?, transactionID=?, modeOfPayment=?, total=?, customerID=?, servedBy=? WHERE orderID=?;";
         Object[] args = new Object[]{
-                customerOrder.getDate(),
+                customerOrder.getOrderDate(),
                 customerOrder.getTransactionID(),
                 customerOrder.getModeOfPayment(),
                 customerOrder.getTotal(),
-                customerOrder.getCustomer().getCustomerID(),
-                customerOrder.getEmployee().getEmpID(),
+                customerOrder.getCustomerID(),
+                customerOrder.getServedBy(),
                 id
         };
         return jdbcTemplate.update(query,args);
@@ -89,7 +89,7 @@ public class CustomerOrderMysql implements CustomerOrderDAO{
     public Employee getEmployeeByOrder(CustomerOrder customerOrder) {
         String query ="SELECT * FROM Employee WHERE Employee.empID = ?;";
         Object[] args =new Object[]{
-          customerOrder.getEmployee().getEmpID()
+          customerOrder.getServedBy()
         };
         return jdbcTemplate.queryForObject(query,args,BeanPropertyRowMapper.newInstance(Employee.class));
     }

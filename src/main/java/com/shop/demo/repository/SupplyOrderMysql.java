@@ -14,7 +14,6 @@ import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 @Repository("supplyOrder_mysql_repo")
-
 public class SupplyOrderMysql implements SupplyOrderDAO {
 
 
@@ -28,7 +27,7 @@ public class SupplyOrderMysql implements SupplyOrderDAO {
                 supplyOrder.getDeliveryDate(),
                 supplyOrder.getDeliveryStatus(),
                 supplyOrder.getTotalAmount(),
-                supplyOrder.getSupplier(),
+                supplyOrder.getSupplierID(),
                 supplyOrder.getPlacedBy()
         };
         return jdbcTemplate.update(query,args);
@@ -51,7 +50,7 @@ public class SupplyOrderMysql implements SupplyOrderDAO {
                 supplyOrder.getDeliveryDate(),
                 supplyOrder.getDeliveryStatus(),
                 supplyOrder.getTotalAmount(),
-                supplyOrder.getSupplier(),
+                supplyOrder.getSupplierID(),
                 supplyOrder.getPlacedBy(),
                 id
         };

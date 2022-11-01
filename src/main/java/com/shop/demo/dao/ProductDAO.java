@@ -25,5 +25,8 @@ public interface ProductDAO {
     List<Product> getAllProduct();
     //SELECT sum(quantity) FROM CustomerOrderItem, CustomerOrder WHERE product.productID = CustomerOrderItem.productID AND CustomerOrderItem.orderID = CustomerOrder.orderID AND CustomerOrder.orderDate >= startDate;
 
+    int markItemSold(int product);
+
+    int getStock(int product);
 
 }

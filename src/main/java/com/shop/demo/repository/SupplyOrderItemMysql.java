@@ -23,10 +23,10 @@ public class SupplyOrderItemMysql implements SupplyOrderItemDAO{
     public int insertSupplyOrderItem(SupplyOrderItem supplyOrderItem) {
         String query = "INSERT INTO SupplyOrderItem(supplyOrderID,quantity,total,productID,additionalInfo) VALUES supplyOrderItem(?,?,?,?,?);";
         Object[] args = new Object[] {
-                supplyOrderItem.getSupplyOrder().getOrderID(),
+                supplyOrderItem.getSupplyOrderID(),
                 supplyOrderItem.getQuantity(),
                 supplyOrderItem.getTotal(),
-                supplyOrderItem.getProduct(),
+                supplyOrderItem.getProductID(),
                 supplyOrderItem.getAdditionalInfo()
         };
         return jdbcTemplate.update(query,args);

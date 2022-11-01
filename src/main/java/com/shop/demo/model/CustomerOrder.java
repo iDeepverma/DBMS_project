@@ -1,5 +1,8 @@
 package com.shop.demo.model;
 
+import com.shop.demo.repository.CustomerMysql;
+import com.shop.demo.repository.EmployeeMysql;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -10,8 +13,8 @@ public class CustomerOrder {
     private int transactionID;
     private String modeOfPayment;
     private int total;
-    private Customer customerID;
-    private Employee servedBy;
+    private int customerID;
+    private int servedBy;
 
     public int getOrderID() {
         return orderID;
@@ -21,11 +24,11 @@ public class CustomerOrder {
         this.orderID = orderID;
     }
 
-    public Date getDate() {
+    public Date getOrderDate() {
         return orderDate;
     }
 
-    public void setDate(Date orderDate) {
+    public void setOrderDate(Date orderDate) {
         this.orderDate = orderDate;
     }
 
@@ -53,19 +56,19 @@ public class CustomerOrder {
         this.total = total;
     }
 
-    public Customer getCustomer() {
+    public int getCustomerID() {
         return customerID;
     }
 
-    public void setCustomer(Customer customerID) {
+    public void setCustomerID(int customerID) {
         this.customerID = customerID;
     }
 
-    public Employee getEmployee() {
+    public int getServedBy() {
         return servedBy;
     }
 
-    public void setEmployee(Employee servedBy) {
+    public void setServedBy(int servedBy) {
         this.servedBy = servedBy;
     }
 }

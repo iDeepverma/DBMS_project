@@ -1,21 +1,18 @@
 package com.shop.demo.model;
 
+import com.shop.demo.repository.ProductMysql;
+import com.shop.demo.repository.SupplyOrderMysql;
+
 public class SupplyOrderItem {
 //    private int lineNo;
-    private SupplyOrder supplyOrderID;
+    private int supplyOrderID;
     private int quantity;
 
-    public SupplyOrder getSupplyOrder() {
-        return supplyOrderID;
-    }
-
-    public void setSupplyOrder(SupplyOrder supplyOrderID) {
-        this.supplyOrderID = supplyOrderID;
-    }
 
     private int total;
-    private Product productID;
+    private int productID;
     private String additionalInfo;
+
 
 
 
@@ -35,11 +32,19 @@ public class SupplyOrderItem {
         this.total = total;
     }
 
-    public Product getProduct() {
+    public int getSupplyOrderID() {
+        return supplyOrderID;
+    }
+
+    public void setSupplyOrderID(int supplyOrderID) {
+        this.supplyOrderID = supplyOrderID;
+    }
+
+    public int getProductID() {
         return productID;
     }
 
-    public void setProduct(Product productID) {
+    public void setProductID(int productID) {
         this.productID = productID;
     }
 

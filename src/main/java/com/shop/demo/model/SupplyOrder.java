@@ -1,5 +1,8 @@
 package com.shop.demo.model;
 
+import com.shop.demo.repository.EmployeeMysql;
+import com.shop.demo.repository.SupplierMysql;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -10,8 +13,8 @@ public class SupplyOrder {
     private Date deliveryDate;
     private String deliveryStatus;
     private int totalAmount;
-    private Supplier supplierID;
-    private Employee placedBy;
+    private int supplierID;
+    private int placedBy;
 
     public int getOrderID() {
         return orderID;
@@ -21,20 +24,20 @@ public class SupplyOrder {
         this.orderID = orderID;
     }
 
-    public Date getDeliveryDate() {
-        return deliveryDate;
-    }
-
-    public void setDeliveryDate(Date deliveryDate) {
-        this.deliveryDate = deliveryDate;
-    }
-
     public Date getOrderDate() {
         return orderDate;
     }
 
     public void setOrderDate(Date orderDate) {
         this.orderDate = orderDate;
+    }
+
+    public Date getDeliveryDate() {
+        return deliveryDate;
+    }
+
+    public void setDeliveryDate(Date deliveryDate) {
+        this.deliveryDate = deliveryDate;
     }
 
     public String getDeliveryStatus() {
@@ -53,19 +56,19 @@ public class SupplyOrder {
         this.totalAmount = totalAmount;
     }
 
-    public Supplier getSupplier() {
+    public int getSupplierID() {
         return supplierID;
     }
 
-    public void setSupplier(Supplier supplierID) {
+    public void setSupplierID(int supplierID) {
         this.supplierID = supplierID;
     }
 
-    public Employee getPlacedBy() {
+    public int getPlacedBy() {
         return placedBy;
     }
 
-    public void setPlacedBy(Employee placedBy) {
+    public void setPlacedBy(int placedBy) {
         this.placedBy = placedBy;
     }
 }
