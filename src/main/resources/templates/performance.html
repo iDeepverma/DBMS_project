@@ -1,18 +1,36 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
-<head>
-  <title></title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-        crossorigin="anonymous">
 
-</head>
+<head th:insert="base :: header"></head>
+
 <body>
-<div th:each="Category, iterStat: ${Category}">
-  <span th:text="${Category}"></span>
-  <span th:text="${profit[iterStat.index]}"></span>
-  <span th:text=""${profit[iterStat.index]}></span>
-</div>
+<div th:replace="base :: navbar"></div>
 
+<main>
+  <div class="contentAllProd">
+    <h3 class="sec-head">Books list</h3>
+    <hr>
+    <div class="productCard">
+      <div class="card" th:each="Category, iterStat: ${Category}">
+        <img src="https://cdn.shopify.com/s/files/1/0598/7919/4823/products/71AvQd3VzqL._SS1500_750x.jpg?v=1654514896" alt="error">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <h3 th:text="${Category}"></h3>
+            </li>
+            <li class="list-group-item">
+              <h3 th:text="${profit[iterStat.index]}"></h3>
+            </li>
+            <li class="list-group-item">
+              <h3 th:text="${revenue[iterStat.index]}"></h3>
+            </li>
+          </ul>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<div th:replace="base :: footer"></div>
 </body>
+
 </html>
