@@ -31,6 +31,9 @@ public class EmployeeController {
     private CustomerOrderDAO customerOrderDAO;
 
     @Autowired
+    private SupplierDAO supplierDAO;
+
+    @Autowired
     private ProductDAO productDAO;
 
     @Autowired
@@ -88,24 +91,6 @@ public class EmployeeController {
         }
         model.addAttribute("employee",employee);
         model.addAttribute("total",x);
-        return "test";
-    }
-    @GetMapping("/productByCategory")
-    public String productByCategory(Model model){
-        List<List<Product>>productCategorri = new ArrayList<>();
-        List<ProductCategory>category;
-        category = productCategoryDAO.getAllProductCategory();
-        for(int i=0;i<category.size();i++){
-            List<Product>temp =new Vector<Product>();
-            temp = productCategoryDAO.getAllProductByCategory(category.get(i).getCategory());
-            for(int j=0;j<temp.size();j++){
-                System.out.println(temp.get(j).getProductID()+ " ");
-            }
-            System.out.println(category.get(i).getCategory());
-            productCategorri.add(temp);
-        }
-        model.addAttribute("productCategorri",productCategorri);
-        model.addAttribute("category", category);
         return "test";
     }
     @GetMapping("/allCustomer")
@@ -190,6 +175,7 @@ public class EmployeeController {
         model.addAttribute("customer", customer);
         return "dashboard/customers/customerEdit.html";
     }
+
     @PostMapping ("/customers/edit/{id}")
     public String editCustomerPost(@PathVariable("id") int id, @ModelAttribute("customer") Customer customer, HttpSession session)
     {
