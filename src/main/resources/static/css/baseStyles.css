@@ -19,3 +19,18 @@
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
 }
+
+html{
+    min-height: 100%;
+}
+
+main{
+    margin-top: 70px;
+    position: relative;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}

@@ -11,7 +11,7 @@
         <script src="https://kit.fontawesome.com/a076d05399.js"></script>
         <link rel="stylesheet" type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-        <link rel="stylesheet" th:href="@{css/baseStyles.css}" />
+        <link rel="stylesheet" th:href="@{/css/baseStyles.css}" />
 
 </head>
 
@@ -24,17 +24,17 @@
                 <input type="checkbox" id="show-menu">
                 <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label>
                 <div class="content">
-                    <div class="logo"><a href="#">RK STORES</a></div>
+                    <div class="logo"><a th:href="@{/}">RK STORES</a></div>
                     <ul class="links">
                         <li><a th:href="@{/}">Home</a></li>
                         <li><a href="#">About</a></li>
                         <li>
-                            <a href="#Categories" class="desktop-link">Categories</a>
+                            <a href="/#Categories" class="desktop-link">Categories</a>
                             <input type="checkbox" id="show-categories">
                             <label for="show-categories">Categories</label>
                             <ul >
                                 <li th:each="cat:${categories}">
-                                    <a th:href="'allProducts/'+${cat.getCategory()}" >  <span th:text="${cat.getCategory()}"></span> </a>
+                                    <a th:href="'/allProducts/'+${cat.getCategory()}" >  <span th:text="${cat.getCategory()}"></span> </a>
                                 </li>
                             </ul>
                         </li>
@@ -71,7 +71,7 @@
 
     </div>
 
-    <div th:fragment="footer">
+    <div th:fragment="footer" class="footer-wrap">
         <footer class="footer">
             <div class="container">
                 <div class="row">
