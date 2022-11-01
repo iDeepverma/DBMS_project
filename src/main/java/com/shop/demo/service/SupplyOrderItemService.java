@@ -6,7 +6,9 @@ import com.shop.demo.model.SupplyOrderItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.stereotype.Service;
 
+@Service
 public class SupplyOrderItemService {
     private SupplyOrderItemDAO supplyOrderItemDAO;
     @Autowired

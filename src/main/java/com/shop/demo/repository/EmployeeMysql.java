@@ -22,7 +22,7 @@ public class EmployeeMysql implements EmployeeDAO {
     @Override
     public int insertEmployee(Employee employee) {
         // returns 0 if unsucessfull else returns none;
-        String query = "INSERT INTO Employee(name,DOB,email,phone,salary,joinDate,role,address) VALUES(?,?,?,?,?,?,?,?);";
+        String query = "INSERT INTO Employee(name,DOB,email,phone,salary,joinDate,role,address,password) VALUES(?,?,?,?,?,?,?,?,?);";
         Object[] args = new Object[] {
                 employee.getName(),
                 employee.getDOB(),
@@ -31,7 +31,8 @@ public class EmployeeMysql implements EmployeeDAO {
                 employee.getSalary(),
                 employee.getJoinDate(),
                 employee.getRole(),
-                employee.getAddress()
+                employee.getAddress(),
+                employee.getPassword()
         };
         return jdbcTemplate.update(query,args);
     }
@@ -90,5 +91,15 @@ public class EmployeeMysql implements EmployeeDAO {
     public Employee getOwner() {
         String query = "select * from Employee where role=\"Owner\";";
         return jdbcTemplate.queryForObject(query,BeanPropertyRowMapper.newInstance(Employee.class));
+    }
+
+    @Override
+    public int updatePassword(int id, String password){
+        String query = "UPDATE Employee SET password=? WHERE empID=?";
+        Object[] args = new Object[]{
+                password,
+                id
+        };
+        return jdbcTemplate.update(query,args);
     }
 }

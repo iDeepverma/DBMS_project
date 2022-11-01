@@ -17,6 +17,15 @@ public class Product {
     private int variant;
     private int amountInStock;
 
+    private String photoPath;
+
+    public String getPhotoPath() {
+        return photoPath;
+    }
+
+    public void setPhotoPath(String photoPath) {
+        this.photoPath = photoPath;
+    }
 
     public int getProductID() {
         return productID;

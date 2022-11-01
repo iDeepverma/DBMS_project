@@ -1,26 +1,55 @@
-//package com.shop.demo.service;
-//
-//import com.shop.demo.model.User;
-//import com.shop.demo.repository.UserMysql;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Service;
-//
-//import javax.servlet.http.HttpSession;
-//
-//@Service
-//public class AuthenticationService {
-//
-//    @Autowired
-//    private UserService userService;
-//
-//    private String SESSION_AUTH_KEY = "AUTH_USER";
-//
-//    public boolean checkCredentials(String username, String password){
-//        User user = userService.getUserByUsername(username);
-//        return user.getPassword().equals(password);
-//    }
-//
-//    public void loginUser(HttpSession session, String username){
-//
-//    }
-//}
+package com.shop.demo.service;
+
+import com.shop.demo.model.Employee;
+import com.shop.demo.model.User;
+import com.shop.demo.repository.UserMysql;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import javax.servlet.http.HttpSession;
+
+@Service
+public class AuthenticationService {
+
+    @Autowired
+    private EmployeeService employeeService;
+
+    private String SESSION_AUTH_KEY = "AUTH_USER";
+
+    public boolean checkCredentials(int userID, String password){
+        Employee user = employeeService.getEmployeeByID(userID);
+        return user.getPassword().equals(password);
+    }
+
+    public void loginUser(HttpSession session, int userID){
+        session.setAttribute(SESSION_AUTH_KEY,userID);
+    }
+
+    public void logoutUser(HttpSession session){
+        session.removeAttribute(SESSION_AUTH_KEY);
+    }
+
+    public Integer getCurrentUser(HttpSession session){
+        try {
+            return Integer.parseInt(session.getAttribute(SESSION_AUTH_KEY).toString());
+        } catch (Exception e){
+            System.out.println("Execption in Authentication service fuck");
+            return null;
+        }
+    }
+
+    public Boolean isAuthenticated(HttpSession session){
+        return getCurrentUser(session) != null;
+    }
+
+    public Boolean isAdmin(HttpSession session){
+        try{
+            Employee user = employeeService.getEmployeeByID(Integer.parseInt(session.getAttribute(SESSION_AUTH_KEY).toString()));
+            return user.getRole()==1;
+        }
+        catch (Exception e){
+            System.out.println("Execption in isAdmin");
+            return false;
+        }
+    }
+}

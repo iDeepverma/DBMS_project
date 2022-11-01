@@ -71,10 +71,10 @@ public class ProductMysql implements ProductDAO{
     }
 
     @Override
-    public int getQuantityByProductByDate(Product product, Date startDate) {
+    public int getQuantityByProductByDate(int productID, Date startDate) {
         String query = "SELECT sum(quantity) FROM CustomerOrderItem, CustomerOrder WHERE CustomerOrderItem.productID=? AND CustomerOrderItem.orderID = CustomerOrder.orderID AND CustomerOrder.orderDate >= ?;";
         Object[] args = new Object[]{
-                product.getProductID(),
+                productID,
                 startDate
         };
         return jdbcTemplate.queryForObject(query, BeanPropertyRowMapper.newInstance(Integer.class));

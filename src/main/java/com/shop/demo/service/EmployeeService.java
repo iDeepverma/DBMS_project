@@ -44,4 +44,8 @@ public class EmployeeService {
     public Employee getOwner(){
         return employeeDAO.getOwner();
     }
+
+    public int updatePassword(int id, String password){
+        return employeeDAO.updatePassword(id, password);
+    }
 }

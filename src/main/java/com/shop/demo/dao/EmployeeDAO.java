@@ -28,4 +28,6 @@ public interface EmployeeDAO {
 
     Employee getOwner();
 //    select * from Employee where role="Owner";
+
+    int updatePassword(int id, String password);
 }

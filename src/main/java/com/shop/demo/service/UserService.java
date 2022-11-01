@@ -4,7 +4,9 @@ import com.shop.demo.dao.UserDAO;
 import com.shop.demo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserService {
     private UserDAO userDAO;
 

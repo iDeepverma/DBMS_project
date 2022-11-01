@@ -48,6 +48,7 @@ create table Product(
  	variant int,
  	amountInStock int,
  	name varchar(255),
+ 	photoPath varchar(1024),
  	PRIMARY KEY (productID),
  	FOREIGN KEY (name) REFERENCES ProductCategory(name) ON DELETE CASCADE
 
@@ -120,4 +121,10 @@ create table InventoryItem(
 	FOREIGN KEY (productID) REFERENCES Product(productID),
 	FOREIGN KEY (supplyOrderID) REFERENCES SupplyOrder(orderID) ON DELETE CASCADE,
 	FOREIGN KEY (orderID) REFERENCES CustomerOrder(orderID) ON DELETE CASCADE
+);
+
+create table User(
+    username varchar(256) PRIMARY KEY,
+    password varchar(256),
+    isAdmin boolean
 );
