@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head th:insert="base :: header"></head>
+
+<body>
+    <div th:replace="base :: navbar"></div>
+
+    <main>
+        <div class="container">
+            <div class="left"> Image Here</div>
+            <div class="right content">
+                <h3 th:text="${product.getName()}" class=""></h3>
+                <div class="productCategory">Empty</div>
+                <div class="MRP" th:text="${product.getMRP()}"></div>
+                <div class="variant" th:text="${product.getVariant()}"></div>
+                <div class="description" th:text="${product.getDescription()}"></div>
+
+            </div>
+        </div>
+    </main>
+
+    <div th:replace="base :: footer"></div>
+</body>
+
+</html>
