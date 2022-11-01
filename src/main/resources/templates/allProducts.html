@@ -12,11 +12,11 @@
             <hr>
             <div class="productCard">
                 <div class="card" th:each="product: ${products}">
-                    <img src="https://cdn.shopify.com/s/files/1/0598/7919/4823/products/71AvQd3VzqL._SS1500_750x.jpg?v=1654514896" alt="error">
+<!--                    <img src="https://cdn.shopify.com/s/files/1/0598/7919/4823/products/71AvQd3VzqL._SS1500_750x.jpg?v=1654514896" alt="error">-->
                     <div class="sectionHome">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
-                                <h3 th:text="${product.getProductID()}"></h3>
+                                <h3 th:text="${product.getName()}"></h3>
                             </li>
                             <li class="list-group-item itm2">
                                 <h4 th:text="${product.getVariant()}"></h4>

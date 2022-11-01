@@ -22,7 +22,9 @@
         <hr>
         <div class="container">
           <div class="card" th:each="product: ${products}">
-            <a th:href="'/productDetail/'+ ${product.getProductID()}">
+
+            <a th:href="'/productDetail/'+${product.getProductID()}">
+
               <h4 class="bookName" th:text="${product.getProductID()}"></h4>
               <ul class="list-group list-group-flush">
                 <li class="list-group-item">

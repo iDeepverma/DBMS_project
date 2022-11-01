@@ -57,6 +57,7 @@ public class CustomerOrderItemMysql implements CustomerOrderItemDAO{
                 customerOrderItem.getSellingPrice(),
                 customerOrderItem.getProductID()
         };
+        //discuss with deep as this query is giving error
         return jdbcTemplate.queryForObject(query,args, BeanPropertyRowMapper.newInstance(Integer.class));
     }
 
