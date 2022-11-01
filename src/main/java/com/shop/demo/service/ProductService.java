@@ -42,4 +42,12 @@ public class ProductService {
     public List<Product> getAllProduct(){
         return productDAO.getAllProduct();
     }
+
+    public int markItemSold(int product){
+        return productDAO.markItemSold(product);
+    }
+
+    public int getStock(int product){
+        return productDAO.getStock(product);
+    }
 }

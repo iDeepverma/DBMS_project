@@ -9,6 +9,8 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository("inventoryItem_mysql_repo")
 
 public class InventoryItemMysql implements InventoryItemDAO {
@@ -24,57 +26,42 @@ public class InventoryItemMysql implements InventoryItemDAO {
     public int insertItem(InventoryItem inventoryItem) {
         String query="INSERT INTO InventoryItem(productID,supplyOrderID,orderID) VALUES (?,?,?);";
         Object[] args=new Object[]{
-          inventoryItem.getProduct(),
-          inventoryItem.getSupplyOrder(),
-          inventoryItem.getCustomerOrderItem()
+          inventoryItem.getProductID(),
+          inventoryItem.getSupplyOrderID(),
+          inventoryItem.getOrderID()
         };
         return jdbcTemplate.update(query,args);
     }
 
     @Override
-    public int deleteItem(int itemID, int productID) {
-        String query = "DELETE FROM InventoryItem WHERE itemID=? AND productID=?;";
+    public int deleteItem(int itemID) {
+        String query = "DELETE FROM InventoryItem WHERE itemID=?;";
         Object[] args = new Object[]{
-                itemID,productID
+                itemID
         };
         return jdbcTemplate.update(query,args);
     }
 
     @Override
-    public InventoryItem getItemByProduct(int product) {
+    public List<InventoryItem> getItemByProduct(int product) {
         String query ="select * from InventoryItem where productID=?;";
         Object[] args=new Object[]{
                 product
         };
-        return jdbcTemplate.queryForObject(query,args, BeanPropertyRowMapper.newInstance(InventoryItem.class));
+        return jdbcTemplate.query(query,args, BeanPropertyRowMapper.newInstance(InventoryItem.class));
     }
 
-    @Override
-    public int getStock(Product product) {
-        String query="SELECT amountInStock FROM Product WHERE Product.productID=?; ";
-        Object[] args =new Object[]{
-                product.getProductID()
-        };
-        return jdbcTemplate.queryForObject(query,args, BeanPropertyRowMapper.newInstance(Integer.class));
-    }
+
+
+
 
     @Override
-    public int markItemSold(int itemID, int product) {
-        String query="UPDATE PRODUCT SET amountInStock = amountInStock-1 WHERE InventoryItem.itemID =? AND InventoryItem.productID = ?;";
+    public int updateItem(int itemID,  InventoryItem inventoryItem) {
+        String query =" UPDATE InventoryItem SET supplyOrderID=?, orderID=?  WHERE InventoryItem.itemID=?;";
         Object[] args=new Object[]{
-          itemID,product
-        };
-        return jdbcTemplate.update(query,args);
-    }
-
-    @Override
-    public int updateItem(int itemID, int productID, InventoryItem inventoryItem) {
-        String query =" UPDATE InventoryItem SET supplyOrderID=?, orderID=?  WHERE InventoryItem.itemID=? AND InventoryItem.productID=?;";
-        Object[] args=new Object[]{
-                inventoryItem.getSupplyOrder().getOrderID(),
-                inventoryItem.getCustomerOrderItem().getCustomerOrder().getOrderID(),
-                itemID,
-                productID
+                inventoryItem.getSupplyOrderID(),
+                inventoryItem.getOrderID(),
+                itemID
         };
         return jdbcTemplate.update(query ,args);
     }

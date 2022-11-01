@@ -1,10 +1,21 @@
 package com.shop.demo.model;
 
+import com.shop.demo.repository.CustomerOrderMysql;
+import com.shop.demo.repository.ProductMysql;
+import com.shop.demo.repository.SupplyOrderMysql;
+
 public class InventoryItem {
+
     private int itemID;
-    private Product product;
-    private SupplyOrder supplyOrder;
-    private CustomerOrderItem customerOrderItem;
+
+    private int supplyOrderID;
+
+    private int orderID;
+
+    private int productID;
+
+
+
 
     public int getItemID() {
         return itemID;
@@ -14,27 +25,27 @@ public class InventoryItem {
         this.itemID = itemID;
     }
 
-    public Product getProduct() {
-        return product;
+    public int getSupplyOrderID() {
+        return supplyOrderID;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setSupplyOrderID(int supplyOrderID) {
+        this.supplyOrderID = supplyOrderID;
     }
 
-    public SupplyOrder getSupplyOrder() {
-        return supplyOrder;
+    public int getOrderID() {
+        return orderID;
     }
 
-    public void setSupplyOrder(SupplyOrder supplyOrder) {
-        this.supplyOrder = supplyOrder;
+    public void setOrderID(int orderID) {
+        this.orderID = orderID;
     }
 
-    public CustomerOrderItem getCustomerOrderItem() {
-        return customerOrderItem;
+    public int getProductID() {
+        return productID;
     }
 
-    public void setCustomerOrderItem(CustomerOrderItem customerOrderItem) {
-        this.customerOrderItem = customerOrderItem;
+    public void setProductID(int productID) {
+        this.productID = productID;
     }
 }

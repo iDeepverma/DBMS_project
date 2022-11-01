@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head th:insert="base :: header"></head>
+
+<body>
+  <div th:replace="base :: navbar"></div>
+
+  <main>
+
+    <div class="welcome">
+      <div class="someText">
+        Some Text Here
+      </div>
+    </div>
+
+    <div class="ourProducts">
+      <section class="sectionHome">
+        <h2 class="heading">
+          OUR COLLECTION
+        </h2>
+        <hr>
+        <div class="container">
+          <div class="card" th:each="product: ${products}">
+            <a th:href="@{/productdetail/${product.getProductID()}}">
+              <h4 class="bookName" th:text="${product.getProductID()}"></h4>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <h3 th:text="${product.getMRP()}"></h3>
+                </li>
+                <li class="list-group-item itm2">
+                  <h4 th:text="${product.getCostPrice()}"></h4>
+                </li>
+              </ul>
+            </a>
+          </div>
+        </div>
+      </section>
+      <div class="btn v-more">
+        <a th:href="@{/allProducts}">View More</a>
+      </div>
+    </div>
+
+
+    <div class="categories" id="Categories">
+        <section class="sectionHome">
+          <h2 class="heading">
+            OUR CATEGORIES
+          </h2>
+          <hr>
+          <div class="container">
+            <div class="card" th:each="category: ${categories}">
+              <a th:href="@{/${category.getCategory()}}">
+                <h4 class="" th:text="${category.getCategory()}"></h4>
+                <!-- <ul class="list-group list-group-flush">
+                  <li class="list-group-item">
+                    <h3 th:text="${product.getMRP()}"></h3>
+                  </li>
+                  <li class="list-group-item itm2">
+                    <h4 th:text="${product.getCostPrice()}"></h4>
+                  </li>
+                </ul> -->
+              </a>
+            </div>
+          </div>
+        </section>
+    </div>
+    <div class="query">
+          Your Query Here
+    </div>
+  </main>
+
+  <div th:replace="base :: footer"></div>
+</body>
+
+</html>

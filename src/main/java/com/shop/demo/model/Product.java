@@ -1,16 +1,22 @@
 package com.shop.demo.model;
 
 
+import com.shop.demo.dao.ProductCategoryDAO;
+import com.shop.demo.repository.ProductCategoryMysql;
+import com.shop.demo.service.ProductCategoryService;
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class Product {
     private int productID;
-    private ProductCategory productCategory;
+    private String name;
     private String description;
     private int warrantyLength;
-    private int warrantyCoverage;
+    private String warrantyCoverage;
     private int MRP;
     private int costPrice;
     private int variant;
     private int amountInStock;
+
 
     public int getProductID() {
         return productID;
@@ -20,12 +26,12 @@ public class Product {
         this.productID = productID;
     }
 
-    public ProductCategory getProductCategory() {
-        return productCategory;
+    public String getName() {
+        return name;
     }
 
-    public void setProductCategory(ProductCategory productCategory) {
-        this.productCategory = productCategory;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
@@ -45,11 +51,12 @@ public class Product {
         this.warrantyLength = warrantyLength;
     }
 
-    public int getWarrantyCoverage() {
+
+    public String getWarrantyCoverage() {
         return warrantyCoverage;
     }
 
-    public void setWarrantyCoverage(int warrantyCoverage) {
+    public void setWarrantyCoverage(String warrantyCoverage) {
         this.warrantyCoverage = warrantyCoverage;
     }
 

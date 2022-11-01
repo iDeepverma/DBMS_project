@@ -5,7 +5,9 @@ import com.shop.demo.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -28,7 +30,7 @@ public class ProductMysql implements ProductDAO{
                 product.getCostPrice(),
                 product.getVariant(),
                 product.getAmountInStock(),
-                product.getProductCategory()
+                product.getName()
         };
         return jdbcTemplate.update(query,args);
     }
@@ -53,7 +55,7 @@ public class ProductMysql implements ProductDAO{
                 product.getCostPrice(),
                 product.getVariant(),
                 product.getAmountInStock(),
-                product.getProductCategory(),
+                product.getName(),
                 id
         };
         return jdbcTemplate.update(query,args);
@@ -81,7 +83,24 @@ public class ProductMysql implements ProductDAO{
     @Override
     public List<Product> getAllProduct(){
         String query = "select * from Product ;";
-        return jdbcTemplate.query(query,BeanPropertyRowMapper.newInstance(Product.class));
+        return jdbcTemplate.query(query, BeanPropertyRowMapper.newInstance(Product.class));
+    }
 
+    @Override
+    public int markItemSold(int product) {
+        String query="UPDATE Product SET amountInStock = amountInStock-1 WHERE Product.productID = ?;";
+        Object[] args=new Object[]{
+                product
+        };
+        return jdbcTemplate.update(query,args);
+    }
+
+    @Override
+    public int getStock(int product) {
+        String query="SELECT amountInStock FROM Product WHERE Product.productID=?; ";
+        Object[] args =new Object[]{
+                product
+        };
+        return jdbcTemplate.queryForObject(query,args, BeanPropertyRowMapper.newInstance(Integer.class));
     }
 }

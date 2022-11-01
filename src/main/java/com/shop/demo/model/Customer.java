@@ -12,6 +12,7 @@ public class Customer {
     private Date DOB;
 
     private String address;
+
     public int getCustomerID() {
         return customerID;
     }
@@ -36,14 +37,6 @@ public class Customer {
         this.phone = phone;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -58,5 +51,13 @@ public class Customer {
 
     public void setDOB(Date DOB) {
         this.DOB = DOB;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

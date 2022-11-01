@@ -1,5 +1,7 @@
 package com.shop.demo.model;
 
+import com.shop.demo.repository.ProductMysql;
+import com.shop.demo.repository.SupplierMysql;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,22 +10,22 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class ProductSuppliers {
-    private Product product;
-    private Supplier supplier;
+    private int productID;
+    private int supplierID;
 
-    public Product getProduct() {
-        return product;
+    public int getProductID() {
+        return productID;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProductID(int productID) {
+        this.productID = productID;
     }
 
-    public Supplier getSupplier() {
-        return supplier;
+    public int getSupplierID() {
+        return supplierID;
     }
 
-    public void setSupplier(Supplier supplier) {
-        this.supplier = supplier;
+    public void setSupplierID(int supplierID) {
+        this.supplierID = supplierID;
     }
 }
