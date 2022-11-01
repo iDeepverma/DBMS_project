@@ -95,7 +95,7 @@ public class ProductMysql implements ProductDAO{
                 product.setDescription(rs.getString(2));
                 product.setWarrantyLength(rs.getInt(3));
                 product.setWarrantyCoverage(rs.getString(4));
-                product.
+                //product.
                 return product;
             }
         });

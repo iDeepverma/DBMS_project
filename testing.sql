@@ -10,7 +10,7 @@ INSERT INTO Customer VALUES (5, 'Aahna' , 9421829, 'Aahna@gmail.com', '1998-10-9
 
 INSERT INTO Employee VALUES (1,'Ram','2006-11-11','',0,0,'2006-11-11','Owner', '');
 INSERT INTO Employee VALUES (2,'SHRIRam','2006-11-11','',0,0,'2006-11-11','Employee', '');
-INSERT INTO Employee VALUES (3,'JANKIRam','2006-11-11','',0,0,'2006-11-11','Employee', '');
+INSERT INTO Employee VALUES (3,'xJANKIRam','2006-11-11','',0,0,'2006-11-11','Employee', '');
 INSERT INTO Employee VALUES (4,'RamSITA','2006-11-11','',0,0,'2006-11-11','Employee', '');
 INSERT INTO Employee VALUES (5,'SITARam','2006-11-11','',0,0,'2006-11-11','Employee', '');
 
