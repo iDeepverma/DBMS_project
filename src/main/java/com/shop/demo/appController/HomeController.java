@@ -20,7 +20,7 @@ public class HomeController {
     @Autowired
     private ProductCategoryDAO dao2;
 
-    @GetMapping("/")
+    @GetMapping({"/","/home"})
     public String homepage(Model model){
 
         List<Product> products =dao1.getAllProduct();

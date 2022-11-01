@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>LOGIN</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+</head>
+<body>
+<img class="wave" th:src="@{/images/wave.png}">
+<div class="container">
+    <div class="img">
+        <img th:src="@{/images/bg.svg}">
+    </div>
+    <div class="login-content">
+        <form action="index.html">
+            <img th:src="@{/images/avatar.svg}">
+            <h2 class="title">Login To Dashboard</h2>
+            <div class="input-div one ">
+                <div class="i">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="div">
+                    <h5>Username</h5>
+                    <input type="text" class="input">
+                </div>
+            </div>
+            <div class="input-div pass">
+                <div class="i">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <div class="div">
+                    <h5>Password</h5>
+                    <input type="password" class="input">
+                </div>gi
+            </div>
+            <input type="submit" class="btn" value="Login">
+        </form>
+    </div>
+</div>
+<script type="text/javascript" th:src="@{/JavaScript/main.js}"></script>
+</body>
+</html>
