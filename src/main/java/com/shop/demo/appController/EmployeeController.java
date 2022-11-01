@@ -29,6 +29,9 @@ public class EmployeeController {
     private CustomerOrderDAO customerOrderDAO;
 
     @Autowired
+    private SupplierDAO supplierDAO;
+
+    @Autowired
     private ProductDAO productDAO;
 
     @Autowired
@@ -84,68 +87,11 @@ public class EmployeeController {
         model.addAttribute("total",x);
         return "test";
     }
-    @GetMapping("/productByCategory")
-    public String productByCategory(Model model){
-        List<List<Product>>productCategorri = new ArrayList<>();
-        List<ProductCategory>category;
-        category = productCategoryDAO.getAllProductCategory();
-        for(int i=0;i<category.size();i++){
-            List<Product>temp =new Vector<Product>();
-            temp = productCategoryDAO.getAllProductByCategory(category.get(i).getCategory());
-            for(int j=0;j<temp.size();j++){
-                System.out.println(temp.get(j).getProductID()+ " ");
-            }
-            System.out.println(category.get(i).getCategory());
-            productCategorri.add(temp);
-        }
-        model.addAttribute("productCategorri",productCategorri);
-        model.addAttribute("category", category);
-        return "test";
-    }
     @GetMapping("/allCustomer")
     public String allCustomer(Model model){
         List<Customer> customers =customerDAO.getAllCustomer();
         model.addAttribute( "customer",customers);
         return "allCustomer";
-    }
-
-
-    @GetMapping("/stockAvailability")
-    public String stockAvailability(Model model){
-        System.out.println("stock Avaialability called");
-        List<Product>temp = productDAO.getAllProduct();
-        List<String>category = new ArrayList<>();
-        List<Integer>stocks = new ArrayList<>();
-        for(int i=0;i<temp.size();i++){
-            System.out.println(temp.get(i).getName());
-            category.add(temp.get(i).getName());
-            stocks.add(temp.get(i).getAmountInStock());
-        }
-        model.addAttribute("names",category);
-        model.addAttribute("stocks",stocks);
-        return "stocksAvailability";
-    }
-
-
-    @GetMapping ("/dashboard")
-    public String showDashboard()
-    {
-        return "dashboard/dashboard";
-    }
-    @GetMapping ("/customers")
-    public String listCustomers(Model model)
-    {
-        List<Customer> customers = customerDAO.getAllCustomer();
-        model.addAttribute("customers", customers);
-        return "dashboard/customers/customerList";
-    }
-
-    @GetMapping ("/customers/create")
-    public String createCustomer(Model model)
-    {
-        Customer customer = new Customer();
-        model.addAttribute("customer", customer);
-        return "dashboard/customers/customerCreate.html";
     }
     @PostMapping ("/customers/create")
     public String createCustomerPost(@ModelAttribute("customer") Customer customer)
@@ -159,13 +105,7 @@ public class EmployeeController {
         customerDAO.deleteCustomer(id);
         return "redirect:/customers/";
     }
-    @GetMapping ("/customers/edit/{id}")
-    public String editCustomer(@PathVariable("id") int id, Model model)
-    {
-        Customer customer = customerDAO.getCustomerByID(id);
-        model.addAttribute("customer", customer);
-        return "dashboard/customers/customerEdit.html";
-    }
+
     @PostMapping ("/customers/edit/{id}")
     public String editCustomerPost(@PathVariable("id") int id, @ModelAttribute("customer") Customer customer)
     {

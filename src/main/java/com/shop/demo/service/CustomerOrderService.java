@@ -50,6 +50,9 @@ public class CustomerOrderService {
         return customerOrderDAO.getCustomerOrderBetweenDates(startingDate,endingDate);
     }
     public int getProfitPerOrder(CustomerOrder customerOrder) {
-        return getProfitPerOrder(customerOrder);
+        return customerOrderDAO.getProfitPerOrder(customerOrder);
+    }
+    public List<CustomerOrder> getAllCustomerOrders(){
+        return customerOrderDAO.getAllCustomerOrders();
     }
 }
