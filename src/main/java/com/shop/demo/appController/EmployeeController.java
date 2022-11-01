@@ -2,6 +2,7 @@ package com.shop.demo.appController;
 
 import com.shop.demo.dao.*;
 import com.shop.demo.model.*;
+import com.shop.demo.service.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 
+import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -39,6 +41,10 @@ public class EmployeeController {
 
     @Autowired
     private CustomerOrderItemDAO customerOrderItemDAO;
+
+    @Autowired
+    private AuthenticationService authenticationService;
+
 
     @GetMapping ("/getAllEmployee")
     public String getAllEmployee(Model model)
@@ -128,53 +134,77 @@ public class EmployeeController {
 
 
     @GetMapping ("/dashboard")
-    public String showDashboard()
+    public String showDashboard(HttpSession session)
     {
+        if(!authenticationService.isAuthenticated(session)){
+            return "redirect:/login";
+        }
         return "dashboard/dashboard";
     }
     @GetMapping ("/customers")
-    public String listCustomers(Model model)
+    public String listCustomers(Model model,HttpSession session)
     {
+        if(!authenticationService.isAuthenticated(session)){
+            return "redirect:/login";
+        }
         List<Customer> customers = customerDAO.getAllCustomer();
         model.addAttribute("customers", customers);
         return "dashboard/customers/customerList";
     }
 
     @GetMapping ("/customers/create")
-    public String createCustomer(Model model)
+    public String createCustomer(Model model,HttpSession session)
     {
+        if(!authenticationService.isAuthenticated(session)){
+            return "redirect:/login";
+        }
         Customer customer = new Customer();
         model.addAttribute("customer", customer);
         return "dashboard/customers/customerCreate.html";
     }
     @PostMapping ("/customers/create")
-    public String createCustomerPost(@ModelAttribute("customer") Customer customer)
+    public String createCustomerPost(@ModelAttribute("customer") Customer customer, HttpSession session)
     {
+        if(!authenticationService.isAuthenticated(session)){
+            return "redirect:/login";
+        }
         customerDAO.insertCustomer(customer);
         return "redirect:/customers/";
     }
     @GetMapping ("/customers/delete/{id}")
-    public String deleteCustomer(@PathVariable("id") int id)
+    public String deleteCustomer(@PathVariable("id") int id, HttpSession session)
     {
+        if(!authenticationService.isAuthenticated(session)){
+            return "redirect:/login";
+        }
         customerDAO.deleteCustomer(id);
         return "redirect:/customers/";
     }
     @GetMapping ("/customers/edit/{id}")
-    public String editCustomer(@PathVariable("id") int id, Model model)
+    public String editCustomer(@PathVariable("id") int id, Model model, HttpSession session)
     {
+        if(!authenticationService.isAuthenticated(session)){
+            return "redirect:/login";
+        }
         Customer customer = customerDAO.getCustomerByID(id);
         model.addAttribute("customer", customer);
         return "dashboard/customers/customerEdit.html";
     }
     @PostMapping ("/customers/edit/{id}")
-    public String editCustomerPost(@PathVariable("id") int id, @ModelAttribute("customer") Customer customer)
+    public String editCustomerPost(@PathVariable("id") int id, @ModelAttribute("customer") Customer customer, HttpSession session)
     {
+        if(!authenticationService.isAuthenticated(session)){
+            return "redirect:/login";
+        }
         customerDAO.updateCustomer(id, customer);
         return "redirect:/customers/";
     }
 
     @GetMapping("/performance")
-    public String performance(Model model){
+    public String performance(Model model, HttpSession session){
+        if(!authenticationService.isAuthenticated(session)){
+            return "redirect:/login";
+        }
         List<ProductCategory>category = productCategoryDAO.getAllProductCategory();
         List<Long>profit = new ArrayList<>();
         List<Long>revenue = new ArrayList<>();
