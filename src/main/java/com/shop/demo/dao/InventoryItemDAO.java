@@ -8,7 +8,7 @@ import java.util.List;
 public interface InventoryItemDAO {
     int insertItem(InventoryItem inventoryItem);
 //    INSERT INTO InventoryItem() VALUES (inventoryItem);
-
+    int insertItemUnsold(InventoryItem inventoryItem);
     int deleteItem(int itemID);
 //    DELETE FROM InventoryItem WHERE itemID=itemID AND productID=productID;
 
