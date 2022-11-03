@@ -31,18 +31,23 @@
     width: 10em;
 }
 
+.card a{
+    text-decoration: none;
+}
+
 .btn {
     display: inline-block;
-    padding: 10px 30px;
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
     cursor: pointer;
     background: rgb(0, 0, 0);
     color: #fff;
     border: none;
     border-radius: 5px;
-    background: linear-gradient(to right, #54d675, #06ffd1);
+    background: linear-gradient(to top right, var(--sec-light-2), var(--sec));
     outline: none;
     text-decoration: none;
-
+    transition: all 0.3s ease;
 
 }
 
@@ -53,7 +58,29 @@
     border: 1px #fff solid;
 }
 
+.btn a {
+    text-decoration: none;
+    color: white;
+}
+
+
 .btn:hover {
-    transform: scale(0.98);
-    background-color: rgb(253, 152, 0);
+    border: 2px solid var(--sec);
+    background: transparent;
+}
+
+.btn:hover a{
+        color: var(--sec);
+    font-weight: 800;
+}
+
+.btn:active  {
+        border: 2px solid var(--sec) !important;
+        transform: scale(0.95);
+        box-shadow: inset 0rem 0rem 1.3rem 0 var(--sec);
+}
+
+.btn:active a {
+    color: var(--sec);
+    font-weight: 600;
 }
