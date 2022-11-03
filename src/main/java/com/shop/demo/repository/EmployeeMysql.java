@@ -82,14 +82,14 @@ public class EmployeeMysql implements EmployeeDAO {
     }
 
     @Override
-    public List<Employee> getAllEmployee() {
-        String query = "select * from Employee ;";
+    public List<Employee>getAllEmployee() {
+        String query = "select * from Employee;";
         return jdbcTemplate.query(query,BeanPropertyRowMapper.newInstance(Employee.class));
     }
 
     @Override
     public Employee getOwner() {
-        String query = "select * from Employee where role=\"Owner\";";
+        String query = "select * from Employee where role=1;";
         return jdbcTemplate.queryForObject(query,BeanPropertyRowMapper.newInstance(Employee.class));
     }
 
