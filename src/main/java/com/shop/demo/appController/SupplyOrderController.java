@@ -1,5 +1,6 @@
 package com.shop.demo.appController;
 
+import com.shop.demo.dao.CustomerDAO;
 import com.shop.demo.dao.EmployeeDAO;
 import com.shop.demo.dao.SupplierDAO;
 import com.shop.demo.dao.SupplyOrderDAO;
@@ -35,6 +36,9 @@ public class SupplyOrderController {
     @Autowired
     private SupplierDAO supplierDAO;
 
+    @Autowired
+    private CustomerDAO customerDAO;
+
     @GetMapping("/supplyOrders")
     public String listSupplyOrders(Model model){
         List<SupplyOrder> supplyOrders = supplyOrderDAO.getAllSupplyOrders();
@@ -49,8 +53,8 @@ public class SupplyOrderController {
         model.addAttribute("supplyOrder", supplyOrder);
         List<Employee>employee = employeeDAO.getAllEmployee();
         List<Supplier>supplier = supplierDAO.getAllSupplier();
+        model.addAttribute("suppliers" , supplier);
         model.addAttribute("employee" , employee);
-        model.addAttribute("supplier" , supplier);
         return "dashboard/supplyOrders/supplyOrdersCreate";
     }
 

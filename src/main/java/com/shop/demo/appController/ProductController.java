@@ -37,7 +37,7 @@ public class ProductController {
         Product products = productDAO.getProductByID(id);
         model.addAttribute("product",products);
 
-        List<ProductCategory> categories = dao2.getAllProductCategory();
+        List<ProductCategory> categories = productCategoryDAO.getAllProductCategory();
         model.addAttribute("categories", categories);
 
         return "productDetail";

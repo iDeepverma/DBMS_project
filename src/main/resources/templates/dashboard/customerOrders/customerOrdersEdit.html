@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -16,50 +16,50 @@
 
   <!-- Page Content -->
   <div id="page-content-wrapper">
-    <nav th:replace="fragments :: topnav(heading=supplyOrder)"></nav>
+    <nav th:replace="fragments :: topnav(heading=CustomerOrders)"></nav>
 
     <div class="container-fluid px-4">
       <div align="center">
-        <h1>Enter New Supply Orders</h1>
+        <h1>Edit CustomerOrder Details</h1>
         <br />
-        <form action="" th:object="${supplyOrder}"
+        <form action="" th:object="${customerOrder}"
               method="post">
 
           <table border="0" cellpadding="10">
-<!--            <tr>-->
-<!--              <td>OrderID:</td>-->
-<!--              <td><input type="text" th:field="*{orderID}" /></td>-->
-<!--            </tr>-->
+            <tr>
+              <td>Order ID:</td>
+              <td><input type="text" th:field="*{orderID}" readonly="readonly"/></td>
+            </tr>
             <tr>
               <td>Order Date:</td>
               <td><input type="date" th:field="*{orderDate}" /></td>
             </tr>
             <tr>
-              <td>Delivery Date:</td>
-              <td><input type="date" th:field="*{deliveryDate}" /></td>
+              <td>Transaction ID:</td>
+              <td><input type="text" th:field="*{transactionID}" /></td>
             </tr>
             <tr>
-              <td>Delivery Status</td>
-              <td><input type="text" th:field="*{deliveryStatus}" /></td>
+              <td>Mode of Payment:</td>
+              <td><input type="text" th:field="*{modeOfPayment}" /></td>
             </tr>
             <tr>
-              <td>Total Amount of order:</td>
-              <td><input type="text" th:field="*{totalAmount}" /></td>
+              <td>Total:</td>
+              <td><input type="text" th:field="*{total}" /></td>
             </tr>
             <tr>
-              <td>Supplier ID:</td>
-              <td><select class="form-control" th:field=*{supplierID}>
-                <option th:each="suppliers : ${suppliers}" th:value="${suppliers.supplierID}" th:text="${suppliers.supplierID}"></option>
+              <td>Customer ID:</td>
+              <td><select class="form-control" th:field=*{customerID}>
+                <option th:each="customer : ${customer}" th:value="${customer.customerID}" th:text="${customer.customerID}"></option>
               </select></td>
             </tr>
             <tr>
               <td>Employee ID:</td>
-                <td><select class="form-control" th:field=*{placedBy}>
-                  <option th:each="employee : ${employee}" th:value="${employee.empID}" th:text="${employee.empID}"></option>
-                </select></td>
+              <td><select class="form-control" th:field=*{servedBy}>
+                <option th:each="employee : ${employee}" th:value="${employee.empID}" th:text="${employee.empID}"></option>
+              </select></td>
             </tr>
             <tr>
-              <td colspan="2"><button type="submit">Save</button> </td>
+              <td colspan="2"><button type="submit">Update</button> </td>
             </tr>
           </table>
         </form>

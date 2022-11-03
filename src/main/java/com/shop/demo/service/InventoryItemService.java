@@ -32,4 +32,8 @@ public class InventoryItemService {
     public int updateItem(int itemID, int productID, InventoryItem inventoryItem) {
         return inventoryItemDAO.updateItem(itemID , inventoryItem);
     }
+
+    public List<InventoryItem> getAllInventoryItems(){
+        return inventoryItemDAO.getAllInventoryItems();
+    }
 }

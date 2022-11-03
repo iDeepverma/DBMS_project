@@ -20,5 +20,6 @@ public interface InventoryItemDAO {
     int updateItem(int itemID,InventoryItem inventoryItem);
 //    UPDATE InventoryItem SET supplyOrderID=?, orderID=?  WHERE InventoryItem.itemID=itemID AND InventoryItem.productID=productID;
 
+    List<InventoryItem> getAllInventoryItems();
 
 }
