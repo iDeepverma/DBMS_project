@@ -65,4 +65,11 @@ public class InventoryItemMysql implements InventoryItemDAO {
         };
         return jdbcTemplate.update(query ,args);
     }
+    @Override
+    public List<InventoryItem> getAllInventoryItems(){
+        String query="SELECT * FROM InventoryItem;";
+        return jdbcTemplate.query(query, BeanPropertyRowMapper.newInstance(InventoryItem.class));
+    }
+
+
 }
