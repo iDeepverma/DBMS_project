@@ -53,7 +53,7 @@ public class SupplyOrderController {
         model.addAttribute("supplyOrder", supplyOrder);
         List<Employee>employee = employeeDAO.getAllEmployee();
         List<Supplier>supplier = supplierDAO.getAllSupplier();
-        model.addAttribute("suppliers" , supplier);
+        model.addAttribute("supplier" , supplier);
         model.addAttribute("employee" , employee);
         return "dashboard/supplyOrders/supplyOrdersCreate";
     }

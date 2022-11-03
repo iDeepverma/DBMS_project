@@ -2,6 +2,7 @@ package com.shop.demo.appController;
 
 import com.shop.demo.dao.*;
 import com.shop.demo.model.*;
+import com.shop.demo.service.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 
+import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -42,6 +44,10 @@ public class EmployeeController {
 
     @Autowired
     private CustomerOrderItemDAO customerOrderItemDAO;
+
+    @Autowired
+    private AuthenticationService authenticationService;
+
 
     @GetMapping ("/getAllEmployee")
     public String getAllEmployee(Model model)
@@ -93,28 +99,14 @@ public class EmployeeController {
         model.addAttribute( "customer",customers);
         return "allCustomer";
     }
-    @PostMapping ("/customers/create")
-    public String createCustomerPost(@ModelAttribute("customer") Customer customer)
-    {
-        customerDAO.insertCustomer(customer);
-        return "redirect:/customers/";
-    }
-    @GetMapping ("/customers/delete/{id}")
-    public String deleteCustomer(@PathVariable("id") int id)
-    {
-        customerDAO.deleteCustomer(id);
-        return "redirect:/customers/";
-    }
 
-    @PostMapping ("/customers/edit/{id}")
-    public String editCustomerPost(@PathVariable("id") int id, @ModelAttribute("customer") Customer customer)
-    {
-        customerDAO.updateCustomer(id, customer);
-        return "redirect:/customers/";
-    }
+
 
     @GetMapping("/performance")
-    public String performance(Model model){
+    public String performance(Model model, HttpSession session){
+        if(!authenticationService.isAuthenticated(session)){
+            return "redirect:/login";
+        }
         List<ProductCategory>category = productCategoryDAO.getAllProductCategory();
         List<Long>profit = new ArrayList<>();
         List<Long>revenue = new ArrayList<>();
