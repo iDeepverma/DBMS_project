@@ -1,13 +1,7 @@
 package com.shop.demo.appController;
 
-import com.shop.demo.dao.CustomerDAO;
-import com.shop.demo.dao.EmployeeDAO;
-import com.shop.demo.dao.SupplierDAO;
-import com.shop.demo.dao.SupplyOrderDAO;
-import com.shop.demo.model.Customer;
-import com.shop.demo.model.Employee;
-import com.shop.demo.model.Supplier;
-import com.shop.demo.model.SupplyOrder;
+import com.shop.demo.dao.*;
+import com.shop.demo.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -39,6 +33,14 @@ public class SupplyOrderController {
     @Autowired
     private CustomerDAO customerDAO;
 
+    @Autowired
+    private ProductDAO productDAO;
+
+    @Autowired
+    private InventoryItemDAO inventoryItemDAO;
+
+    @Autowired
+    private SupplyOrderItemDAO supplyOrderItemDAO;
     @GetMapping("/supplyOrders")
     public String listSupplyOrders(Model model){
         List<SupplyOrder> supplyOrders = supplyOrderDAO.getAllSupplyOrders();
@@ -62,6 +64,31 @@ public class SupplyOrderController {
     public String createsupplyOrdersPost(@ModelAttribute("SupplyOrder") SupplyOrder SupplyOrder)
     {
         supplyOrderDAO.insertSupplyOrder(SupplyOrder);
+        return "redirect:/supplyOrders/";
+    }
+    @GetMapping ("/supplyOrderItem/create")
+    public String createSupplyOrderItems(Model model)
+    {
+        SupplyOrderItem supplyOrderItem = new SupplyOrderItem();
+        model.addAttribute("supplyOrderItem", supplyOrderItem);
+        List<SupplyOrder>supplyOrder = supplyOrderDAO.getAllSupplyOrders();
+        List<Product>product = productDAO.getAllProduct();
+        model.addAttribute("supplyOrder" , supplyOrder);
+        model.addAttribute("product" , product);
+        return "dashboard/supplyOrders/supplyOrderItemCreate";
+    }
+
+    @PostMapping("/supplyOrderItem/create")
+    public String createsupplyOrderItemsPost(@ModelAttribute("supplyOrderItem") SupplyOrderItem supplyOrderItem)
+    {
+        supplyOrderItemDAO.insertSupplyOrderItem(supplyOrderItem);
+        int quantity = supplyOrderItem.getQuantity();
+        for(int i=0;i<quantity;i++){
+            InventoryItem item = new InventoryItem();
+            item.setSupplyOrderID(supplyOrderItem.getSupplyOrderID());
+            item.setProductID(supplyOrderItem.getProductID());
+            inventoryItemDAO.insertItemUnsold(item);
+        }
         return "redirect:/supplyOrders/";
     }
 }

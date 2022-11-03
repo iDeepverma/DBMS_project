@@ -20,6 +20,9 @@ public class InventoryItemService {
     public int insertItem(InventoryItem inventoryItem) {
         return inventoryItemDAO.insertItem(inventoryItem);
     }
+    public int insertItemUnsold(InventoryItem inventoryItem){
+        return inventoryItemDAO.insertItemUnsold(inventoryItem);
+    }
     public int deleteItem(int itemID, int productID) {
         return inventoryItemDAO.deleteItem(itemID);
     }
