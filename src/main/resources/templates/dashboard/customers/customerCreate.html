@@ -16,11 +16,11 @@
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
-        <nav th:replace="fragments :: topnav(heading=Customers)"></nav>
+        <nav th:replace="fragments :: topnav(heading=Customer)"></nav>
 
         <div class="container-fluid px-4">
             <div align="center">
-                <h1>Enter New Customer</h1>
+                <h1>Enter new Customers</h1>
                 <br />
                 <form action="" th:object="${customer}"
                       method="post">
@@ -36,7 +36,7 @@
                         </tr>
                         <tr>
                             <td>Email:</td>
-                            <td><input type="text" th:field="*{email}" /></td>
+                            <td><input type="email" th:field="*{email}" /></td>
                         </tr>
                         <tr>
                             <td>DOB:</td>

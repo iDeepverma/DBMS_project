@@ -9,8 +9,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -110,5 +108,11 @@ public class CustomerOrderMysql implements CustomerOrderDAO{
           customerOrder.getOrderID()
         };
            return jdbcTemplate.queryForObject(query,args,BeanPropertyRowMapper.newInstance(Integer.class));
+    }
+
+    @Override
+    public List<CustomerOrder> getAllCustomerOrders(){
+        String query="SELECT * FROM CustomerOrder";
+        return jdbcTemplate.query(query,BeanPropertyRowMapper.newInstance(CustomerOrder.class));
     }
 }

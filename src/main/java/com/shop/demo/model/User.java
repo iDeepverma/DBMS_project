@@ -3,14 +3,14 @@ package com.shop.demo.model;
 public class User {
     private String username;
     private String password;
-    private boolean isEmployee;
+    private boolean isAdmin;
 
-    public boolean isEmployee() {
-        return isEmployee;
+    public boolean isAdmin() {
+        return isAdmin;
     }
 
-    public void setEmployee(boolean employee) {
-        isEmployee = employee;
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
     }
 
     public String getPassword() {

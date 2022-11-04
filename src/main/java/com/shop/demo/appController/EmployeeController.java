@@ -2,6 +2,7 @@ package com.shop.demo.appController;
 
 import com.shop.demo.dao.*;
 import com.shop.demo.model.*;
+import com.shop.demo.service.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 
+import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -29,6 +31,9 @@ public class EmployeeController {
     private CustomerOrderDAO customerOrderDAO;
 
     @Autowired
+    private SupplierDAO supplierDAO;
+
+    @Autowired
     private ProductDAO productDAO;
 
     @Autowired
@@ -36,6 +41,14 @@ public class EmployeeController {
 
     @Autowired
     private CustomerDAO customerDAO;
+
+    @Autowired
+    private CustomerOrderItemDAO customerOrderItemDAO;
+
+    @Autowired
+    private AuthenticationService authenticationService;
+
+
     @GetMapping ("/getAllEmployee")
     public String getAllEmployee(Model model)
     {
@@ -80,24 +93,6 @@ public class EmployeeController {
         model.addAttribute("total",x);
         return "test";
     }
-    @GetMapping("/productByCategory")
-    public String productByCategory(Model model){
-        List<List<Product>>productCategorri = new ArrayList<>();
-        List<ProductCategory>category;
-        category = productCategoryDAO.getAllProductCategory();
-        for(int i=0;i<category.size();i++){
-            List<Product>temp =new Vector<Product>();
-            temp = productCategoryDAO.getAllProductByCategory(category.get(i).getCategory());
-            for(int j=0;j<temp.size();j++){
-                System.out.println(temp.get(j).getProductID()+ " ");
-            }
-            System.out.println(category.get(i).getCategory());
-            productCategorri.add(temp);
-        }
-        model.addAttribute("productCategorri",productCategorri);
-        model.addAttribute("category", category);
-        return "test";
-    }
     @GetMapping("/allCustomer")
     public String allCustomer(Model model){
         List<Customer> customers =customerDAO.getAllCustomer();
@@ -106,67 +101,39 @@ public class EmployeeController {
     }
 
 
-    @GetMapping("/stockAvailability")
-    public String stockAvailability(Model model){
-        System.out.println("stock Avaialability called");
-        List<Product>temp = productDAO.getAllProduct();
-        List<String>category = new ArrayList<>();
-        List<Integer>stocks = new ArrayList<>();
-        for(int i=0;i<temp.size();i++){
-            System.out.println(temp.get(i).getName());
-            category.add(temp.get(i).getName());
-            stocks.add(temp.get(i).getAmountInStock());
+
+    @GetMapping("/performance")
+    public String performance(Model model, HttpSession session){
+        if(!authenticationService.isAuthenticated(session)){
+            return "redirect:/login";
         }
-        model.addAttribute("names",category);
-        model.addAttribute("stocks",stocks);
-        return "stocksAvailability";
+        List<ProductCategory>category = productCategoryDAO.getAllProductCategory();
+        List<Long>profit = new ArrayList<>();
+        List<Long>revenue = new ArrayList<>();
+        List<String>Category = new ArrayList<>();
+        int temp = 0;
+        for(int i=0;i<category.size();i++){
+            long totalrevenue = 0,totalprofit = 0;
+            String eachcat = category.get(i).getCategory();
+            List<Product>temp1 = productCategoryDAO.getAllProductByCategory(eachcat);
+            List<CustomerOrderItem>allitems = customerOrderItemDAO.getAllCustomerOrderItem();
+            for(int j=0;j<temp1.size();j++){
+                long id = temp1.get(j).getProductID();
+                for(int k=0;k<allitems.size();k++){
+                    if(allitems.get(k).getProductID() ==  id){
+                        totalrevenue = totalrevenue + (allitems.get(k).getQuantity())*(allitems.get(k).getSellingPrice());
+                        System.out.println(totalrevenue);
+                        totalprofit = totalprofit + (allitems.get(k).getQuantity()*(allitems.get(k).getSellingPrice() - productDAO.getProductByID(allitems.get(i).getProductID()).getCostPrice()));
+                    }
+                }
+            }
+            profit.add(totalprofit);
+            revenue.add(totalrevenue);
+            Category.add(eachcat);
+        }
+        model.addAttribute("profit",profit);
+        model.addAttribute("revenue",revenue);
+        model.addAttribute("Category",Category);
+        return "performance";
     }
-
-
-    @GetMapping ("/dashboard")
-    public String showDashboard()
-    {
-        return "dashboard/dashboard";
-    }
-    @GetMapping ("/customers")
-    public String listCustomers(Model model)
-    {
-        List<Customer> customers = customerDAO.getAllCustomer();
-        model.addAttribute("customers", customers);
-        return "dashboard/customers/customerList";
-    }
-
-    @GetMapping ("/customers/create")
-    public String createCustomer(Model model)
-    {
-        Customer customer = new Customer();
-        model.addAttribute("customer", customer);
-        return "dashboard/customers/customerCreate.html";
-    }
-    @PostMapping ("/customers/create")
-    public String createCustomerPost(@ModelAttribute("customer") Customer customer)
-    {
-        customerDAO.insertCustomer(customer);
-        return "redirect:/customers/";
-    }
-    @GetMapping ("/customers/delete/{id}")
-    public String deleteCustomer(@PathVariable("id") int id)
-    {
-        customerDAO.deleteCustomer(id);
-        return "redirect:/customers/";
-    }
-    @GetMapping ("/customers/edit/{id}")
-    public String editCustomer(@PathVariable("id") int id, Model model)
-    {
-        Customer customer = customerDAO.getCustomerByID(id);
-        model.addAttribute("customer", customer);
-        return "dashboard/customers/customerEdit.html";
-    }
-    @PostMapping ("/customers/edit/{id}")
-    public String editCustomerPost(@PathVariable("id") int id, @ModelAttribute("customer") Customer customer)
-    {
-        customerDAO.updateCustomer(id, customer);
-        return "redirect:/customers/";
-    }
-
 }

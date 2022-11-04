@@ -7,9 +7,11 @@ import com.shop.demo.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class InventoryItemService {
     private InventoryItemDAO inventoryItemDAO;
     @Autowired
@@ -17,6 +19,9 @@ public class InventoryItemService {
     }
     public int insertItem(InventoryItem inventoryItem) {
         return inventoryItemDAO.insertItem(inventoryItem);
+    }
+    public int insertItemUnsold(InventoryItem inventoryItem){
+        return inventoryItemDAO.insertItemUnsold(inventoryItem);
     }
     public int deleteItem(int itemID, int productID) {
         return inventoryItemDAO.deleteItem(itemID);
@@ -29,5 +34,9 @@ public class InventoryItemService {
 
     public int updateItem(int itemID, int productID, InventoryItem inventoryItem) {
         return inventoryItemDAO.updateItem(itemID , inventoryItem);
+    }
+
+    public List<InventoryItem> getAllInventoryItems(){
+        return inventoryItemDAO.getAllInventoryItems();
     }
 }

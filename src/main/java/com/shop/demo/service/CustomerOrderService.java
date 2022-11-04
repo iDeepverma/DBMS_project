@@ -52,4 +52,7 @@ public class CustomerOrderService {
     public int getProfitPerOrder(CustomerOrder customerOrder) {
         return customerOrderDAO.getProfitPerOrder(customerOrder);
     }
+    public List<CustomerOrder> getAllCustomerOrders(){
+        return customerOrderDAO.getAllCustomerOrders();
+    }
 }

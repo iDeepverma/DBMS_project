@@ -21,7 +21,7 @@ public class SupplyOrderItemMysql implements SupplyOrderItemDAO{
 
     @Override
     public int insertSupplyOrderItem(SupplyOrderItem supplyOrderItem) {
-        String query = "INSERT INTO SupplyOrderItem(supplyOrderID,quantity,total,productID,additionalInfo) VALUES supplyOrderItem(?,?,?,?,?);";
+        String query = "INSERT INTO SupplyOrderItem(supplyOrderID,quantity,total,productID,additionalInfo) VALUES (?,?,?,?,?);";
         Object[] args = new Object[] {
                 supplyOrderItem.getSupplyOrderID(),
                 supplyOrderItem.getQuantity(),

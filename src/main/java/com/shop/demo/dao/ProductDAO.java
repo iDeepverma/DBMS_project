@@ -20,7 +20,7 @@ public interface ProductDAO {
     int deleteProduct(int id);
 //    DELETE FROM Product WHERE productID = id;
 
-    int getQuantityByProductByDate(Product product, Date startDate);
+    int getQuantityByProductByDate(int productID, Date startDate);
 
     List<Product> getAllProduct();
     //SELECT sum(quantity) FROM CustomerOrderItem, CustomerOrder WHERE product.productID = CustomerOrderItem.productID AND CustomerOrderItem.orderID = CustomerOrder.orderID AND CustomerOrder.orderDate >= startDate;

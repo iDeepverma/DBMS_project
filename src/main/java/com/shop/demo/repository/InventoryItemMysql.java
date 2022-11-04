@@ -32,6 +32,15 @@ public class InventoryItemMysql implements InventoryItemDAO {
         };
         return jdbcTemplate.update(query,args);
     }
+    @Override
+    public int insertItemUnsold(InventoryItem inventoryItem) {
+        String query="INSERT INTO InventoryItem(productID,supplyOrderID) VALUES (?,?);";
+        Object[] args=new Object[]{
+                inventoryItem.getProductID(),
+                inventoryItem.getSupplyOrderID(),
+        };
+        return jdbcTemplate.update(query,args);
+    }
 
     @Override
     public int deleteItem(int itemID) {
@@ -44,11 +53,16 @@ public class InventoryItemMysql implements InventoryItemDAO {
 
     @Override
     public List<InventoryItem> getItemByProduct(int product) {
+
+
+        BeanPropertyRowMapper<InventoryItem> inventoryItemBeanPropertyRowMapper = new BeanPropertyRowMapper<>(InventoryItem.class);
+        inventoryItemBeanPropertyRowMapper.setPrimitivesDefaultedForNullValue(true);
+
         String query ="select * from InventoryItem where productID=?;";
         Object[] args=new Object[]{
                 product
         };
-        return jdbcTemplate.query(query,args, BeanPropertyRowMapper.newInstance(InventoryItem.class));
+        return jdbcTemplate.query(query,args, inventoryItemBeanPropertyRowMapper);
     }
 
 
@@ -65,4 +79,15 @@ public class InventoryItemMysql implements InventoryItemDAO {
         };
         return jdbcTemplate.update(query ,args);
     }
+    @Override
+    public List<InventoryItem> getAllInventoryItems(){
+
+        BeanPropertyRowMapper<InventoryItem> inventoryItemBeanPropertyRowMapper = new BeanPropertyRowMapper<>(InventoryItem.class);
+        inventoryItemBeanPropertyRowMapper.setPrimitivesDefaultedForNullValue(true);
+
+        String query="SELECT * FROM InventoryItem;";
+        return jdbcTemplate.query(query, inventoryItemBeanPropertyRowMapper);
+    }
+
+
 }

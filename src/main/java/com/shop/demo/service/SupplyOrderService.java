@@ -6,12 +6,14 @@ import com.shop.demo.model.SupplyOrderItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
+@Service
 public class SupplyOrderService {
 
     private SupplyOrderDAO supplyOrderDAO;
@@ -50,5 +52,8 @@ public class SupplyOrderService {
 
     public List<SupplyOrderItem> getSupplyItem(SupplyOrder supplyOrder) {
         return supplyOrderDAO.getSupplyItem(supplyOrder);
+    }
+    public List<SupplyOrder> getAllSupplyOrders(){
+        return supplyOrderDAO.getAllSupplyOrders();
     }
 }

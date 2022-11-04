@@ -73,18 +73,167 @@
 .sectionHome .card:hover {
     transform: translateY(-10px);
 }
+.query-container 
 
-
-.query {
-    height: 10em;
-    border: 2px solid black;
-}
-
-.sectionHome .card a{
+.sectionHome .card a {
     text-decoration: none;
 }
 
 .btn a {
     text-decoration: none;
     color: white;
+}
+
+
+/* form */
+
+.query {
+    height: 100vh;
+    background: linear-gradient(135deg,
+            #6f6df4,
+            #4c46f5);
+    position: relative;
+}
+
+.query-container {
+    background-color: #ffffff;
+    width: 70%;
+    min-width: 420px;
+    padding: 35px 50px;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border-radius: 10px;
+    box-shadow: 20px 30px 25px rgba(0, 0, 0, 0.15);
+}
+
+.query-container h1 {
+    font-size: 30px;
+    text-align: center;
+    color: #1c093c;
+}
+
+.query-container p {
+    position: relative;
+    margin: auto;
+    width: 100%;
+    text-align: center;
+    color: #606060;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.query-container form {
+    width: 100%;
+    position: relative;
+    margin: 30px auto 0 auto;
+}
+
+.query-container .row {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 20px 30px;
+    margin-bottom: 20px;
+}
+
+.query-container label {
+    color: #1c093c;
+    font-size: 14px;
+}
+
+.query-container textarea,
+.query-container input {
+    width: 100%;
+    font-weight: 400;
+    padding: 8px 10px;
+    border-radius: 5px;
+    border: 1.2px solid #c4cae0;
+    margin-top: 5px;
+}
+
+.query-container textarea {
+    resize: none;
+}
+
+.query-container textarea:focus,
+.query-container input:focus {
+    outline: none;
+    border-color: #6f6df4;
+}
+
+.query-container a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.query-container .button {
+    border: none;
+    padding: 10px 20px;
+    color: black;
+    border-radius: 3px;
+}
+
+.query-container .button:hover{
+    color: white;
+}
+
+.cta {
+    position: relative;
+    margin: auto;
+    padding: 19px 22px;
+    transition: all 0.2s ease;
+}
+
+.cta:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    border-radius: 30px;
+    background: #6f6df4cf;
+    width: 56px;
+    height: 44px;
+    transition: all 0.3s ease;
+}
+
+.cta span {
+    position: relative;
+    font-size: 16px;
+    line-height: 15px;
+    font-weight: 900;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    vertical-align: middle;
+}
+
+.cta svg {
+    position: relative;
+    top: 0;
+    margin-left: 10px;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke: #111;
+    stroke-width: 2;
+    transform: translateX(-5px);
+    transition: all 0.3s ease;
+}
+
+.cta:hover:before {
+    width: 100%;
+    background: linear-gradient(130deg,
+            #6f6df4,
+            #4c46f5);
+}
+
+.cta:hover svg {
+    transform: translateX(0);
+    stroke: white;
+}
+
+.cta:active {
+    transform: scale(0.96);
 }
