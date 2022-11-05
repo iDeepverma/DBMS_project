@@ -1,18 +1,17 @@
 package com.shop.demo.appController;
 
+import com.shop.demo.dao.CustomerOrderItemDAO;
+import com.shop.demo.model.*;
+import com.shop.demo.service.AuthenticationService;
 import org.springframework.stereotype.Controller;
 import com.shop.demo.dao.ProductCategoryDAO;
 import com.shop.demo.dao.ProductDAO;
-import com.shop.demo.model.Employee;
-import com.shop.demo.model.Product;
-import com.shop.demo.model.ProductCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,6 +24,11 @@ public class ProductController {
     @Autowired
     private ProductCategoryDAO productCategoryDAO;
 
+    @Autowired
+    private AuthenticationService authenticationService;
+
+    @Autowired
+    private CustomerOrderItemDAO customerOrderItemDAO;
     @GetMapping("/getproduct")
     public String getProduct(Model model, @RequestParam HashMap<String, String> param) {
         Product product = productDAO.getProductByID(Integer.parseInt(param.get("id")));
@@ -62,19 +66,120 @@ public class ProductController {
         return "test";
     }
 
-    @GetMapping("/stockAvailability")
-    public String stockAvailability(Model model){
-        System.out.println("stock Avaialability called");
-        List<Product>temp = productDAO.getAllProduct();
-        List<String>category = new ArrayList<>();
-        List<Integer>stocks = new ArrayList<>();
-        for(int i=0;i<temp.size();i++){
-            System.out.println(temp.get(i).getName());
-            category.add(temp.get(i).getName());
-            stocks.add(temp.get(i).getAmountInStock());
+    @GetMapping ("/product")
+    public String listProducts(Model model, HttpSession session)
+    {
+        if(!authenticationService.isAuthenticated(session)){
+            return "redirect:/login";
         }
-        model.addAttribute("names",category);
-        model.addAttribute("stocks",stocks);
-        return "stocksAvailability";
+        List<Product> product = productDAO.getAllProduct();
+        List<Product>best = productDAO.bestProducts();
+        model.addAttribute("best" , best);
+        model.addAttribute("product", product);
+        List<ProductCategory>category = productCategoryDAO.getAllProductCategory();
+        List<Long>profit = new ArrayList<>();
+        List<Long>revenue = new ArrayList<>();
+        List<String>Category = new ArrayList<>();
+        int temp = 0;
+        for(int i=0;i<category.size();i++){
+            long totalrevenue = 0,totalprofit = 0;
+            String eachcat = category.get(i).getCategory();
+            List<Product>temp1 = productCategoryDAO.getAllProductByCategory(eachcat);
+            List<CustomerOrderItem>allitems = customerOrderItemDAO.getAllCustomerOrderItem();
+            for(int j=0;j<temp1.size();j++){
+                long id = temp1.get(j).getProductID();
+                for(int k=0;k<allitems.size();k++){
+                    if(allitems.get(k).getProductID() ==  id){
+                        totalrevenue = totalrevenue + (allitems.get(k).getQuantity())*(allitems.get(k).getSellingPrice());
+                        System.out.println(totalrevenue);
+                        totalprofit = totalprofit + (allitems.get(k).getQuantity()*(allitems.get(k).getSellingPrice() - productDAO.getProductByID(allitems.get(i).getProductID()).getCostPrice()));
+                    }
+                }
+            }
+            profit.add(totalprofit);
+            revenue.add(totalrevenue);
+            Category.add(eachcat);
+        }
+        List<Product>temp1 = productDAO.getAllProduct();
+        model.addAttribute("temp1",temp1);
+        model.addAttribute("profit",profit);
+        model.addAttribute("revenue",revenue);
+        model.addAttribute("Category",Category);
+        return "dashboard/product/productList";
+    }
+
+    @GetMapping ("/product/create")
+    public String createProduct(Model model, HttpSession session)
+    {
+        if(!authenticationService.isAuthenticated(session)){
+            return "redirect:/login";
+        }
+        Product product = new Product();
+        List<ProductCategory>names = productCategoryDAO.getAllNames();
+        model.addAttribute("names",names);
+        model.addAttribute("product", product);
+        return "dashboard/product/productCreate.html";
+    }
+
+
+    @PostMapping("/product/create")
+    public String createProductPost(@ModelAttribute("product") Product product, HttpSession session)
+    {
+        if(!authenticationService.isAuthenticated(session)){
+            return "redirect:/login";
+        }
+        productDAO.insertProduct(product);
+        return "redirect:/product/";
+    }
+    @GetMapping ("/productCategory/create")
+    public String createProductCategory(Model model, HttpSession session)
+    {
+        if(!authenticationService.isAuthenticated(session)){
+            return "redirect:/login";
+        }
+        ProductCategory productCategory = new ProductCategory();
+        model.addAttribute("productCategory", productCategory);
+        return "dashboard/product/productCategoryCreate.html";
+    }
+
+
+    @PostMapping("/productCategory/create")
+    public String createProductCategoryPost(@ModelAttribute("productCategory") ProductCategory productCategory, HttpSession session)
+    {
+        if(!authenticationService.isAuthenticated(session)){
+            return "redirect:/login";
+        }
+        productCategoryDAO.insertProductCategory(productCategory);
+        return "redirect:/product/";
+    }
+    @GetMapping ("/product/delete/{id}")
+    public String deleteProduct(@PathVariable("id") int id, HttpSession session)
+    {
+        if(!authenticationService.isAuthenticated(session)){
+            return "redirect:/login";
+        }
+        productDAO.deleteProduct(id);
+        return "redirect:/product/";
+    }
+
+    @GetMapping ("/product/edit/{id}")
+    public String editProduct(@PathVariable("id") int id, Model model, HttpSession session)
+    {
+        if(!authenticationService.isAuthenticated(session)){
+            return "redirect:/login";
+        }
+        Product product=productDAO.getProductByID(id);
+        model.addAttribute("product", product);
+        return "dashboard/product/productEdit.html";
+    }
+
+    @PostMapping ("/product/edit/{id}")
+    public String editProductPost(@PathVariable("id") int id, @ModelAttribute("product") Product product, HttpSession session)
+    {
+        if(!authenticationService.isAuthenticated(session)){
+            return "redirect:/login";
+        }
+        productDAO.updateProduct(id,product);
+        return "redirect:/product/";
     }
 }
