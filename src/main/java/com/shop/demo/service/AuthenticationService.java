@@ -15,6 +15,8 @@ public class AuthenticationService {
     private EmployeeService employeeService;
 
     private String SESSION_AUTH_KEY = "AUTH_USER";
+    private String SESSION_USER_NAME = "AUTH_USERNAME";
+
 
     public boolean checkCredentials(int userID, String password){
         Employee user = employeeService.getEmployeeByID(userID);
@@ -22,11 +24,16 @@ public class AuthenticationService {
     }
 
     public void loginUser(HttpSession session, int userID){
+
+
+
         session.setAttribute(SESSION_AUTH_KEY,userID);
+        session.setAttribute(SESSION_USER_NAME,employeeService.getEmployeeByID(userID).getName());
     }
 
     public void logoutUser(HttpSession session){
         session.removeAttribute(SESSION_AUTH_KEY);
+        session.removeAttribute(SESSION_USER_NAME);
     }
 
     public Integer getCurrentUser(HttpSession session){

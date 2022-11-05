@@ -68,7 +68,7 @@
                         <li><a href="#">Feedback</a></li>
                         <li class="login-btn-li">
                             <div class="login-btn ">
-                                <a th:href="@{/login}">Login</a>
+                                <a th:if="session.containsKey('AUTH_USER')" th:href="@{/login}">Login</a>
                             </div>
                         </li>
                     </ul>

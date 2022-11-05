@@ -49,6 +49,7 @@ public class DashboardController {
                 break;
             }
         }
+
         model.addAttribute("orders",orders);
         return "dashboard/dashboard";
     }
