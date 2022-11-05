@@ -20,6 +20,7 @@ import java.util.Date;
 import java.util.List;
 
 @Controller
+
 public class DashboardController {
     @InitBinder
     public void initBinder(WebDataBinder binder) {
@@ -49,6 +50,7 @@ public class DashboardController {
                 break;
             }
         }
+
         model.addAttribute("orders",orders);
         return "dashboard/dashboard";
     }

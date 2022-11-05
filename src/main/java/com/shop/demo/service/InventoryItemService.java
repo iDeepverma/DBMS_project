@@ -39,4 +39,7 @@ public class InventoryItemService {
     public List<InventoryItem> getAllInventoryItems(){
         return inventoryItemDAO.getAllInventoryItems();
     }
+    public int updateOrderID(int itemID, int orderID){
+        return inventoryItemDAO.updateOrderID(itemID, orderID);
+    }
 }

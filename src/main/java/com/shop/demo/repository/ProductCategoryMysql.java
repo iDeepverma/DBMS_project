@@ -67,4 +67,9 @@ public class ProductCategoryMysql implements ProductCategoryDAO {
         };
         return jdbcTemplate.queryForObject(query,args,BeanPropertyRowMapper.newInstance(ProductCategory.class));
     }
+    @Override
+    public List<ProductCategory> getAllNames(){
+        String query = "SELECT * FROM ProductCategory;";
+        return jdbcTemplate.query(query,BeanPropertyRowMapper.newInstance(ProductCategory.class));
+    }
 }

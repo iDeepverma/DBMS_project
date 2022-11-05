@@ -16,39 +16,56 @@
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
-        <nav th:replace="fragments :: topnav(heading=Customers)"></nav>
+        <nav th:replace="fragments :: topnav(heading=Product)"></nav>
 
         <div class="container-fluid px-4">
             <div align="center">
-                <h1>Edit Customer Details</h1>
+                <h1>Edit Product Details</h1>
                 <br />
-                <form action="" th:object="${customer}"
+                <form action="" th:object="${product}"
                       method="post">
 
                     <table border="0" cellpadding="10">
                         <tr>
-                            <td>Customer ID:</td>
-                            <td><input type="text" th:field="*{customerID}" readonly="readonly"/></td>
+                            <td>Product ID:</td>
+                            <td><input type="text" th:field="*{productID}" readonly="readonly"/></td>
                         </tr>
                         <tr>
-                            <td>Customer Name:</td>
-                            <td><input type="text" th:field="*{name}" required/></td>
+                            <td>Product Name:</td>
+                            <td><input type="text" th:field="*{name}" /></td>
                         </tr>
                         <tr>
-                            <td>Phone:</td>
-                            <td><input type="text" th:field="*{phone}" required/></td>
+                            <td>Description:</td>
+                            <td><input type="text" th:field="*{description}" /></td>
                         </tr>
                         <tr>
-                            <td>Email:</td>
-                            <td><input type="text" th:field="*{email}" required/></td>
+                            <td>Warranty Length:</td>
+                            <td><input type="text" th:field="*{warrantyLength}" /></td>
                         </tr>
                         <tr>
-                            <td>DOB:</td>
-                            <td><input type="date" th:field="*{DOB}" required/></td>
+                            <td>Warranty Coverage:</td>
+                            <td><input type="text" th:field="*{warrantyCoverage}" /></td>
+                        </tr>
+
+                        <tr>
+                            <td>MRP:</td>
+                            <td><input type="text" th:field="*{MRP}" /></td>
                         </tr>
                         <tr>
-                            <td>Address:</td>
-                            <td><input type="text" th:field="*{address}" required/></td>
+                            <td>Cost Price:</td>
+                            <td><input type="text" th:field="*{costPrice}" /></td>
+                        </tr>
+                        <tr>
+                            <td>Variant:</td>
+                            <td><input type="text" th:field="*{variant}" /></td>
+                        </tr>
+                        <tr>
+                            <td>Amount In Stock:</td>
+                            <td><input type="text" th:field="*{amountInStock}" /></td>
+                        </tr>
+                        <tr>
+                            <td>photo Path:</td>
+                            <td><input type="text" th:field="*{photoPath}" /></td>
                         </tr>
                         <tr>
                             <td colspan="2"><button type="submit">Update</button> </td>

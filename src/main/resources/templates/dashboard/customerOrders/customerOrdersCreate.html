@@ -28,29 +28,31 @@
                     <table border="0" cellpadding="10">
                         <tr>
                             <td>Order Date:</td>
-                            <td><input type="date" th:field="*{orderDate}" /></td>
+                            <td><input type="date" th:field="*{orderDate}" required/></td>
                         </tr>
                         <tr>
                             <td>Transaction ID:</td>
-                            <td><input type="text" th:field="*{transactionID}" /></td>
+                            <td><input type="text" th:field="*{transactionID}" required/></td>
                         </tr>
                         <tr>
                             <td>Mode of Payment:</td>
-                            <td><input type="text" th:field="*{modeOfPayment}" /></td>
+                            <td><input type="text" th:field="*{modeOfPayment}" required/></td>
                         </tr>
                         <tr>
                             <td>Total:</td>
-                            <td><input type="text" th:field="*{total}" /></td>
+                            <td><input type="text" th:field="*{total}" required/></td>
                         </tr>
                         <tr>
                             <td>Customer ID:</td>
-                            <td><select class="form-control" th:field=*{customerID}>
+                            <td><select class="form-control" th:field=*{customerID} required>
+                                <option value="">Select CustomerID</option>
                                 <option th:each="customer : ${customer}" th:value="${customer.customerID}" th:text="${customer.customerID}"></option>
                             </select></td>
                         </tr>
                         <tr>
                             <td>Employee ID:</td>
                             <td><select class="form-control" th:field=*{servedBy}>
+                                <option value="">Select EmployeeID</option>
                                 <option th:each="employee : ${employee}" th:value="${employee.empID}" th:text="${employee.empID}"></option>
                             </select></td>
                         </tr>

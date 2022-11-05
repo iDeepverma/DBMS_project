@@ -43,7 +43,7 @@ public class AuthenticationController {
         try {
             if(authenticationService.checkCredentials(userID,password)){
                 authenticationService.loginUser(session,userID);
-                return "redirect:/customers";
+                return "redirect:/dashboard";
 
             }
             isCorrect = false;

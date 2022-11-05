@@ -50,4 +50,8 @@ public class ProductService {
     public int getStock(int product){
         return productDAO.getStock(product);
     }
+
+    public List<Product>bestProducts(){
+        return productDAO.bestProducts();
+    }
 }

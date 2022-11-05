@@ -22,4 +22,6 @@ public interface InventoryItemDAO {
 
     List<InventoryItem> getAllInventoryItems();
 
+    int updateOrderID(int itemID, int orderID);
+
 }

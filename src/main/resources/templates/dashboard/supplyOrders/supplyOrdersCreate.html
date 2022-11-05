@@ -32,29 +32,33 @@
 <!--            </tr>-->
             <tr>
               <td>Order Date:</td>
-              <td><input type="date" th:field="*{orderDate}" /></td>
+              <td><input type="date" th:field="*{orderDate}"  required/></td>
             </tr>
             <tr>
               <td>Delivery Date:</td>
-              <td><input type="date" th:field="*{deliveryDate}" /></td>
+              <td><input type="date" th:field="*{deliveryDate}" required/></td>
             </tr>
             <tr>
               <td>Delivery Status</td>
-              <td><input type="text" th:field="*{deliveryStatus}" /></td>
+
+                <td><select class="form-control" th:field="*{deliveryStatus}">
+                    <option th:value="Delivered" th:text="Delivered"></option>
+                    <option th:value="In-transit" th:text="In-transit"></option>
+                </select></td>
             </tr>
             <tr>
               <td>Total Amount of order:</td>
-              <td><input type="text" th:field="*{totalAmount}" /></td>
+              <td><input type="text" th:field="*{totalAmount}" required/></td>
             </tr>
             <tr>
               <td>Supplier ID:</td>
-              <td><select class="form-control" th:field=*{supplierID}>
+              <td><select class="form-control" th:field=*{supplierID} required>
                 <option th:each="supplier : ${supplier}" th:value="${supplier.supplierID}" th:text="${supplier.supplierID}"></option>
               </select></td>
             </tr>
             <tr>
               <td>Employee ID:</td>
-                <td><select class="form-control" th:field=*{placedBy}>
+                <td><select class="form-control" th:field=*{placedBy} required>
                   <option th:each="employee : ${employee}" th:value="${employee.empID}" th:text="${employee.empID}"></option>
                 </select></td>
             </tr>

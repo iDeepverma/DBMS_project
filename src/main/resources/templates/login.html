@@ -18,14 +18,14 @@
     <div class="login-content">
         <form method="post" th:action="@{/login}" th:object="${credentials}">
             <img th:src="@{/images/avatar.svg}">
-            <h2 class="title">Login To Dashboard</h2>
+            <h2 class="title">Employee Login</h2>
             <div class="input-div one ">
                 <div class="i">
                     <i class="fas fa-user"></i>
                 </div>
                 <div class="div">
                     <h5>Username</h5>
-                    <input type="text" class="input" th:field="*{empID}" value="">
+                    <input type="text" class="input" id="username" th:field="*{empID}" required>
                 </div>
             </div>
             <div class="input-div pass">
@@ -34,13 +34,22 @@
                 </div>
                 <div class="div">
                     <h5>Password</h5>
-                    <input type="password" class="input" th:field="*{password}">
+                    <input type="password" class="input" th:field="*{password}" required>
                 </div>
             </div>
             <input type="submit" class="btn" value="Login">
+            <div th:if="${!isUser}">
+                User Not exist
+            </div>
+            <div th:if="${!isCorrect}">
+                Password Incorrect
+            </div>
         </form>
     </div>
 </div>
 <script type="text/javascript" th:src="@{/JavaScript/main.js}"></script>
+<script>
+    document.getElementById("username").value="";
+</script>
 </body>
 </html>
