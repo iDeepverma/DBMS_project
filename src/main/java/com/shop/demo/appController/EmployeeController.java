@@ -50,7 +50,7 @@ public class EmployeeController {
 
 
     @GetMapping ("/getAllEmployee")
-    public String getAllEmployee(Model model)
+    public String getAllEmployee(Model model, HttpSession session)
     {
         List<Employee> employees =employeeDAO.getAllEmployee();
         model.addAttribute( "employees",employees);
@@ -58,7 +58,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/getAllEmployee/new")
-    public String CreateEmployee(Model model)
+    public String CreateEmployee(Model model, HttpSession session)
     {
         Employee employee=new Employee();
         model.addAttribute("employee",employee);
@@ -74,7 +74,7 @@ public class EmployeeController {
 
 
     @GetMapping("/employeeDetails")
-    public String employeeDetails(Model model,@RequestParam("id") String id){
+    public String employeeDetails(Model model,@RequestParam("id") String id, HttpSession session){
         Employee employee;
         try{
             employee = employeeDAO.getEmployeeByID(Integer.parseInt(id));
@@ -93,7 +93,7 @@ public class EmployeeController {
         return "test";
     }
     @GetMapping("/allCustomer")
-    public String allCustomer(Model model){
+    public String allCustomer(Model model, HttpSession session){
         List<Customer> customers =customerDAO.getAllCustomer();
         model.addAttribute( "customer",customers);
         return "allCustomer";

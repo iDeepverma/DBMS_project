@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,14 +27,14 @@ public class ProductController {
     private ProductCategoryDAO productCategoryDAO;
 
     @GetMapping("/getproduct")
-    public String getProduct(Model model, @RequestParam HashMap<String, String> param) {
+    public String getProduct(Model model, @RequestParam HashMap<String, String> param, HttpSession session) {
         Product product = productDAO.getProductByID(Integer.parseInt(param.get("id")));
         model.addAttribute("product", product);
         return "test";
     }
 
     @GetMapping("/productDetail/{id}")
-    public String individualProductDetails(@PathVariable("id") int id , Model model){
+    public String individualProductDetails(@PathVariable("id") int id , Model model, HttpSession session){
         Product products = productDAO.getProductByID(id);
         model.addAttribute("product",products);
 
@@ -44,7 +45,7 @@ public class ProductController {
     }
 
     @GetMapping("/productByCategory")
-    public String productByCategory(Model model){
+    public String productByCategory(Model model, HttpSession session){
         List<List<Product>>productCategorri = new ArrayList<>();
         List<ProductCategory>category;
         category = productCategoryDAO.getAllProductCategory();
@@ -63,7 +64,7 @@ public class ProductController {
     }
 
     @GetMapping("/stockAvailability")
-    public String stockAvailability(Model model){
+    public String stockAvailability(Model model, HttpSession session){
         System.out.println("stock Avaialability called");
         List<Product>temp = productDAO.getAllProduct();
         List<String>category = new ArrayList<>();

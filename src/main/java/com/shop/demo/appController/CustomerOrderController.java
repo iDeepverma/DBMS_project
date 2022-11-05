@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -41,7 +42,7 @@ public class CustomerOrderController {
     @Autowired
     private InventoryItemDAO inventoryItemDAO;
     @GetMapping("/customerOrder")
-    public String getAllcustomerOrders(Model model){
+    public String getAllcustomerOrders(Model model, HttpSession session){
         List<CustomerOrder> temp = customerOrderDAO.getAllCustomerOrders();
         List<CustomerOrder>orders = new ArrayList<>();
         for(int i=0;i<temp.size();i++){
@@ -52,7 +53,7 @@ public class CustomerOrderController {
     }
 
     @GetMapping ("/customerOrder/create")
-    public String createCustomerOrder(Model model)
+    public String createCustomerOrder(Model model, HttpSession session)
     {
         List<Employee>employee = employeeDAO.getAllEmployee();
         List<Customer>customer = customerDAO.getAllCustomer();
@@ -71,7 +72,7 @@ public class CustomerOrderController {
     }
 
     @GetMapping ("/customerOrderItem/create")
-    public String createCustomerOrderItem(Model model)
+    public String createCustomerOrderItem(Model model, HttpSession session)
     {
         List<CustomerOrder>customerOrder = customerOrderDAO.getAllCustomerOrders();
         List<Product>product = productDAO.getAllProduct();
@@ -96,7 +97,7 @@ public class CustomerOrderController {
     }
 
     @GetMapping ("/customerOrders/edit/{id}")
-    public String editCustomerOrder(@PathVariable("id") int id, Model model)
+    public String editCustomerOrder(@PathVariable("id") int id, Model model, HttpSession session)
     {
         List<Employee>employee = employeeDAO.getAllEmployee();
         List<Customer>customer = customerDAO.getAllCustomer();
