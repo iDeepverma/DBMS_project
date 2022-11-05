@@ -40,7 +40,11 @@
             </tr>
             <tr>
               <td>Delivery Status</td>
-              <td><input type="text" th:field="*{deliveryStatus}" required/></td>
+
+                <td><select class="form-control" th:field="*{deliveryStatus}">
+                    <option th:value="Delivered" th:text="Delivered"></option>
+                    <option th:value="In-transit" th:text="In-transit"></option>
+                </select></td>
             </tr>
             <tr>
               <td>Total Amount of order:</td>
