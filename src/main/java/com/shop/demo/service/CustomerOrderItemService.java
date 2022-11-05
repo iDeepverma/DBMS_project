@@ -5,6 +5,7 @@ import com.shop.demo.dao.CustomerOrderItemDAO;
 import com.shop.demo.dao.EmployeeDAO;
 import com.shop.demo.model.CustomerOrder;
 import com.shop.demo.model.CustomerOrderItem;
+import com.shop.demo.model.InventoryItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -38,5 +39,9 @@ public class CustomerOrderItemService {
 
     public List<CustomerOrderItem> getAllCustomerOrderItem() {
         return customerOrderItemDAO.getAllCustomerOrderItem();
+    }
+
+    public List<InventoryItem> updateOrderIDInInventory(int productID){
+        return customerOrderItemDAO.updateOrderIDInInventory(productID);
     }
 }

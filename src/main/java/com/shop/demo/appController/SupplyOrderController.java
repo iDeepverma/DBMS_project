@@ -82,12 +82,15 @@ public class SupplyOrderController {
     public String createsupplyOrderItemsPost(@ModelAttribute("supplyOrderItem") SupplyOrderItem supplyOrderItem)
     {
         supplyOrderItemDAO.insertSupplyOrderItem(supplyOrderItem);
+        String status = supplyOrderDAO.getSupplyOrderByID(supplyOrderItem.getSupplyOrderID()).getDeliveryStatus();
         int quantity = supplyOrderItem.getQuantity();
-        for(int i=0;i<quantity;i++){
-            InventoryItem item = new InventoryItem();
-            item.setSupplyOrderID(supplyOrderItem.getSupplyOrderID());
-            item.setProductID(supplyOrderItem.getProductID());
-            inventoryItemDAO.insertItemUnsold(item);
+        if(status.equals("Delivered")) {
+            for (int i = 0; i < quantity; i++) {
+                InventoryItem item = new InventoryItem();
+                item.setSupplyOrderID(supplyOrderItem.getSupplyOrderID());
+                item.setProductID(supplyOrderItem.getProductID());
+                inventoryItemDAO.insertItemUnsold(item);
+            }
         }
         return "redirect:/supplyOrders/";
     }

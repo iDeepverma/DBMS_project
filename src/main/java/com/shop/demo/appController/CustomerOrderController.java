@@ -1,13 +1,7 @@
 package com.shop.demo.appController;
 
-import com.shop.demo.dao.CustomerDAO;
-import com.shop.demo.dao.CustomerOrderDAO;
-import com.shop.demo.dao.EmployeeDAO;
-import com.shop.demo.dao.SupplierDAO;
-import com.shop.demo.model.Customer;
-import com.shop.demo.model.CustomerOrder;
-import com.shop.demo.model.Employee;
-import com.shop.demo.model.Supplier;
+import com.shop.demo.dao.*;
+import com.shop.demo.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -38,6 +32,14 @@ public class CustomerOrderController {
     @Autowired
     private CustomerDAO customerDAO;
 
+    @Autowired
+    private ProductDAO productDAO;
+
+    @Autowired
+    private CustomerOrderItemDAO customerOrderItemDAO;
+
+    @Autowired
+    private InventoryItemDAO inventoryItemDAO;
     @GetMapping("/customerOrder")
     public String getAllcustomerOrders(Model model){
         List<CustomerOrder> temp = customerOrderDAO.getAllCustomerOrders();
@@ -65,6 +67,31 @@ public class CustomerOrderController {
     public String createCustomerOrderPost(@ModelAttribute("customerOrder") CustomerOrder customerOrder)
     {
         customerOrderDAO.insertCustomerOrder(customerOrder);
+        return "redirect:/customerOrder/";
+    }
+
+    @GetMapping ("/customerOrderItem/create")
+    public String createCustomerOrderItem(Model model)
+    {
+        List<CustomerOrder>customerOrder = customerOrderDAO.getAllCustomerOrders();
+        List<Product>product = productDAO.getAllProduct();
+        model.addAttribute("customerOrder" , customerOrder);
+        model.addAttribute("product" , product);
+        CustomerOrderItem customerOrderItem = new CustomerOrderItem();
+        model.addAttribute("customerOrderItem", customerOrderItem);
+        return "dashboard/customerOrders/customerOrderItemsCreate";
+    }
+
+    @PostMapping("/customerOrderItem/create")
+    public String createCustomerOrderItemPost(@ModelAttribute("customerOrderItem") CustomerOrderItem customerOrderItem){
+        customerOrderItemDAO.insertCustomerOrderItem(customerOrderItem);
+        int id = customerOrderItem.getOrderID();
+        System.out.println(id);
+        List<InventoryItem>items = customerOrderItemDAO.updateOrderIDInInventory(customerOrderItem.getProductID());
+        for(int i=0;i<customerOrderItem.getQuantity();i++){
+//            System.out.println("Hello" + items.get(i).getItemID());
+            inventoryItemDAO.updateOrderID(items.get(i).getItemID() , id);
+        }
         return "redirect:/customerOrder/";
     }
 
