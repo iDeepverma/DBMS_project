@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class ErrorController {
 
 
-//    @GetMapping({"/error"})
-//    public String homepage(){
-//        return "error";
-//    }
+    @GetMapping({"/error"})
+    public String homepage() {
+        return "error";
+    }
+}
 
