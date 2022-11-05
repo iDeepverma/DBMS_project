@@ -102,6 +102,8 @@
                   <td th:text="${supplyOrders.totalAmount}">totalAmount</td>
                   <td th:text="${supplyOrders.supplierID}">supplierID</td>
                   <td th:text="${supplyOrders.placedBy}">EmployeeID</td>
+                  <td><a th:href="'/supplyOrder/edit/'+${supplyOrders.orderID}"><button type="button" class="btn btn-info">Edit</button></a></td>
+                  <td><a th:href="'/supplyOrder/search/'+${supplyOrders.orderID}"><button type="button" class="btn btn-info">View Items</button></a></td>
                 </tr>
               </tbody>
             </table>
