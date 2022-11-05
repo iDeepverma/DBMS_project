@@ -29,8 +29,8 @@ public class CustomerOrderItemService {
         return customerOrderItemDAO.deleteCustomerOrderItem(id, productID);
     }
 
-    public List<CustomerOrderItem> getCustomerOrderItemByCustomerOrder(CustomerOrder customerOrder) {
-        return customerOrderItemDAO.getCustomerOrderItemByCustomerOrder(customerOrder);
+    public List<CustomerOrderItem> getCustomerOrderItemByCustomerOrder(int id) {
+        return customerOrderItemDAO.getCustomerOrderItemByCustomerOrder(id);
     }
 
     public int getProfitPerOrderItem(CustomerOrderItem customerOrderItem) {

@@ -20,7 +20,7 @@ public interface CustomerOrderDAO {
     CustomerOrder getCustomerOrderByID(int id);
     //anomaly
     //SELECT * FROM CustomerOrder WHERE orderID = id;
-    List<CustomerOrder> getCustomerOrderByCustomer(Customer customer);
+    List<CustomerOrder> getCustomerOrderByCustomer(int id);
     //SELECT * FROM CustomerOrder WHERE CustomerOrder.customerID=customer.customerID;
     Employee getEmployeeByOrder(CustomerOrder customerOrder);
     //SELECT * FROM Employee WHERE Employee.empID = customerOrder.servedBy;

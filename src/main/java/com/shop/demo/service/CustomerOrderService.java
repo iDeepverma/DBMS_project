@@ -38,8 +38,8 @@ public class CustomerOrderService {
         return customerOrderDAO.getCustomerOrderByID(id);
     }
 
-    public List<CustomerOrder> getCustomerOrderByCustomer(Customer customer) {
-        return customerOrderDAO.getCustomerOrderByCustomer(customer);
+    public List<CustomerOrder> getCustomerOrderByCustomer(int id) {
+        return customerOrderDAO.getCustomerOrderByCustomer(id);
     }
 
     public Employee getEmployeeByOrder(CustomerOrder customerOrder) {
