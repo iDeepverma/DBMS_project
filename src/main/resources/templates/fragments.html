@@ -55,8 +55,8 @@
 
 
     <nav th:fragment="topnav(heading)" class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
-        <div class="d-flex align-items-center">
-            <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
+        <div class="d-flex align-items-center" id="menu-toggle">
+            <i class="fas fa-align-left primary-text fs-4 me-3" ></i>
             <h2 class="fs-2 m-0" th:text="${heading}">DASBOARD</h2>
         </div>
 
@@ -68,7 +68,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown" 
+                    <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fas fa-user me-2"></i>
                         <div th:text='${session.AUTH_USERNAME}'></div>
@@ -88,20 +88,21 @@
             var el = document.getElementById("wrapper");
             var toggleButton = document.getElementById("menu-toggle");
 
-            var nav = document.getElementById("navbarDropdown");
-            var nav_menu = document.getElementById("dropdown_menu");
-
-
             toggleButton.onclick = function () {
                 el.classList.toggle("toggled");
+                console.log("hua");
             };
 
-            nav.onclick=function(){
-                nav.classList.toggle("show");
-                // nav.setAttribute("aria-expanded","true");
-                nav_menu.classList.toggle("show");
-            }
+        </script>
 
+        <script>
+            // var nav = document.getElementById("navbarDropdown");
+            // var nav_menu = document.getElementById("dropdown_menu");
+            // nav.onclick = function () {
+            //     nav.classList.toggle("show");
+            //     // nav.setAttribute("aria-expanded","true");
+            //     nav_menu.classList.toggle("show");
+            // }
         </script>
         <script type="text/javascript" th:src="@{/JavaScript/jquery-3.6.1.min.js}"></script>
         <script type="text/javascript" th:src="@{/JavaScript/bootstrap.bundle.min.js}"></script>
