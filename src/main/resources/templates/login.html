@@ -25,7 +25,7 @@
                 </div>
                 <div class="div">
                     <h5>Username</h5>
-                    <input type="text" class="input" th:field="*{empID}" requirede>
+                    <input type="text" class="input" id="username" th:field="*{empID}" required>
                 </div>
             </div>
             <div class="input-div pass">
@@ -48,5 +48,8 @@
     </div>
 </div>
 <script type="text/javascript" th:src="@{/JavaScript/main.js}"></script>
+<script>
+    document.getElementById("username").value="";
+</script>
 </body>
 </html>

@@ -9,15 +9,17 @@
         <!-- Sidebar -->
         <div class="bg-white" id="sidebar-wrapper">
             <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom"><i
-                    class="fas fa-user-secret me-2"></i>RK STORES</div>
+                    class="fas fa-user-secret me-2"></i>RK Computers</div>
             <div class="list-group list-group-flush my-3">
-                <a href="/dashboard" class="list-group-item list-group-item-action bg-transparent second-text active"><i
+                <a th:href="@{/dashboard}" class="list-group-item list-group-item-action bg-transparent second-text active"><i
                         class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
+                <a th:href="@{/home}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                        class="fas fa-project-diagram me-2"></i>Home</a>
                 <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-project-diagram me-2"></i>Products</a>
-                <a href="/inventoryItem" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                <a th:href="@{/inventoryItem}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-project-diagram me-2"></i>Inventory</a>
-                <a href="/customerOrder" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                <a th:href="@{/customerOrder}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-project-diagram me-2"></i>Orders</a>
                 <a th:href="@{/customers}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fa-solid fa-user me-2"></i>Customers</a>
@@ -25,8 +27,8 @@
                         class="fas fa-project-diagram me-2"></i>Supplier</a>
                 <a th:href="@{/supplyOrders}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-project-diagram me-2"></i>Supply Orders</a>
-                <a th:href="@{/employee}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                        class="fas fa-project-diagram me-2"></i>Employee</a>
+                <a th:href="@{/employee}" th:if="${@empSer.getEmployeeByID(session.AUTH_USER).getRole()==1}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                        class="fa-solid fa-user me-2"></i>Employee</a>
 
                 <a th:href="@{/logout}" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
                         class="fas fa-power-off me-2"></i>Logout</a>

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
 
-@Service
+@Service()
 public class AuthenticationService {
 
     @Autowired
@@ -59,4 +59,10 @@ public class AuthenticationService {
             return false;
         }
     }
+
+    public Boolean mid(){
+        System.out.println("Hello World");
+        return true;
+    }
+
 }
