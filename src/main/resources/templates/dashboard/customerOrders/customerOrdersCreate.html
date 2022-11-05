@@ -45,14 +45,14 @@
                         <tr>
                             <td>Customer ID:</td>
                             <td><select class="form-control" th:field=*{customerID} required>
-                                <option value="">Select CustomerID</option>
+<!--                                 <option value="">Select CustomerID</option> -->
                                 <option th:each="customer : ${customer}" th:value="${customer.customerID}" th:text="${customer.customerID}"></option>
                             </select></td>
                         </tr>
                         <tr>
                             <td>Employee ID:</td>
                             <td><select class="form-control" th:field=*{servedBy}>
-                                <option value="">Select EmployeeID</option>
+<!--                                 <option value="">Select EmployeeID</option> -->
                                 <option th:each="employee : ${employee}" th:value="${employee.empID}" th:text="${employee.empID}"></option>
                             </select></td>
                         </tr>
