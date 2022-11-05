@@ -55,7 +55,6 @@ public class EmployeeController {
         List<Employee> employees =employeeDAO.getAllEmployee();
         model.addAttribute( "employees",employees);
         return "allEmployee";
-
     }
 
     @GetMapping("/getAllEmployee/new")
@@ -136,4 +135,66 @@ public class EmployeeController {
         model.addAttribute("Category",Category);
         return "performance";
     }
+    @GetMapping ("/employee")
+    public String listEmployee(Model model, HttpSession session)
+    {
+        if(!authenticationService.isAuthenticated(session)){
+            return "redirect:/login";
+        }
+        List<Employee> employee = employeeDAO.getAllEmployee();
+        model.addAttribute("employee", employee);
+        return "dashboard/employee/employeeList";
+    }
+    @GetMapping ("/employee/create")
+    public String createEmployee(Model model, HttpSession session)
+    {
+        if(!authenticationService.isAuthenticated(session)){
+            return "redirect:/login";
+        }
+        Employee employee = new Employee();
+        model.addAttribute("employee", employee);
+        return "dashboard/employee/employeeCreate.html";
+    }
+
+
+    @PostMapping("/employee/create")
+    public String createEmployeePost(@ModelAttribute("employee") Employee employee, HttpSession session)
+    {
+        if(!authenticationService.isAuthenticated(session)){
+            return "redirect:/login";
+        }
+        employeeDAO.insertEmployee(employee);
+        return "redirect:/employee/";
+    }
+    @GetMapping ("/employee/delete/{id}")
+    public String deleteEmployee(@PathVariable("id") int id, HttpSession session)
+    {
+        if(!authenticationService.isAuthenticated(session)){
+            return "redirect:/login";
+        }
+        employeeDAO.deleteEmployee(id);
+        return "redirect:/employee/";
+    }
+    @GetMapping ("/employee/edit/{id}")
+    public String editEmployee(@PathVariable("id") int id, Model model, HttpSession session)
+    {
+        if(!authenticationService.isAuthenticated(session)){
+            return "redirect:/login";
+        }
+
+        Employee employee = employeeDAO.getEmployeeByID(id);
+        model.addAttribute("employee", employee);
+        return "dashboard/employee/employeeEdit.html";
+    }
+
+    @PostMapping ("/employee/edit/{id}")
+    public String editCustomerPost(@PathVariable("id") int id, @ModelAttribute("employee") Employee employee, HttpSession session)
+    {
+        if(!authenticationService.isAuthenticated(session)){
+            return "redirect:/login";
+        }
+        employeeDAO.updateEmployee(id,employee);
+        return "redirect:/employee/";
+    }
+
 }

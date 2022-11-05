@@ -8,7 +8,7 @@
 </head>
 <body>
 hi
-<form method="post"  th:action="@{/i/}" th:object="${employee}" >
+<form method="post"  th:action="@{/insertEmployee}" th:object="${employee}" >
     <label> employeeID </label>
     <input type="text" th:field="*{empID}" placeholder="Enter Employee ID">
     <label> name</label>

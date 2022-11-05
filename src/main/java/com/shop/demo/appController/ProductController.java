@@ -1,5 +1,6 @@
 package com.shop.demo.appController;
 
+import org.springframework.stereotype.Controller;
 import com.shop.demo.dao.ProductCategoryDAO;
 import com.shop.demo.dao.ProductDAO;
 import com.shop.demo.model.Employee;
@@ -16,7 +17,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
-
 @Controller
 public class ProductController {
     @Autowired

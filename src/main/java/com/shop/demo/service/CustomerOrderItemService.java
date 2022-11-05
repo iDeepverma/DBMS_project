@@ -20,7 +20,6 @@ public class CustomerOrderItemService {
     public CustomerOrderItemService(@Qualifier("customerOrderItem_mysql_repo") CustomerOrderItemDAO customerOrderItemDAO) {
         this.customerOrderItemDAO = customerOrderItemDAO;
     }
-
     public int insertCustomerOrderItem(CustomerOrderItem customerOrderItem) {
         return customerOrderItemDAO.insertCustomerOrderItem(customerOrderItem);
     }
