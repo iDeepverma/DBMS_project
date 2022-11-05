@@ -20,7 +20,7 @@ public class ProductMysql implements ProductDAO{
     JdbcTemplate jdbcTemplate;
     @Override
     public int insertProduct(Product product) {
-        String query="INSERT INTO Product(productID,description,warrantyLength,warrantyCoverage,MRP,costPrice,variant,amountInStock,name) VALUES (?,?,?,?,?,?,?,?,?);";
+        String query="INSERT INTO Product(productID,description,warrantyLength,warrantyCoverage,MRP,costPrice,variant,amountInStock,name,photoPath) VALUES (?,?,?,?,?,?,?,?,?,?);";
         Object[] args = new Object[]{
                 product.getProductID(),
                 product.getDescription(),
@@ -30,7 +30,8 @@ public class ProductMysql implements ProductDAO{
                 product.getCostPrice(),
                 product.getVariant(),
                 product.getAmountInStock(),
-                product.getName()
+                product.getName(),
+                product.getPhotoPath()
         };
         return jdbcTemplate.update(query,args);
     }
@@ -46,7 +47,7 @@ public class ProductMysql implements ProductDAO{
 
     @Override
     public int updateProduct(int id, Product product) {
-        String query = "UPDATE Product SET description=?, warrantyLength=?,warrantyCoverage=?, MRP=?,costPrice=?,variant=?,amountInStock=? WHERE productID=?;";
+        String query = "UPDATE Product SET description=?, warrantyLength=?,warrantyCoverage=?, MRP=?,costPrice=?,variant=?,amountInStock=?,photoPath=? WHERE productID=?;";
         Object[] args = new Object[]{
                 product.getDescription(),
                 product.getWarrantyLength(),
@@ -55,7 +56,7 @@ public class ProductMysql implements ProductDAO{
                 product.getCostPrice(),
                 product.getVariant(),
                 product.getAmountInStock(),
-                product.getName(),
+                product.getPhotoPath(),
                 id
         };
         return jdbcTemplate.update(query,args);
@@ -102,5 +103,10 @@ public class ProductMysql implements ProductDAO{
                 product
         };
         return jdbcTemplate.queryForObject(query,args, BeanPropertyRowMapper.newInstance(Integer.class));
+    }
+    @Override
+    public List<Product> bestProducts(){
+        String query="SELECT C.productID,C.name,C.description,C.warrantyLength,C.warrantyCoverage,C.MRP,C.costPrice,C.variant,C.amountInStock,C.photoPath FROM (SELECT A.productID,SUM(quantity) as sales FROM Product A,CustomerOrderItem WHERE CustomerOrderItem.productID = A.productID GROUP BY A.productID) as B, Product as C WHERE C.productID = B.productID ORDER BY B.sales DESC LIMIT 3;";
+        return jdbcTemplate.query(query,BeanPropertyRowMapper.newInstance(Product.class));
     }
 }

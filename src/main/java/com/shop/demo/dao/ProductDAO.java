@@ -28,5 +28,5 @@ public interface ProductDAO {
     int markItemSold(int product);
 
     int getStock(int product);
-
+    List<Product>bestProducts();
 }
