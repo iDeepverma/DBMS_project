@@ -60,9 +60,9 @@ $(document).ready(function () {
         infinite: true,
         speed: 600,
         slidesToShow: 3,
-        slidesToScroll: 3,
+        slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 2000,
+        autoplaySpeed: 3000,
         // centerMode: true,
         // centerPadding: '60px',
         responsive: [{
