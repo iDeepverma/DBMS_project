@@ -34,6 +34,7 @@ public class InventoryItemMysql implements InventoryItemDAO {
     }
     @Override
     public int insertItemUnsold(InventoryItem inventoryItem) {
+//        String query="INSERT INTO InventoryItem(productID,supplyOrderID) VALUES (?,?);";
         String query="INSERT INTO InventoryItem(productID,supplyOrderID) VALUES (?,?);";
         Object[] args=new Object[]{
                 inventoryItem.getProductID(),
@@ -41,7 +42,18 @@ public class InventoryItemMysql implements InventoryItemDAO {
         };
         return jdbcTemplate.update(query,args);
     }
-
+    @Override
+    public int updateOrderID(int itemID,int orderID){
+//        String query="UPDATE InventoryItem SET orderID=? WHERE itemID=?;";
+//        Object args = new Object[]{
+//                orderID,
+//                itemID
+//        };
+//        System.out.println("Hello "+ orderID + " "+ itemID);
+        jdbcTemplate.execute("UPDATE InventoryItem SET orderID="+orderID+" WHERE itemID="+itemID+";");
+        return 0;
+//        return jdbcTemplate.update(query, args);
+    }
     @Override
     public int deleteItem(int itemID) {
         String query = "DELETE FROM InventoryItem WHERE itemID=?;";

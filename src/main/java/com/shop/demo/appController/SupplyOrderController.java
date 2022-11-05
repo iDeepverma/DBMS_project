@@ -84,7 +84,7 @@ public class SupplyOrderController {
         supplyOrderItemDAO.insertSupplyOrderItem(supplyOrderItem);
         String status = supplyOrderDAO.getSupplyOrderByID(supplyOrderItem.getSupplyOrderID()).getDeliveryStatus();
         int quantity = supplyOrderItem.getQuantity();
-        if(status == "Delivered") {
+        if(status.equals("Delivered")) {
             for (int i = 0; i < quantity; i++) {
                 InventoryItem item = new InventoryItem();
                 item.setSupplyOrderID(supplyOrderItem.getSupplyOrderID());
