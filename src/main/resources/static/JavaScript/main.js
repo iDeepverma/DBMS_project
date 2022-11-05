@@ -27,7 +27,7 @@ var swiper = new Swiper(".mySwiper", {
     // slidesPerView:3,
     // slidesPerGroup: 3,
     autoplay: {
-        delay: 2000,
+        delay: 4000,
         disableOnInteraction: false,
     },
     // centeredSlides: true,
