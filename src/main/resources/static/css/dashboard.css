@@ -1,8 +1,33 @@
+
+
+
 :root {
   --main-bg-color: #71C9CE;
   --main-text-color: #71C9CE;
   --second-text-color: #bbbec5;
   --second-bg-color: #E3FDFD;
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+}
+
+html {
+  overflow: scroll;
+  overflow-x: hidden;
+  overflow: -moz-scrollbars-none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+  scroll-behavior: smooth;
 }
 
 .primary-text {

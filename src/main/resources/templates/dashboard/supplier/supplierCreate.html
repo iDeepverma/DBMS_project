@@ -1,69 +1,81 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
+
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+  <link rel="icon"
+    href="https://sp-ao.shortpixel.ai/client/to_auto,q_glossy,ret_img,w_32,h_32/https://rkcomputer.in/wp-content/uploads/2019/03/Screenshot_3-150x150.png"
+    sizes="32x32">
+  <link rel="icon"
+    href="https://sp-ao.shortpixel.ai/client/to_auto,q_glossy,ret_img,w_192,h_192/https://rkcomputer.in/wp-content/uploads/2019/03/Screenshot_3.png"
+    sizes="192x192">
+  <link rel="apple-touch-icon"
+    href="https://sp-ao.shortpixel.ai/client/to_auto,q_glossy,ret_img,w_180,h_180/https://rkcomputer.in/wp-content/uploads/2019/03/Screenshot_3.png">
+  <link rel="stylesheet" th:href="@{/boot5/css/bootstrap.min.css}" />
+  <link rel="map" th:href="@{/boot5/css/bootstrap.min.css.map}" />
+  <link rel="stylesheet" th:href="@{/font-6/css/all.min.css}" />
   <link rel="stylesheet" th:href="@{/css/dashboard.css}" />
-  <title>Employee Dashboard</title>
+  <title>Supplier Dashboard</title>
 </head>
 
 <body>
-<div class="d-flex" id="wrapper">
-  <div th:replace="fragments :: employeeNavbar">TO BE REPLACED</div>
+  <div class="d-flex" id="wrapper">
+    <div th:replace="fragments :: employeeNavbar">TO BE REPLACED</div>
 
-  <!-- Page Content -->
-  <div id="page-content-wrapper">
-    <nav th:replace="fragments :: topnav(heading=Suppliers)"></nav>
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+      <nav th:replace="fragments :: topnav(heading=Suppliers)"></nav>
 
-    <div class="container-fluid px-4">
-      <div align="center">
-        <h1>Enter New Supplier</h1>
-        <br />
-        <form action="" th:object="${supplier}"
-              method="post">
+      <div class="container-fluid px-4">
+        <div align="center">
+          <h1>Enter New Supplier</h1>
+          <br />
+          <form action="" th:object="${supplier}" method="post">
 
-          <table border="0" cellpadding="10">
-            <tr>
-              <td>Supplier Name:</td>
-              <td><input type="text" th:field="*{name}" required/></td>
-            </tr>
-            <tr>
-              <td>Phone:</td>
-              <td><input type="text" th:field="*{phone}" required/></td>
-            </tr>
-            <tr>
-              <td>Address:</td>
-              <td><input type="text" th:field="*{address}" required/></td>
-            </tr>
-            <tr>
-              <td>Money Spent:</td>
-              <td><input type="text" th:field="*{moneySpent}" required/></td>
-            </tr>
-            <tr>
-              <td>Total orders Fulfilled:</td>
-              <td><input type="text" th:field="*{ordersFulfilled}" required/></td>
-            </tr>
-            <tr>
-              <td>Email:</td>
-              <td><input type="text" th:field="*{email}" required/></td>
-            </tr>
-            <tr>
-              <td colspan="2"><button type="submit">Save</button> </td>
-            </tr>
-          </table>
-        </form>
+            <table border="0" cellpadding="10">
+              <tr>
+                <td>Supplier Name:</td>
+                <td><input type="text" th:field="*{name}" required /></td>
+              </tr>
+              <tr>
+                <td>Phone:</td>
+                <td><input type="text" th:field="*{phone}" required /></td>
+              </tr>
+              <tr>
+                <td>Address:</td>
+                <td><input type="text" th:field="*{address}" required /></td>
+              </tr>
+              <tr>
+                <td>Money Spent:</td>
+                <td><input type="text" th:field="*{moneySpent}" required /></td>
+              </tr>
+              <tr>
+                <td>Total orders Fulfilled:</td>
+                <td><input type="text" th:field="*{ordersFulfilled}" required /></td>
+              </tr>
+              <tr>
+                <td>Email:</td>
+                <td><input type="text" th:field="*{email}" required /></td>
+              </tr>
+              <tr>
+                <td colspan="2"><button type="submit" class="btn btn-primary mb-2">Save</button> </td>
+              </tr>
+            </table>
+          </form>
+        </div>
+
       </div>
-
     </div>
   </div>
-</div>
-<!-- /#page-content-wrapper -->
-</div>
+  <!-- /#page-content-wrapper -->
+  </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
-<script th:replace="fragments :: navscript"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script> -->
+  <div th:replace="fragments :: navscript"></div>
 </body>
+
 </html>

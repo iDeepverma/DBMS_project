@@ -8,7 +8,7 @@
 
   <main>
 
-    <div class="welcome">
+    <div class="welcome" data-aos="zoom-out" data-aos-duration="1500">
       <div class="full-screen">
         <div>
           <h1>Welcome To RK Computers</h1>
@@ -18,7 +18,7 @@
       </div>
     </div>
 
-    <div class="" id="service">
+    <div class="" id="service" data-aos="slide-up" data-aos-duration="1500">
       <section class="services" >
 
         <h1 class="heading"> Our <span>Services</span> </h1>
@@ -51,7 +51,7 @@
       </section>
     </div>
 
-    <div class="carosoul">
+    <div class="carosoul" data-aos="fade-up" data-aos-duration="1500">
       <div class="swiper mySwiper">
         <div class="swiper-wrapper">
           <div class="swiper-slide"><img th:src="@{/images/caro-1.png}" alt=""></div>
@@ -64,7 +64,7 @@
       </div>
     </div>
 
-    <div class="ourProducts">
+    <div class="ourProducts" data-aos="fade-up" data-aos-duration="1500">
       <section class="products sectionHome" id="productts">
         <h1 class="heading">
           OUR <span>COLLECTION</span>
@@ -74,7 +74,7 @@
           <div class="swiper-slide card" th:each="product: ${products}">
             <a th:href="'/productDetail/'+${product.getProductID()}">
               <img
-                th:src="@{/images/car-2.jpg}"
+                th:src="${product.getPhotoPath()}"
                 alt="">
               <h3 th:text="${product.getName()}"></h3>
               <div class="stars"> <i class="fas fa-star"></i>
@@ -95,7 +95,7 @@
     </div>
 
 
-    <div class="categories" id="Categories">
+    <div class="categories" data-aos="fade-up"  data-aos-duration="1500" id="Categories">
       <section class="sectionHome">
         <h1 class="heading">
           OUR <span>Categories</span>
@@ -122,7 +122,7 @@
       </section>
     </div>
 
-      <div class="" >
+      <div class="" data-aos="fade-up">
         <section class="services">
       
           <h1 class="heading"> Our <span>Distributers</span> </h1>
@@ -150,7 +150,7 @@
       </div>
 
     <div class="query" id="query">
-      <div class="query-container">
+      <div class="query-container" >
         <h1>GET IN TOUCH</h1>
         <p>Have any questions or suggestions? Drop us a message</p>
         <form>

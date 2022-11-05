@@ -27,7 +27,7 @@ var swiper = new Swiper(".mySwiper", {
     // slidesPerView:3,
     // slidesPerGroup: 3,
     autoplay: {
-        delay: 2000,
+        delay: 4000,
         disableOnInteraction: false,
     },
     // centeredSlides: true,
@@ -60,9 +60,9 @@ $(document).ready(function () {
         infinite: true,
         speed: 600,
         slidesToShow: 3,
-        slidesToScroll: 3,
+        slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 2000,
+        autoplaySpeed: 3000,
         // centerMode: true,
         // centerPadding: '60px',
         responsive: [{

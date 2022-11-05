@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head th:include="base :: header">
+
+    <link rel="stylesheet" th:href="@{/css/aboutUs.css}">
+</head>
+
+<body>
+    <div th:replace="base :: navbar"></div>
+    <main class="aboutUs">
+
+        <div class="abt-container ">
+            <div class="abt-card ">
+                <div class="abt-content ">
+                    <div class="imgBx profile">
+                        <img th:src="@{/images/avatar.svg}" alt="">
+                    </div>
+                    <div class="contentBx ">
+                        <h4>R. Kulhari</h4>
+                        <h5>Owner</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="abt-card">
+                <div class="abt-content shop">
+                    <div class="imgBx shop-img col-4">
+                        <img th:src="@{/images/shop.jpg}" alt="">
+                    </div>
+                    <div class="contentBx ">
+                        <h4>Shop</h4>
+                        <!-- <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">RK computers is a multi utility shop located in town chirawa , distric rajasthan. We cater to the need of various customers. We provide the latest computers and genuine accessories at a much more reasonable price. We have a legacy of more than 20 years.</li>
+                                    <li class="list-group-item">You can visit RK Computer in Chirawa, Rajasthan to get the ideal PC you need.</li>
+                                </ul> -->
+                        <p class="content-desc">RK computers is a multi utility shop located in town Chirawa of
+                            Rajasthan. We cater
+                            to the need of various customers. We provide the latest computers and genuine accessories at
+                            a much more reasonable price.<span class="high"> We have a legacy of more than 20
+                                years.</span></p>
+                        <p class="visit">You can visit RK Computer in Chirawa, Rajasthan to get the ideal PC you need.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="abt-card shop-map">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14059.494195204989!2d75.6538457!3d28.2415175!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x806d851208f07de2!2sR%20K%20Computer!5e0!3m2!1sen!2sin!4v1667661486871!5m2!1sen!2sin"
+                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+
+    </main>
+
+
+    <div th:insert="base :: footer" class="footer-wrap"></div>
+
+</body>
+
+</html>
