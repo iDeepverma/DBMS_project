@@ -4,6 +4,7 @@ import com.shop.demo.dao.CustomerOrderItemDAO;
 import com.shop.demo.model.Customer;
 import com.shop.demo.model.CustomerOrder;
 import com.shop.demo.model.CustomerOrderItem;
+import com.shop.demo.model.InventoryItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -19,17 +20,17 @@ public class CustomerOrderItemMysql implements CustomerOrderItemDAO{
 
     @Override
     public int insertCustomerOrderItem(CustomerOrderItem customerOrderItem) {
-        String query = "INSERT INTO CustomerOrderItem(orderID,quantity,sellingPrice,productID,additionInfo) VALUES (?,?,?,?,?);";
+        String query = "INSERT INTO CustomerOrderItem(orderID,quantity,sellingPrice,additionalInfo,productID) VALUES (?,?,?,?,?);";
         Object[] args = new Object[] {
           customerOrderItem.getOrderID(),
           customerOrderItem.getQuantity(),
           customerOrderItem.getSellingPrice(),
-          customerOrderItem.getProductID(),
-          customerOrderItem.getAdditionalInfo()
+                customerOrderItem.getAdditionalInfo(),
+          customerOrderItem.getProductID()
+
         };
         return jdbcTemplate.update(query,args);
     }
-
     @Override
     public int deleteCustomerOrderItem(int id, int productID) {
         String query = "DELETE FROM CustomerOrderItem WHERE orderID=?,CustomerOrderItem.productID=?;";
@@ -65,5 +66,16 @@ public class CustomerOrderItemMysql implements CustomerOrderItemDAO{
     public List<CustomerOrderItem> getAllCustomerOrderItem(){
         String query = "select * from CustomerOrderItem ;";
         return jdbcTemplate.query(query,BeanPropertyRowMapper.newInstance(CustomerOrderItem.class));
+    }
+    @Override
+    public List<InventoryItem>updateOrderIDInInventory(int productID){
+        BeanPropertyRowMapper<InventoryItem> inventoryItemBeanPropertyRowMapper = new BeanPropertyRowMapper<>(InventoryItem.class);
+        inventoryItemBeanPropertyRowMapper.setPrimitivesDefaultedForNullValue(true);
+
+        String query = "SELECT * FROM InventoryItem WHERE InventoryItem.productID = ? AND orderID IS NULL; ";
+        Object args[]= new Object[]{
+                productID
+        };
+        return jdbcTemplate.query(query,args,inventoryItemBeanPropertyRowMapper);
     }
 }

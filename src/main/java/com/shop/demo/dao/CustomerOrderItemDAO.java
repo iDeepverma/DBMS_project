@@ -2,6 +2,7 @@ package com.shop.demo.dao;
 
 import com.shop.demo.model.CustomerOrder;
 import com.shop.demo.model.CustomerOrderItem;
+import com.shop.demo.model.InventoryItem;
 
 import java.util.List;
 
@@ -17,4 +18,5 @@ public interface CustomerOrderItemDAO {
 
     List<CustomerOrderItem> getAllCustomerOrderItem();
     //SELECT (customerOrderItem.quantity*(customerOrderItem.sellingPrice-Product.costPrice)) as profitperorderitem FROM Product WHERE customerOrderItem.productID=Product.productID;
+    List<InventoryItem>updateOrderIDInInventory(int productID);
 }
