@@ -76,8 +76,6 @@
                         <div th:text='${session.AUTH_USERNAME}'></div>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown" id="dropdown_menu">
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
-                        <li><a class="dropdown-item" href="#">Settings</a></li>
                         <li><a class="dropdown-item" th:href="@{/logout}">Logout</a></li>
                     </ul>
                 </li>
@@ -98,13 +96,13 @@
         </script>
 
         <script>
-            // var nav = document.getElementById("navbarDropdown");
-            // var nav_menu = document.getElementById("dropdown_menu");
-            // nav.onclick = function () {
-            //     nav.classList.toggle("show");
-            //     // nav.setAttribute("aria-expanded","true");
-            //     nav_menu.classList.toggle("show");
-            // }
+            var nav = document.getElementById("navbarDropdown");
+            var nav_menu = document.getElementById("dropdown_menu");
+            nav.onclick = function () {
+                nav.classList.toggle("show");
+                // nav.setAttribute("aria-expanded","true");
+                nav_menu.classList.toggle("show");
+            }
         </script>
         <script type="text/javascript" th:src="@{/JavaScript/jquery-3.6.1.min.js}"></script>
         <script type="text/javascript" th:src="@{/JavaScript/bootstrap.bundle.min.js}"></script>
