@@ -16,6 +16,8 @@ import java.util.List;
 @Repository("supplyOrder_mysql_repo")
 public class SupplyOrderMysql implements SupplyOrderDAO {
 
+    BeanPropertyRowMapper<SupplyOrder> supplyOrderBeanPropertyRowMapper = new BeanPropertyRowMapper<>(SupplyOrder.class);
+    BeanPropertyRowMapper<SupplyOrderItem> supplyOrderItemBeanPropertyRowMapper = new BeanPropertyRowMapper<>(SupplyOrderItem.class);
 
     @Autowired
     JdbcTemplate jdbcTemplate;
@@ -59,11 +61,14 @@ public class SupplyOrderMysql implements SupplyOrderDAO {
 
     @Override
     public SupplyOrder getSupplyOrderByID(int id) {
+
+        supplyOrderBeanPropertyRowMapper.setPrimitivesDefaultedForNullValue(true);
+
         String query="select * from SupplyOrder where orderID=?;";
         Object[] args=new Object[]{
           id
         };
-        return jdbcTemplate.queryForObject(query,args, BeanPropertyRowMapper.newInstance(SupplyOrder.class));
+        return jdbcTemplate.queryForObject(query,args, supplyOrderBeanPropertyRowMapper);
 
     }
 
@@ -89,16 +94,22 @@ public class SupplyOrderMysql implements SupplyOrderDAO {
 
     @Override
     public List<SupplyOrderItem> getSupplyItem(SupplyOrder supplyOrder) {
+
+        supplyOrderItemBeanPropertyRowMapper.setPrimitivesDefaultedForNullValue(true);
+
         String query="SELECT * FROM SupplyOrderItem WHERE SupplyOrderItem.supplyOrderID=?;";
         Object[] args =new Object[]{
                 supplyOrder.getOrderID()
         };
-        return jdbcTemplate.query(query,args, BeanPropertyRowMapper.newInstance(SupplyOrderItem.class));
+        return jdbcTemplate.query(query,args, supplyOrderItemBeanPropertyRowMapper);
     }
 
     @Override
     public List<SupplyOrder> getAllSupplyOrders(){
+
+        supplyOrderBeanPropertyRowMapper.setPrimitivesDefaultedForNullValue(true);
+
         String query="SELECT * FROM SupplyOrder";
-        return jdbcTemplate.query(query , BeanPropertyRowMapper.newInstance(SupplyOrder.class));
+        return jdbcTemplate.query(query , supplyOrderBeanPropertyRowMapper);
     }
 }

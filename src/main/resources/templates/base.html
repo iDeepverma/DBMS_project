@@ -61,9 +61,11 @@
 
                         </li>
                         <li><a href="/#query">Query</a></li>
+                        <li th:if="${session.AUTH_USER}"><a th:href="@{/dashboard}">Dashboard</a></li>
                         <li class="login-btn-li">
                             <div class="login-btn ">
-                                <a th:href="@{/login}">Login</a>
+                                <a th:if="${session.AUTH_USER}" th:href="@{/logout}">Logout</a>
+                                <a th:unless="${session.AUTH_USER}" th:href="@{/login}">Login</a>
                             </div>
                         </li>
                     </ul>
@@ -82,8 +84,8 @@
 
     <div th:fragment="footer" class="footer-wrap">
         <footer class="footer">
-            <div class="container">
-                <div class="row">
+            <div class="foot-container">
+                <div class="foot-row">
                     <div class="footer-col">
                         <h4>Company</h4>
                         <ul>
@@ -132,6 +134,8 @@
             integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
         <script type="text/javascript" th:src="@{/JavaScript/jquery-3.6.1.min.js}"></script>
+        <script src="https://code.jquery.com/color/jquery.color-2.2.0.js"
+            integrity="sha256-gvMJWDHjgDrVSiN6eBI9h7dRfQmsTTsGU/eTT8vpzNg=" crossorigin="anonymous"></script>
         <script type="text/javascript" th:src="@{/JavaScript/swiper-bundle.min.js}"></script>
         <script type="text/javascript" th:src="@{/slick/slick/slick.js}"></script>
         <script type="text/javascript" th:src="@{/slick/slick/slick.min.js}"></script>
@@ -140,6 +144,7 @@
         <script type="text/javascript" th:src="@{/JavaScript/bootstrap.bundle.min.js}"></script>
         <script type="text/javascript" th:src="@{/JavaScript/bootstrap.min.js}"></script>
         <script th:src="@{/JavaScript/main.js}"></script>
+            
     </div>
 </body>
 

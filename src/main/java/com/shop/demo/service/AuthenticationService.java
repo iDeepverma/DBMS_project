@@ -8,13 +8,15 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
 
-@Service
+@Service()
 public class AuthenticationService {
 
     @Autowired
     private EmployeeService employeeService;
 
     private String SESSION_AUTH_KEY = "AUTH_USER";
+    private String SESSION_USER_NAME = "AUTH_USERNAME";
+
 
     public boolean checkCredentials(int userID, String password){
         Employee user = employeeService.getEmployeeByID(userID);
@@ -22,18 +24,23 @@ public class AuthenticationService {
     }
 
     public void loginUser(HttpSession session, int userID){
+
+
+
         session.setAttribute(SESSION_AUTH_KEY,userID);
+        session.setAttribute(SESSION_USER_NAME,employeeService.getEmployeeByID(userID).getName());
     }
 
     public void logoutUser(HttpSession session){
         session.removeAttribute(SESSION_AUTH_KEY);
+        session.removeAttribute(SESSION_USER_NAME);
     }
 
     public Integer getCurrentUser(HttpSession session){
         try {
             return Integer.parseInt(session.getAttribute(SESSION_AUTH_KEY).toString());
         } catch (Exception e){
-            System.out.println("Execption in Authentication service fuck");
+            System.out.println("Exception in Authentication service yayyy :-)");
             return null;
         }
     }
@@ -48,8 +55,14 @@ public class AuthenticationService {
             return user.getRole()==1;
         }
         catch (Exception e){
-            System.out.println("Execption in isAdmin");
+            System.out.println("Exception in isAdmin");
             return false;
         }
     }
+
+    public Boolean mid(){
+        System.out.println("Hello World");
+        return true;
+    }
+
 }

@@ -2,6 +2,7 @@ package com.shop.demo.repository;
 
 import com.shop.demo.dao.SupplyOrderItemDAO;
 import com.shop.demo.model.Employee;
+import com.shop.demo.model.SupplyOrder;
 import com.shop.demo.model.SupplyOrderItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -18,6 +19,8 @@ import org.springframework.stereotype.Repository;
 public class SupplyOrderItemMysql implements SupplyOrderItemDAO{
     @Autowired
     JdbcTemplate jdbcTemplate;
+
+    public BeanPropertyRowMapper<SupplyOrderItem> supplyOrderItemBeanPropertyRowMapper = new BeanPropertyRowMapper<>(SupplyOrderItem.class);
 
     @Override
     public int insertSupplyOrderItem(SupplyOrderItem supplyOrderItem) {
@@ -57,11 +60,13 @@ public class SupplyOrderItemMysql implements SupplyOrderItemDAO{
 
     @Override
     public SupplyOrderItem getSupplyOrderItemByID(int productID, int supplyOrderID) {
+        supplyOrderItemBeanPropertyRowMapper.setPrimitivesDefaultedForNullValue(true);
         String query = "SELECT * FROM SupplyOrderItem WHERE SupplyOrderItem.productId=? AND SupplyOrderItem.supplierID=?;";
         Object[] args = new Object[] {
                 productID,
                 supplyOrderID
         };
-        return jdbcTemplate.queryForObject(query,args, BeanPropertyRowMapper.newInstance(SupplyOrderItem.class));
+
+        return jdbcTemplate.queryForObject(query,args, supplyOrderItemBeanPropertyRowMapper);
     }
 }
