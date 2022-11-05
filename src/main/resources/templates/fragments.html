@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Fragments</title>
 </head>
+
 <body>
     <div th:fragment="employeeNavbar">
         <!-- Sidebar -->
@@ -11,46 +13,55 @@
             <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom"><i
                     class="fas fa-user-secret me-2"></i>RK Computers</div>
             <div class="list-group list-group-flush my-3">
-                <a th:href="@{/dashboard}" class="list-group-item list-group-item-action bg-transparent second-text active"><i
+                <a th:href="@{/dashboard}"
+                    class="list-group-item list-group-item-action bg-transparent second-text active"><i
                         class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
 
-                <a th:href="@{/home}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                <a th:href="@{/home}"
+                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-project-diagram me-2"></i>Home</a>
                 <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-
                         class="fas fa-project-diagram me-2"></i>Products</a>
-                <a th:href="@{/inventoryItem}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                <a th:href="@{/inventoryItem}"
+                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-project-diagram me-2"></i>Inventory</a>
-                <a th:href="@{/customerOrder}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                <a th:href="@{/customerOrder}"
+                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-project-diagram me-2"></i>Orders</a>
-                <a th:href="@{/customers}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                <a th:href="@{/customers}"
+                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fa-solid fa-user me-2"></i>Customers</a>
-                <a th:href="@{/suppliers}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                <a th:href="@{/suppliers}"
+                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-project-diagram me-2"></i>Supplier</a>
-                <a th:href="@{/supplyOrders}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                <a th:href="@{/supplyOrders}"
+                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-project-diagram me-2"></i>Supply Orders</a>
-                <a th:href="@{/employee}" th:if="${@empSer.getEmployeeByID(session.AUTH_USER).getRole()==1}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                <a th:href="@{/employee}" th:if="${@empSer.getEmployeeByID(session.AUTH_USER).getRole()==1}"
+                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fa-solid fa-user me-2"></i>Employee</a>
 
-                <a th:href="@{/logout}" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
+                <a th:href="@{/logout}"
+                    class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
                         class="fas fa-power-off me-2"></i>Logout</a>
             </div>
         </div>
         <!-- /#sidebar-wrapper -->
     </div>
 
-    <div th:fragment="testfrag"><h1>TEST FRAGMENT</h1></div>
+    <div th:fragment="testfrag">
+        <h1>TEST FRAGMENT</h1>
+    </div>
 
 
     <nav th:fragment="topnav(heading)" class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
-        <div class="d-flex align-items-center">
-            <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
+        <div class="d-flex align-items-center" id="menu-toggle">
+            <i class="fas fa-align-left primary-text fs-4 me-3" ></i>
             <h2 class="fs-2 m-0" th:text="${heading}">DASBOARD</h2>
         </div>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -58,10 +69,11 @@
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown"
-                       role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fas fa-user me-2"></i><div th:text='${session.AUTH_USERNAME}'></div>
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-user me-2"></i>
+                        <div th:text='${session.AUTH_USERNAME}'></div>
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown" id="dropdown_menu">
                         <li><a class="dropdown-item" href="#">Profile</a></li>
                         <li><a class="dropdown-item" href="#">Settings</a></li>
                         <li><a class="dropdown-item" th:href="@{/logout}">Logout</a></li>
@@ -71,13 +83,35 @@
         </div>
     </nav>
 
-    <script th:fragment="navscript">
-    var el = document.getElementById("wrapper");
-    var toggleButton = document.getElementById("menu-toggle");
+    <div th:fragment="navscript">
+        <script>
+            var el = document.getElementById("wrapper");
+            var toggleButton = document.getElementById("menu-toggle");
 
-    toggleButton.onclick = function () {
-        el.classList.toggle("toggled");
-    };
-   </script>
+            toggleButton.onclick = function () {
+                el.classList.toggle("toggled");
+                console.log("hua");
+            };
+
+        </script>
+
+        <script>
+            // var nav = document.getElementById("navbarDropdown");
+            // var nav_menu = document.getElementById("dropdown_menu");
+            // nav.onclick = function () {
+            //     nav.classList.toggle("show");
+            //     // nav.setAttribute("aria-expanded","true");
+            //     nav_menu.classList.toggle("show");
+            // }
+        </script>
+        <script type="text/javascript" th:src="@{/JavaScript/jquery-3.6.1.min.js}"></script>
+        <script type="text/javascript" th:src="@{/JavaScript/bootstrap.bundle.min.js}"></script>
+        <script type="text/javascript" th:src="@{/JavaScript/bootstrap.min.js}"></script>
+        <script type="text/javascript" th:src="@{/boot5/js/bootstrap.bundle.js}"></script>
+        <script type="text/javascript" th:src="@{/boot5/js/bootstrap.min.js}"></script>
+        <script type="text/javascript" th:src="@{/font-6/js/all.min.js}"></script>
+
+    </div>
 </body>
+
 </html>
