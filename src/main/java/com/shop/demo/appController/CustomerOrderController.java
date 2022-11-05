@@ -2,6 +2,7 @@ package com.shop.demo.appController;
 
 import com.shop.demo.dao.*;
 import com.shop.demo.model.*;
+import com.shop.demo.service.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -38,11 +39,16 @@ public class CustomerOrderController {
 
     @Autowired
     private CustomerOrderItemDAO customerOrderItemDAO;
+    @Autowired
+    private AuthenticationService authenticationService;
 
     @Autowired
     private InventoryItemDAO inventoryItemDAO;
     @GetMapping("/customerOrder")
     public String getAllcustomerOrders(Model model, HttpSession session){
+        if(!authenticationService.isAuthenticated(session)){
+            return "redirect:/login";
+        }
         List<CustomerOrder> temp = customerOrderDAO.getAllCustomerOrders();
         List<CustomerOrder>orders = new ArrayList<>();
         for(int i=0;i<temp.size();i++){
@@ -55,6 +61,9 @@ public class CustomerOrderController {
     @GetMapping ("/customerOrder/create")
     public String createCustomerOrder(Model model, HttpSession session)
     {
+        if(!authenticationService.isAuthenticated(session)){
+            return "redirect:/login";
+        }
         List<Employee>employee = employeeDAO.getAllEmployee();
         List<Customer>customer = customerDAO.getAllCustomer();
         model.addAttribute("employee" , employee);
@@ -65,8 +74,11 @@ public class CustomerOrderController {
     }
 
     @PostMapping("/customerOrder/create")
-    public String createCustomerOrderPost(@ModelAttribute("customerOrder") CustomerOrder customerOrder)
+    public String createCustomerOrderPost(@ModelAttribute("customerOrder") CustomerOrder customerOrder, HttpSession session)
     {
+        if(!authenticationService.isAuthenticated(session)){
+            return "redirect:/login";
+        }
         customerOrderDAO.insertCustomerOrder(customerOrder);
         return "redirect:/customerOrder/";
     }
@@ -74,6 +86,9 @@ public class CustomerOrderController {
     @GetMapping ("/customerOrderItem/create")
     public String createCustomerOrderItem(Model model, HttpSession session)
     {
+        if(!authenticationService.isAuthenticated(session)){
+            return "redirect:/login";
+        }
         List<CustomerOrder>customerOrder = customerOrderDAO.getAllCustomerOrders();
         List<Product>product = productDAO.getAllProduct();
         model.addAttribute("customerOrder" , customerOrder);
@@ -84,7 +99,7 @@ public class CustomerOrderController {
     }
 
     @PostMapping("/customerOrderItem/create")
-    public String createCustomerOrderItemPost(@ModelAttribute("customerOrderItem") CustomerOrderItem customerOrderItem){
+    public String createCustomerOrderItemPost(@ModelAttribute("customerOrderItem") CustomerOrderItem customerOrderItem, HttpSession session){
         customerOrderItemDAO.insertCustomerOrderItem(customerOrderItem);
         int id = customerOrderItem.getOrderID();
         System.out.println(id);
@@ -99,6 +114,9 @@ public class CustomerOrderController {
     @GetMapping ("/customerOrders/edit/{id}")
     public String editCustomerOrder(@PathVariable("id") int id, Model model, HttpSession session)
     {
+        if(!authenticationService.isAuthenticated(session)){
+            return "redirect:/login";
+        }
         List<Employee>employee = employeeDAO.getAllEmployee();
         List<Customer>customer = customerDAO.getAllCustomer();
         model.addAttribute("employee" , employee);
@@ -109,9 +127,22 @@ public class CustomerOrderController {
     }
 
     @PostMapping ("/customerOrders/edit/{id}")
-    public String editCustomerOrderPost(@PathVariable("id") int id, @ModelAttribute("customerOrder") CustomerOrder customerOrder)
+    public String editCustomerOrderPost(@PathVariable("id") int id, @ModelAttribute("customerOrder") CustomerOrder customerOrder, HttpSession session)
     {
+        if(!authenticationService.isAuthenticated(session)){
+            return "redirect:/login";
+        }
         customerOrderDAO.updateCustomerOrder(id, customerOrder);
         return "redirect:/customerOrder/";
+    }
+
+    @GetMapping("/customerOrders/view/{id}")
+    public String searchCustomerOrder(@PathVariable("id") int id,Model model, HttpSession session) {
+        if(!authenticationService.isAuthenticated(session)){
+            return "redirect:/login";
+        }
+        List<CustomerOrderItem> items = customerOrderItemDAO.getCustomerOrderItemByCustomerOrder(id);
+        model.addAttribute("items" , items);
+        return "dashboard/customerOrders/customerOrderSearch";
     }
 }
