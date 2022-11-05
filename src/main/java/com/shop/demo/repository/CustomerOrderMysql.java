@@ -75,10 +75,10 @@ public class CustomerOrderMysql implements CustomerOrderDAO{
     }
 
     @Override
-    public List<CustomerOrder> getCustomerOrderByCustomer(Customer customer) {
+    public List<CustomerOrder> getCustomerOrderByCustomer(int id) {
         String query = "SELECT * FROM CustomerOrder WHERE CustomerOrder.customerID=?;";
         Object[] args = new Object[]{
-                customer.getCustomerID()
+                id
         };
         return jdbcTemplate.query(query,args,BeanPropertyRowMapper.newInstance(CustomerOrder.class));
     }

@@ -16,7 +16,7 @@
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
-        <nav th:replace="fragments :: topnav(heading=Customers)"></nav>
+        <nav th:replace="fragments :: topnav(heading=CustomerOrderItem)"></nav>
 
         <div class="container-fluid px-4">
             <div class="row g-3 my-2">
@@ -63,29 +63,29 @@
             </div>
 
             <div class="row my-5">
-                <h3 class="fs-4 mb-3">All Customers</h3>
+                <h3 class="fs-4 mb-3">Customer Order Item</h3>
                 <div class="col">
-                    <a href="/customers/create"><h5>Create New Customer</h5></a>
                     <table class="table bg-white rounded shadow-sm  table-hover">
                         <thead>
                         <tr>
-                            <th scope="col" width="50">ID</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Phone</th>
-                            <th scope="col">Email</th>
+                            <th scope="col" width="50"></th>
+                            <th scope="col">Customer Order ID</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Selling Price</th>
+                            <th scope="col">Additional Info</th>
+                            <th scope="col">Product ID</th>
                             <th scope="col"></th>
                             <th scope="col"></th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="customer : ${customers}">
-                            <th scope="row" th:text="${customer.customerID}">ID</th>
-                            <td th:text="${customer.name}">Name</td>
-                            <td th:text="${customer.phone}">Phone</td>
-                            <td th:text="${customer.email}">Email</td>
-                            <td><a th:href="'/customers/edit/'+${customer.customerID}"><button type="button" class="btn btn-info">Edit</button></a></td>
-                            <td><a th:href="'/customers/delete/'+${customer.customerID}"><button type="button" class="btn btn-danger">Delete</button></a></td>
-                            <td><a th:href="'/customers/view/'+${customer.customerID}"><button type="button" class="btn btn-info">View Orders</button></a></td>
+                        <tr th:each="a: ${items}">
+                            <th scope="row"></th>
+                            <td th:text="${a.OrderID}">Supply Order ID</td>
+                            <td th:text="${a.quantity}">Quantity</td>
+                            <td th:text="${a.sellingPrice}">Selling Price</td>
+                            <td th:text="${a.additionalInfo}">Additional Info</td>
+                            <td th:text="${a.productID}">Product ID</td>
                         </tr>
                         </tbody>
                     </table>

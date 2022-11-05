@@ -48,18 +48,23 @@ public class EmployeeController {
     @Autowired
     private AuthenticationService authenticationService;
 
-
     @GetMapping ("/getAllEmployee")
-    public String getAllEmployee(Model model)
+    public String getAllEmployee(Model model, HttpSession session)
     {
+        if(!authenticationService.isAuthenticated(session)){
+            return "redirect:/login";
+        }
         List<Employee> employees =employeeDAO.getAllEmployee();
         model.addAttribute( "employees",employees);
         return "allEmployee";
     }
 
     @GetMapping("/getAllEmployee/new")
-    public String CreateEmployee(Model model)
+    public String CreateEmployee(Model model, HttpSession session)
     {
+        if(!authenticationService.isAuthenticated(session)){
+            return "redirect:/login";
+        }
         Employee employee=new Employee();
         model.addAttribute("employee",employee);
         return "save";
@@ -74,7 +79,10 @@ public class EmployeeController {
 
 
     @GetMapping("/employeeDetails")
-    public String employeeDetails(Model model,@RequestParam("id") String id){
+    public String employeeDetails(Model model,@RequestParam("id") String id, HttpSession session){
+        if(!authenticationService.isAuthenticated(session)){
+            return "redirect:/login";
+        }
         Employee employee;
         try{
             employee = employeeDAO.getEmployeeByID(Integer.parseInt(id));
@@ -93,7 +101,10 @@ public class EmployeeController {
         return "test";
     }
     @GetMapping("/allCustomer")
-    public String allCustomer(Model model){
+    public String allCustomer(Model model, HttpSession session){
+        if(!authenticationService.isAuthenticated(session)){
+            return "redirect:/login";
+        }
         List<Customer> customers =customerDAO.getAllCustomer();
         model.addAttribute( "customer",customers);
         return "allCustomer";
@@ -162,5 +173,15 @@ public class EmployeeController {
         employeeDAO.updateEmployee(id,employee);
         return "redirect:/employee/";
     }
+    @GetMapping("/customers/view/{id}")
+    public String searchCustomer(@PathVariable("id") int id,Model model, HttpSession session) {
+        if(!authenticationService.isAuthenticated(session)){
+            return "redirect:/login";
+        }
+        List<CustomerOrder> orders = customerOrderDAO.getCustomerOrderByCustomer(id);
+        model.addAttribute("orders" , orders);
+        return "dashboard/customers/customerSearch";
+    }
+
 
 }

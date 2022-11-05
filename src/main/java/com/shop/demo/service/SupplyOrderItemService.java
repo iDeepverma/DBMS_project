@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SupplyOrderItemService {
     private SupplyOrderItemDAO supplyOrderItemDAO;
@@ -28,5 +30,9 @@ public class SupplyOrderItemService {
 
     public SupplyOrderItem getSupplyOrderItemByID(int productID, int supplyOrderID) {
         return supplyOrderItemDAO.getSupplyOrderItemByID(productID, supplyOrderID);
+    }
+
+    public List<SupplyOrderItem> getAllSupplyOrderItems(int id){
+        return supplyOrderItemDAO.getAllSupplyOrderItems(id);
     }
 }

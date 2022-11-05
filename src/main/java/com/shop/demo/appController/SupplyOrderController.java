@@ -2,16 +2,15 @@ package com.shop.demo.appController;
 
 import com.shop.demo.dao.*;
 import com.shop.demo.model.*;
+import com.shop.demo.service.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -41,6 +40,8 @@ public class SupplyOrderController {
 
     @Autowired
     private SupplyOrderItemDAO supplyOrderItemDAO;
+    @Autowired
+    private AuthenticationService authenticationService;
     @GetMapping("/supplyOrders")
     public String listSupplyOrders(Model model){
         List<SupplyOrder> supplyOrders = supplyOrderDAO.getAllSupplyOrders();
@@ -92,6 +93,51 @@ public class SupplyOrderController {
                 inventoryItemDAO.insertItemUnsold(item);
             }
         }
+
         return "redirect:/supplyOrders/";
     }
+    @GetMapping ("/supplyOrder/edit/{id}")
+    public String editSupplyOrder(@PathVariable("id") int id, Model model, HttpSession session)
+    {
+        if(!authenticationService.isAuthenticated(session)){
+            return "redirect:/login";
+        }
+        SupplyOrder supplyOrder = supplyOrderDAO.getSupplyOrderByID(id);
+        model.addAttribute("supplyOrder", supplyOrder);
+        return "dashboard/supplyOrders/SupplyOrderEdit.html";
+    }
+
+    @PostMapping ("/supplyOrder/edit/{id}")
+    public String editSupplyOrderPost(@PathVariable("id") int id, @ModelAttribute("supplyOrder") SupplyOrder supplyOrder, HttpSession session)
+    {
+        if(!authenticationService.isAuthenticated(session)){
+            return "redirect:/login";
+        }
+        String finalStatus = supplyOrder.getDeliveryStatus();
+        supplyOrderDAO.updateSupplyOrder(supplyOrder.getOrderID(), supplyOrder);
+            List<SupplyOrderItem> temp = supplyOrderItemDAO.getAllSupplyOrderItems(supplyOrder.getOrderID());
+            for (int i = 0; i < temp.size(); i++) {
+                SupplyOrderItem x = temp.get(i);
+                int quantity = x.getQuantity();
+                for(int j=0;j<quantity;j++){
+                    InventoryItem item = new InventoryItem();
+                    item.setSupplyOrderID(x.getSupplyOrderID());
+                    item.setProductID(x.getProductID());
+                    inventoryItemDAO.insertItemUnsold(item);
+                }
+            }
+        return "redirect:/supplyOrders/";
+    }
+
+    @GetMapping ("/supplyOrder/search/{id}")
+    public String searchSupplyOrderID(@PathVariable("id") int id, Model model, HttpSession session)
+    {
+        if(!authenticationService.isAuthenticated(session)){
+            return "redirect:/login";
+        }
+        List<SupplyOrderItem> supplyOrderItem = supplyOrderItemDAO.getAllSupplyOrderItems(id);
+        model.addAttribute("supplyOrderItem", supplyOrderItem);
+        return "dashboard/supplyOrders/supplyOrderSearch.html";
+    }
+
 }

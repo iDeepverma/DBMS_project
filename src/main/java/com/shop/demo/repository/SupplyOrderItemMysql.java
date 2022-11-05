@@ -2,12 +2,15 @@ package com.shop.demo.repository;
 
 import com.shop.demo.dao.SupplyOrderItemDAO;
 import com.shop.demo.model.Employee;
+import com.shop.demo.model.Product;
 import com.shop.demo.model.SupplyOrder;
 import com.shop.demo.model.SupplyOrderItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 //          supplyOrderID int,
 //        quantity int,
@@ -68,5 +71,13 @@ public class SupplyOrderItemMysql implements SupplyOrderItemDAO{
         };
 
         return jdbcTemplate.queryForObject(query,args, supplyOrderItemBeanPropertyRowMapper);
+    }
+    @Override
+    public List<SupplyOrderItem> getAllSupplyOrderItems(int id){
+        String query = "SELECT * FROM SupplyOrderItem WHERE SupplyOrderItem.supplyOrderID = ?;";
+        Object[] args = new Object[]{
+                id
+        };
+        return jdbcTemplate.query(query , args , BeanPropertyRowMapper.newInstance(SupplyOrderItem.class));
     }
 }

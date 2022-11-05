@@ -12,7 +12,7 @@ public interface CustomerOrderItemDAO {
     //productid also needed
     int deleteCustomerOrderItem(int id,int productID);
     //DELETE FROM CustomerOrderItem WHERE orderID=id,CustomerOrderItem.productID=productID;
-    List<CustomerOrderItem> getCustomerOrderItemByCustomerOrder(CustomerOrder customerOrder);
+    List<CustomerOrderItem> getCustomerOrderItemByCustomerOrder(int id);
     //SELECT * FROM CustomerOrderItem WHERE CustomerOrderItem.orderID = customerOrder.orderID;
     int getProfitPerOrderItem(CustomerOrderItem customerOrderItem);
 

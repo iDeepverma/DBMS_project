@@ -16,7 +16,7 @@
 
   <!-- Page Content -->
   <div id="page-content-wrapper">
-    <nav th:replace="fragments :: topnav(heading=SupplyOrders)"></nav>
+    <nav th:replace="fragments :: topnav(heading=CustomerOrder)"></nav>
 
     <div class="container-fluid px-4">
       <div class="row g-3 my-2">
@@ -63,38 +63,34 @@
       </div>
 
       <div class="row my-5">
-        <h3 class="fs-4 mb-3">All Supply Orders</h3>
+        <h3 class="fs-4 mb-3">Customer Order</h3>
         <div class="col">
-          <a href="/supplyOrders/create"><h5>Create New Supply Order</h5></a>
           <table class="table bg-white rounded shadow-sm  table-hover">
             <thead>
             <tr>
               <th scope="col" width="50">OrderID</th>
               <th scope="col">Order Date</th>
-              <th scope="col">Delivery Date</th>
-              <th scope="col">Delivery Status</th>
+              <th scope="col">Transaction ID</th>
+              <th scope="col">Mode of Payment</th>
               <th scope="col">Total Amount</th>
-              <th scope="col">Supplier ID</th>
-              <th scope="col">Employee ID</th>
+              <th scope="col">Customer ID</th>
+              <th scope="col">Served By</th>
               <th scope="col"></th>
               <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="supplyOrders: ${supplyOrders}">
-              <th scope="row" th:text="${supplyOrders.orderID}">orderID</th>
-              <td th:text="${supplyOrders.orderDate}">Date</td>
-              <td th:text="${supplyOrders.deliveryDate}">deliverydate</td>
-              <td th:text="${supplyOrders.deliveryStatus}">deliverystatus</td>
-              <td th:text="${supplyOrders.totalAmount}">totalAmount</td>
-              <td th:text="${supplyOrders.supplierID}">supplierID</td>
-              <td th:text="${supplyOrders.placedBy}">EmployeeID</td>
-              <td><a th:href="'/supplyOrder/edit/'+${supplyOrders.orderID}"><button type="button" class="btn btn-info">Edit</button></a></td>
-              <td><a th:href="'/supplyOrder/search/'+${supplyOrders.orderID}"><button type="button" class="btn btn-info">View Order</button></a></td>
+            <tr th:each="orders : ${orders}">
+              <th scope="row" th:text="${orders.orderID}">orderID</th>
+              <td th:text="${orders.orderDate}">orderDate</td>
+              <td th:text="${orders.transactionID}">TransactionID</td>
+              <td th:text="${orders.modeOfPayment}">ModeofPayment</td>
+              <td th:text="${orders.total}">Total</td>
+              <td th:text="${orders.customerID}">customerID</td>
+              <td th:text="${orders.servedBy}">EmployeeID</td>
             </tr>
             </tbody>
           </table>
-          <a href="/supplyOrderItem/create"><h5>Create New Supply Order Items</h5></a>
         </div>
       </div>
 

@@ -90,6 +90,7 @@
               <td th:text="${orders.customerID}">customerID</td>
               <td th:text="${orders.servedBy}">EmployeeID</td>
               <td><a th:href="'/customerOrders/edit/'+${orders.orderID}"><button type="button" class="btn btn-info">Edit</button></a></td>
+              <td><a th:href="'/customerOrders/view/'+${orders.orderID}"><button type="button" class="btn btn-info">View Order</button></a></td>
 <!--              <td><a th:href="'/customers/delete/'+${customer.customerID}"><button type="button" class="btn btn-danger">Delete</button></a></td>-->
 <!--              <td><a th:href="'/customers/delete/'+${customer.customerID}"><button type="button" class="btn btn-danger">Delete</button></a></td>-->
             </tr>
