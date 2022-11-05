@@ -40,7 +40,7 @@ public class AuthenticationService {
         try {
             return Integer.parseInt(session.getAttribute(SESSION_AUTH_KEY).toString());
         } catch (Exception e){
-            System.out.println("Execption in Authentication service fuck");
+            System.out.println("Exception in Authentication service yayyy :-)");
             return null;
         }
     }
@@ -55,7 +55,7 @@ public class AuthenticationService {
             return user.getRole()==1;
         }
         catch (Exception e){
-            System.out.println("Execption in isAdmin");
+            System.out.println("Exception in isAdmin");
             return false;
         }
     }
