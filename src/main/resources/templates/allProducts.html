@@ -8,35 +8,39 @@
 
     <main>
         <div class="contentAllProd">
-            <h3 class="sec-head">Our Products</h3>
+            <h1 class=" heading">Our <span>Products</span></h1>
             <hr>
             <div class="productCard">
-                <div class="card" th:each="product: ${products}">
-                   <img src="https://cdn.shopify.com/s/files/1/0598/7919/4823/products/71AvQd3VzqL._SS1500_750x.jpg?v=1654514896" alt="error">
+                <div class="card box" th:each="product: ${products}">
+                    <img src="https://cdn.shopify.com/s/files/1/0598/7919/4823/products/71AvQd3VzqL._SS1500_750x.jpg?v=1654514896"
+                        alt="error">
                     <div class="">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
                                 <h3 th:text="${product.getName()}"></h3>
                             </li>
                             <li class="list-group-item itm2">
-                                <h4 th:text="${product.getVariant()}"></h4>
+                                <sapn >Variant:</sapn><h4 th:text="' '+${product.getVariant()}"></h4>
                             </li>
                             <li class="list-group-item itm2">
-                                <h4 th:text="${product.getWarrantyLength()}"></h4>
+                                <span >Warranty:</span><h4 th:text="' '+${product.getWarrantyLength()}"></h4>
                             </li>
                             <li class="list-group-item itm2">
-                                <h4 th:text="${product.getMRP()}"></h4>
+                                <span>MRP:</span><h4 th:text="' Rs.:'+ ${product.getMRP()}"></h4>
                             </li>
                             <li class="list-group-item itm2">
                                 <h4>Some Text</h4>
                             </li>
                         </ul>
                         <div class="card-body">
-                            <a th:href="'/productDetail/'+${product.getProductID()}" class="btn btn-primary" style="text-align: center;">View
-                                Product</a>
+                            <div class="btn">
+                                <a th:href="'/productDetail/'+${product.getProductID()}"
+                                    style="text-align: center;">View Product</a>
+                            </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
 

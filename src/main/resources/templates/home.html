@@ -18,27 +18,72 @@
       </div>
     </div>
 
+    <div class="" id="service">
+      <section class="services" >
+
+        <h1 class="heading"> Our <span>Services</span> </h1>
+
+        <div class="f-box-container">
+
+          <div class="f-box">
+            <img th:src="@{/images/anti.png}" alt="">
+            <h3>Free Antivirus</h3>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt, earum!</p>
+            <!-- <div class="btn"><a href="#" class="btn">read more</a></div> -->
+          </div>
+
+          <div class="f-box">
+            <img th:src="@{/images/anti.png}" alt="">
+            <h3>Lifetime Support</h3>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt, earum!</p>
+            <!-- <div class="btn"><a href="#" class="btn">read more</a></div> -->
+          </div>
+
+          <div class="f-box">
+            <img th:src="@{/images/anti.png}" alt="">
+            <h3>Extended Warranty</h3>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt, earum!</p>
+            <!-- <div class="btn"><a href="#" class="btn">read more</a></div> -->
+          </div>
+
+        </div>
+
+      </section>
+    </div>
+
+    <div class="carosoul">
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><img th:src="@{/images/caro-1.png}" alt=""></div>
+          <div class="swiper-slide"><img th:src="@{/images/caro-2.png}" alt=""></div>
+          <div class="swiper-slide"><img th:src="@{/images/caro-3.png}" alt=""></div>
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
 
     <div class="ourProducts">
-      <section class="sectionHome">
-        <h2 class="heading">
-          OUR COLLECTION
-        </h2>
-        <hr>
-        <div class="container slider">
-          <div class="card" th:each="product: ${products}">
-
+      <section class="products sectionHome" id="productts">
+        <h1 class="heading">
+          OUR <span>COLLECTION</span>
+        </h1>
+        <!-- <hr> -->
+        <div class="container  product-slider slider">
+          <div class="swiper-slide card" th:each="product: ${products}">
             <a th:href="'/productDetail/'+${product.getProductID()}">
-
-              <h4 class="bookName" th:text="${product.getProductID()}"></h4>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                  <h3 th:text="${product.getMRP()}"></h3>
-                </li>
-                <li class="list-group-item itm2">
-                  <h4 th:text="${product.getCostPrice()}"></h4>
-                </li>
-              </ul>
+              <img
+                th:src="@{/images/car-2.jpg}"
+                alt="">
+              <h3 th:text="${product.getName()}"></h3>
+              <div class="stars"> <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+              </div>
+              <div class="price" th:text="'Rs. '+${product.getMRP()}"></div>
             </a>
           </div>
         </div>
@@ -46,20 +91,24 @@
       <div class="btn v-more">
         <a th:href="@{/allProducts}">View More</a>
       </div>
+      <!-- <hr> -->
     </div>
 
 
     <div class="categories" id="Categories">
-        <section class="sectionHome">
-          <h2 class="heading">
-            OUR CATEGORIES
-          </h2>
-          <hr>
-          <div class="container slider">
-            <div class="card" th:each="category: ${categories}">
-              <a th:href="'allProducts/'+${category.getCategory()}">
-                <h4 class="" th:text="${category.getCategory()}"></h4>
-                <!-- <ul class="list-group list-group-flush">
+      <section class="sectionHome">
+        <h1 class="heading">
+          OUR <span>Categories</span>
+        </h1>
+        <!-- <hr> -->
+        <div class="box-container container slider">
+          <div class="card box" th:each="category: ${categories}">
+            <a th:href="'allProducts/'+${category.getCategory()}">
+              <img
+                th:src="@{/images/anti.png}"
+                alt="">
+              <h3 class="" th:text="${category.getCategory()}"></h3>
+              <!-- <ul class="list-group list-group-flush">
                   <li class="list-group-item">
                     <h3 th:text="${product.getMRP()}"></h3>
                   </li>
@@ -67,53 +116,53 @@
                     <h4 th:text="${product.getCostPrice()}"></h4>
                   </li>
                 </ul> -->
-              </a>
-            </div>
+            </a>
           </div>
-        </section>
+        </div>
+      </section>
     </div>
 
 
-    <div class="query">
-          <div class="query-container">
-            <h1>GET IN TOUCH</h1>
-            <p>Have any questions or suggestions? Drop us a message</p>
-            <form>
-              <div class="row">
-                <div class="column">
-                  <label for="name">Name</label>
-                  <input type="text" id="name" placeholder="Your name here">
-                </div>
-                <div class="column">
-                  <label for="email">Email</label>
-                  <input type="email" id="email" placeholder="Your email here">
-                </div>
-              </div>
-              <div class="row">
-                <div class="column">
-                  <label for="subject">Subject</label>
-                  <input type="text" id="subject" placeholder="Your subject here">
-                </div>
-                <div class="column">
-                  <label for="contact">Contact Number</label>
-                  <input type="tel" id="contact" placeholder="Your phone number here">
-                </div>
-              </div>
-              <div class="row">
-                <div class="column">
-                  <label for="issue">Describe your issue</label>
-                  <textarea id="issue" placeholder="Describe your issue in detail here" rows="3"></textarea>
-                </div>
-              </div>
-              <a href="#" class="button cta">
-                <span>Submit</span>
-                <svg width="13px" height="10px" viewBox="0 0 13 10">
-                  <path d="M1,5 L11,5"></path>
-                  <polyline points="8 1 12 5 8 9"></polyline>
-                </svg>
-              </a>
-            </form>
+    <div class="query" id="query">
+      <div class="query-container">
+        <h1>GET IN TOUCH</h1>
+        <p>Have any questions or suggestions? Drop us a message</p>
+        <form>
+          <div class="row">
+            <div class="column">
+              <label for="name">Name</label>
+              <input type="text" id="name" placeholder="Your name here">
+            </div>
+            <div class="column">
+              <label for="email">Email</label>
+              <input type="email" id="email" placeholder="Your email here">
+            </div>
           </div>
+          <div class="row">
+            <div class="column">
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" placeholder="Your subject here">
+            </div>
+            <div class="column">
+              <label for="contact">Contact Number</label>
+              <input type="tel" id="contact" placeholder="Your phone number here">
+            </div>
+          </div>
+          <div class="row">
+            <div class="column">
+              <label for="issue">Describe your issue</label>
+              <textarea id="issue" placeholder="Describe your issue in detail here" rows="3"></textarea>
+            </div>
+          </div>
+          <a href="#" class="button cta">
+            <span>Submit</span>
+            <svg width="13px" height="10px" viewBox="0 0 13 10">
+              <path d="M1,5 L11,5"></path>
+              <polyline points="8 1 12 5 8 9"></polyline>
+            </svg>
+          </a>
+        </form>
+      </div>
     </div>
   </main>
 

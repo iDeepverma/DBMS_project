@@ -16,6 +16,14 @@
 @import "bg_animation.css";
 
 
+:root {
+    --primary:#19bc8b;
+    --sec:#0b61f3;
+    --sec-light-2:#71bfff;
+    --sec-light:#1973bc;
+}
+    
+
 * {
     margin: 0;
     padding: 0;
@@ -25,17 +33,20 @@
 }
 
 html {
+    font-size: 62.5%;
     min-height: 100%;
     overflow: scroll;
     overflow-x: hidden;
     overflow: -moz-scrollbars-none;
     -ms-overflow-style: none;
+    
 }
 
 
 html::-webkit-scrollbar {
     width: 0;
     background: transparent;
+    scroll-behavior: smooth;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -51,4 +62,22 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+}
+
+.heading {
+    text-align: center;
+    padding: 3rem 0 1rem 0;
+    font-size: 3.5rem;
+    color: var(--sec);
+    text-align: center;
+    font-weight: 600;
+    animation: slidhehe 0.9s ease-in-out;
+}
+
+.heading span {
+    background: var(--sec);
+    color: #fff;
+    display: inline-block;
+    padding: .5rem 3rem;
+    clip-path: polygon(100% 0, 93% 50%, 100% 99%, 0% 100%, 7% 50%, 0% 0%);
 }

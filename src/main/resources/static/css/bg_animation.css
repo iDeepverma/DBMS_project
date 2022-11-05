@@ -44,11 +44,11 @@
 
 .welcome .full-screen {
     /* position: fixed; */
-    top: 0;
+    top: 0; 
     right: 0;
     bottom: 0;
     left: 0;
-    background: url(https://i.imgur.com/wCG2csZ.png);
+    background: url(../images/wCG2csZ.png);
     background-size: cover;
     background-position: center;
     width: 100%;
@@ -95,6 +95,7 @@
     text-align: center;
     font-size: 1.4em;
     opacity: .6;
+    font-weight: 600;
     padding: 20px 40px;
     text-decoration: none;
     transition: all .5s ease;
@@ -107,5 +108,5 @@
 .welcome .button-line:hover {
     opacity: 1;
     background: white;
-    color:#1797d2;
+    color:var(--sec);
 }
