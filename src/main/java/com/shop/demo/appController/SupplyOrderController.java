@@ -92,6 +92,11 @@ public class SupplyOrderController {
                 item.setProductID(supplyOrderItem.getProductID());
                 inventoryItemDAO.insertItemUnsold(item);
             }
+            Product product = productDAO.getProductByID(supplyOrderItem.getProductID());
+            int x = product.getAmountInStock();
+            product.setAmountInStock(x + quantity);
+            System.out.println(x);
+            productDAO.updateProduct(product.getProductID() , product);
         }
 
         return "redirect:/supplyOrders/";
@@ -108,8 +113,7 @@ public class SupplyOrderController {
     }
 
     @PostMapping ("/supplyOrder/edit/{id}")
-    public String editSupplyOrderPost(@PathVariable("id") int id, @ModelAttribute("supplyOrder") SupplyOrder supplyOrder, HttpSession session)
-    {
+    public String editSupplyOrderPost(@PathVariable("id") int id, @ModelAttribute("supplyOrder") SupplyOrder supplyOrder, HttpSession session){
         if(!authenticationService.isAuthenticated(session)){
             return "redirect:/login";
         }
@@ -120,6 +124,11 @@ public class SupplyOrderController {
                 SupplyOrderItem x = temp.get(i);
                 int quantity = x.getQuantity();
                 for(int j=0;j<quantity;j++){
+                    Product extra = new Product();
+                    extra = productDAO.getProductByID(x.getProductID());
+                    int amnt = extra.getAmountInStock() + quantity;
+                    extra.setAmountInStock(amnt);
+                    productDAO.updateProduct(x.getProductID() , extra);
                     InventoryItem item = new InventoryItem();
                     item.setSupplyOrderID(x.getSupplyOrderID());
                     item.setProductID(x.getProductID());
