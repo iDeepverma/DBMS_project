@@ -1,14 +1,14 @@
 const inputs = document.querySelectorAll(".input");
 
 
-function addcl(){
+function addcl() {
     let parent = this.parentNode.parentNode;
     parent.classList.add("focus");
 }
 
-function remcl(){
+function remcl() {
     let parent = this.parentNode.parentNode;
-    if(this.value == ""){
+    if (this.value == "") {
         parent.classList.remove("focus");
     }
 }
@@ -17,4 +17,77 @@ function remcl(){
 inputs.forEach(input => {
     input.addEventListener("focus", addcl);
     input.addEventListener("blur", remcl);
+});
+
+var swiper = new Swiper(".mySwiper", {
+
+    loop: true,
+    // loopFillGroupWithBlank: true,
+    // spaceBetween: 30,
+    // slidesPerView:3,
+    // slidesPerGroup: 3,
+    autoplay: {
+        delay: 2000,
+        disableOnInteraction: false,
+    },
+    // centeredSlides: true,
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+    // breakpoints: {
+    //     0: {
+    //         slidesPerView: 1,
+    //     },
+    //     768: {
+    //         slidesPerView: 2,
+    //     },
+    //     1020: {
+    //         slidesPerView: 3,
+    //     },
+    // },
+});
+
+
+$(document).ready(function () {
+    $('.slider').slick({
+        dots: true,
+        arrows: true,
+        infinite: true,
+        speed: 600,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        // centerMode: true,
+        // centerPadding: '60px',
+        responsive: [{
+            breakpoint: 1024,
+            settings: {
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                infinite: true,
+                dots: true
+            }
+        },
+        {
+            breakpoint: 600,
+            settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1
+            }
+        },
+        {
+            breakpoint: 480,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1
+            }
+        }
+        ]
+    });
 });
