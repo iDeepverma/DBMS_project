@@ -30,4 +30,6 @@ public interface EmployeeDAO {
 //    select * from Employee where role="Owner";
 
     int updatePassword(int id, String password);
+
+    int totalSales(int id);
 }

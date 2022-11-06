@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -33,14 +34,14 @@ public class InventoryItemController {
     private InventoryItemDAO inventoryItemDAO;
 
     @GetMapping("/inventoryItem")
-    public String inventoryItems(Model model){
+    public String inventoryItems(Model model, HttpSession session){
         List<InventoryItem> items = inventoryItemDAO.getAllInventoryItems();
         model.addAttribute("items",items);
         return "dashboard/inventoryItem/inventoryItem";
     }
 
     @GetMapping ("/inventoryItem/create")
-    public String createInventoryItem(Model model)
+    public String createInventoryItem(Model model, HttpSession session)
     {
         InventoryItem inventoryItem = new InventoryItem();
         model.addAttribute("inventoryItem",inventoryItem );

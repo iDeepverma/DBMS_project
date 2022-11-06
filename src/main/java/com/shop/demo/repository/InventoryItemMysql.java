@@ -12,7 +12,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository("inventoryItem_mysql_repo")
-
 public class InventoryItemMysql implements InventoryItemDAO {
 
 //    itemID int AUTO_INCREMENT,

@@ -14,7 +14,7 @@ public class Product {
     private String warrantyCoverage;
     private int MRP;
     private int costPrice;
-    private int variant;
+    private String variant;
     private int amountInStock;
 
     private String photoPath;
@@ -85,12 +85,11 @@ public class Product {
         this.costPrice = costPrice;
     }
 
-
-    public int getVariant() {
+    public String getVariant() {
         return variant;
     }
 
-    public void setVariant(int variant) {
+    public void setVariant(String variant) {
         this.variant = variant;
     }
 
@@ -100,5 +99,12 @@ public class Product {
 
     public void setAmountInStock(int amountInStock) {
         this.amountInStock = amountInStock;
+    }
+
+    public String getPicturePath(){
+        if(photoPath==null){
+            return null;
+        }
+        return "/product-photos/" + photoPath;
     }
 }

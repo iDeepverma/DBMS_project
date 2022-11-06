@@ -35,7 +35,5 @@ public class ProductCategoryService {
     public ProductCategory getProductCategoryByName(String name){
         return productCategoryDAO.getProductCategoryByName(name);
     }
-    public List<ProductCategory>getAllNames(){
-        return productCategoryDAO.getAllNames();
-    }
+
 }

@@ -20,11 +20,11 @@ INSERT INTO ProductCategory VALUES ('Asus ROG' , 'Laptop');
 INSERT INTO ProductCategory VALUES ('SONY LED' , 'TV');
 INSERT INTO ProductCategory VALUES ('LG smart' , 'Refrigirator');
 
-INSERT INTO Product VALUES (1,'',0,'', 1400,1100, 1, 10, 'M1 pro 6g','');
-INSERT INTO Product VALUES (2,'',0,'', 1400,900, 1, 21, 'Samsung charger','');
-INSERT INTO Product VALUES (3,'',0,'', 1400,1200, 1, 11, 'Asus ROG','');
-INSERT INTO Product VALUES (4,'',0,'', 2500,1300, 1, 30, 'SONY LED','');
-INSERT INTO Product VALUES (5,'',0,'', 3000,2500, 1, 40, 'LG smart','');
+INSERT INTO Product VALUES (1,'',0,'', 1400,1100, 'Blue', 10, 'M1 pro 6g','');
+INSERT INTO Product VALUES (2,'',0,'', 1400,900, 'Green', 21, 'Samsung charger','');
+INSERT INTO Product VALUES (3,'',0,'', 1400,1200, 'Red', 11, 'Asus ROG','');
+INSERT INTO Product VALUES (4,'',0,'', 2500,1300, 'Yellow', 30, 'SONY LED','');
+INSERT INTO Product VALUES (5,'',0,'', 3000,2500, 'Pink', 40, 'LG smart','');
 
 INSERT INTO ProductSuppliers VALUES(1 , 2);
 INSERT INTO ProductSuppliers VALUES(1 , 3);

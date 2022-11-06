@@ -34,15 +34,19 @@
                 <div align="center">
                     <h1>Enter new Product</h1>
                     <br />
-                    <form action="" th:object="${product}" method="post">
+                    <form action="" th:object="${product}" method="post" enctype="multipart/form-data">
 
                         <table border="0" cellpadding="10">
+
                             <tr>
                                 <td>Product Name:</td>
-                                <td><select class="form-control" th:field=*{name}>
+                                <td>
+                                    <select class="form-control" th:field=*{name}>
                                         <option th:each="names : ${names}" th:value="${names.name}"
                                             th:text="${names.name}"></option>
-                                    </select></td>
+                                    </select>
+<!--                                    <input type="text" th:field="*{name}" />-->
+                                </td>
                             </tr>
                             <tr>
                                 <td>Description:</td>
@@ -71,6 +75,10 @@
                             <tr>
                                 <td>Amount In Stock:</td>
                                 <td><input type="text" th:field="*{amountInStock}" /></td>
+                            </tr>
+                            <tr>
+                                <td>Product Image:</td>
+                                <td><input type="file" name="image" accept="image/png, image/jpeg" required ></td>
                             </tr>
                             <tr>
                                 <td colspan="2"><button type="submit" class="btn btn-primary mb-2">Save</button> </td>
