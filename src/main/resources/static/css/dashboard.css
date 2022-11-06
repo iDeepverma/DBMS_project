@@ -10,8 +10,6 @@
 
 
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
   text-decoration: none;
   font-family: 'Poppins', sans-serif;
@@ -25,9 +23,9 @@ html {
 }
 
 html::-webkit-scrollbar {
-  width: 0;
-  background: transparent;
-  scroll-behavior: smooth;
+    width: 0;
+    background: transparent;
+    scroll-behavior: smooth;
 }
 
 .primary-text {
