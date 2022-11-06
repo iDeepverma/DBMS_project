@@ -114,26 +114,32 @@ public class ProductController {
         if(!authenticationService.isAuthenticated(session)){
             return "redirect:/login";
         }
-        Product product = new Product();
-        List<ProductCategory>names = productCategoryDAO.getAllProductCategory();
-        model.addAttribute("names",names);
-        model.addAttribute("product", product);
+        ProductComplex productComplex = new ProductComplex();
+        List<ProductCategory>categories = productCategoryDAO.getAllProductCategory();
+
+        model.addAttribute("categories",categories);
+        model.addAttribute("productComplex", productComplex);
         return "dashboard/product/productCreate.html";
     }
 
 
     @PostMapping("/product/create")
-    public String createProductPost(@ModelAttribute("product") Product product, @RequestParam("image") MultipartFile multipartFile, HttpSession session) throws IOException {
+    public String createProductPost(@ModelAttribute("product") ProductComplex productComplex, @RequestParam("image") MultipartFile multipartFile, HttpSession session) throws IOException {
         if(!authenticationService.isAuthenticated(session)){
             return "redirect:/login";
         }
-
+        Product product = productComplex.getProduct();
+        ProductCategory productCategory = productComplex.getProductCategory();
+        productCategory.setName(product.getName());
+        productCategoryDAO.insertProductCategory(productCategory);
         String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
         product.setPhotoPath(fileName);
         productDAO.insertProduct(product);
         FileUploadUtil.saveFile("product-photos/",fileName,multipartFile);
         return "redirect:/product/";
     }
+
+
 
 
     @GetMapping ("/productCategory/create")

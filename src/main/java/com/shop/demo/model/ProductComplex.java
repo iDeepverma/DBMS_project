@@ -1,5 +1,10 @@
 package com.shop.demo.model;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
 public class ProductComplex {
     private Product product;
     private ProductCategory productCategory;
@@ -20,8 +25,4 @@ public class ProductComplex {
         this.productCategory = productCategory;
     }
 
-    public ProductComplex(Product product, ProductCategory productCategory){
-        this.product = product;
-        this.productCategory = productCategory;
-    }
 }

@@ -102,12 +102,12 @@
         </h1>
         <!-- <hr> -->
         <div class="box-container container slider">
-          <div class="card box" th:each="category: ${categories}">
-            <a th:href="'allProducts/'+${category.getCategory()}">
+          <div class="card box" th:each="each: ${cats}">
+            <a th:href="'allProducts/'+${each}">
               <img
                 th:src="@{/images/anti.png}"
                 alt="">
-              <h3 class="" th:text="${category.getCategory()}"></h3>
+              <h3 class="" th:text="${each}"></h3>
               <!-- <ul class="list-group list-group-flush">
                   <li class="list-group-item">
                     <h3 th:text="${product.getMRP()}"></h3>
