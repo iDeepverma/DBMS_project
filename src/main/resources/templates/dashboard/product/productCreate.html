@@ -19,7 +19,28 @@
     <link rel="map" th:href="@{/boot5/css/bootstrap.min.css.map}" />
     <link rel="stylesheet" th:href="@{/font-6/css/all.min.css}" />
     <link rel="stylesheet" th:href="@{/css/dashboard.css}" />
-    <title>Product Dashboard</title>
+<!--    <script lang="JavaScript" type="text/javascript" th:src="@{/JavaScript/jquery-3.6.1.min.js}">-->
+<!--    <title>Product Dashboard</title>-->
+<!--    <script>-->
+<!--        $(function(){-->
+<!--    $('form').submit(function(){-->
+<!--        var isOk = true;-->
+<!--        $('input[type=file][data-max-size]').each(function(){-->
+<!--            if(typeof this.files[0] !== 'undefined'){-->
+<!--                var maxSize = parseInt($(this).attr('max-size'),10),-->
+<!--                size = this.files[0].size;-->
+<!--                isOk = maxSize > size;-->
+<!--                return isOk;-->
+<!--            }-->
+<!--        });-->
+<!--        if(!isOk){-->
+<!--            alert("Image Size exceeds Limit.");-->
+<!--            document.getElementById('pic').value="";-->
+<!--        }-->
+<!--        return isOk;-->
+<!--    });-->
+<!--});-->
+<!--    </script>-->
 </head>
 
 <body>
@@ -34,51 +55,67 @@
                 <div align="center">
                     <h1>Enter new Product</h1>
                     <br />
-                    <form action="" th:object="${product}" method="post" enctype="multipart/form-data">
+                    <form action="" th:object="${productComplex}" method="post" enctype="multipart/form-data">
 
                         <table border="0" cellpadding="10">
-
+                            <tr>
+                                 <td>Product Category: </td>
+                                <td>
+                                    <select class="form-control" th:field=*{productCategory.category}>
+                                        <option th:each="category : ${categories}" th:value="${category.category}"
+                                                th:text="${category.category}"></option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <a th:href="@{/product/createCategory}">
+                                        <button type="button" class="btn btn-success mb-2 ml-2">
+                                            <span>
+                                                Create New Category
+                                            </span>
+                                        </button>
+                                    </a>
+                                </td>
+                            </tr>
                             <tr>
                                 <td>Product Name:</td>
                                 <td>
-                                    <select class="form-control" th:field=*{name}>
-                                        <option th:each="names : ${names}" th:value="${names.name}"
-                                            th:text="${names.name}"></option>
-                                    </select>
-<!--                                    <input type="text" th:field="*{name}" />-->
+
+                                    <input type="text" th:field="*{product.name}" />
                                 </td>
                             </tr>
                             <tr>
                                 <td>Description:</td>
-                                <td><input type="text" th:field="*{description}" /></td>
+                                <td><input type="text" th:field="*{product.description}" /></td>
                             </tr>
                             <tr>
                                 <td>Warranty Duration:</td>
-                                <td><input type="text" th:field="*{warrantyLength}" /></td>
+                                <td><input type="text" th:field="*{product.warrantyLength}" /></td>
                             </tr>
                             <tr>
                                 <td>Warranty Coverage:</td>
-                                <td><input type="text" th:field="*{warrantyCoverage}" /></td>
+                                <td><input type="text" th:field="*{product.warrantyCoverage}" /></td>
                             </tr>
                             <tr>
                                 <td>MRP:</td>
-                                <td><input type="text" th:field="*{MRP}" /></td>
+                                <td><input type="text" th:field="*{product.MRP}" /></td>
                             </tr>
                             <tr>
                                 <td>costPrice:</td>
-                                <td><input type="text" th:field="*{costPrice}" /></td>
+                                <td><input type="text" th:field="*{product.costPrice}" /></td>
                             </tr>
                             <tr>
                                 <td>Variant:</td>
-                                <td><input type="text" th:field="*{variant}" /></td>
+                                <td><input type="text" th:field="*{product.variant}" /></td>
                             </tr>
                             <tr>
                                 <td>Amount In Stock:</td>
-                                <td><input type="text" th:field="*{amountInStock}" /></td>
+                                <td><input type="text" th:field="*{product.amountInStock}" /></td>
                             </tr>
                             <tr>
                                 <td>Product Image:</td>
-                                <td><input type="file" name="image" accept="image/png, image/jpeg" required ></td>
+
+                                <td><input type="file" id="fileinput" name="image" accept="image/png, image/jpeg, image/jpg" required ></td>
+
                             </tr>
                             <tr>
                                 <td colspan="2"><button type="submit" class="btn btn-primary mb-2">Save</button> </td>
@@ -95,6 +132,25 @@
 
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script> -->
 <div th:replace="fragments :: navscript"></div>
+<script>
+    document.getElementById("fileinput").addEventListener("change", function (evt) {
+            //Retrieve the first (and only!) File from the FileList object
+            var f = evt.target.files[0];
+            if (f) {
+                var r = new FileReader();
+                r.onload = function (e) {
+                    var contents = e.target.result;
+                    if (f.size > 1048576) {
+                        alert('File size Greater then 5MiB!');
+                        $("#fileinput").val(null);                 
+                    }
+                }
+                r.readAsText(f);
+            } else {
+                alert("Failed to load file");
+            }
+        })
+</script>
 </body>
 
 </html>
