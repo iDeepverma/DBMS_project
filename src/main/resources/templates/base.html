@@ -58,9 +58,9 @@
                             <input type="checkbox" id="show-categories">
                             <label for="show-categories">Categories</label>
                             <ul>
-                                <li th:each="cat:${categories}">
-                                    <a th:href="'/allProducts/'+${cat.getCategory()}"> <span
-                                            th:text="${cat.getCategory()}"></span> </a>
+                                <li th:each="cat: ${cats}">
+                                    <a th:href="'/allProducts/'+${cat}"> <span
+                                            th:text="${cat}"></span> </a>
                                 </li>
                             </ul>
                         </li>

@@ -42,8 +42,13 @@ public class SupplyOrderController {
     private SupplyOrderItemDAO supplyOrderItemDAO;
     @Autowired
     private AuthenticationService authenticationService;
+
     @GetMapping("/supplyOrders")
     public String listSupplyOrders(Model model, HttpSession session){
+        if(!authenticationService.isAuthenticated(session)){
+            return "redirect:/login";
+        }
+
         List<SupplyOrder> supplyOrders = supplyOrderDAO.getAllSupplyOrders();
         model.addAttribute("supplyOrders" , supplyOrders);
         return "dashboard/supplyOrders/supplyOrders";
@@ -52,6 +57,10 @@ public class SupplyOrderController {
     @GetMapping ("/supplyOrders/create")
     public String createSupplyOrders(Model model, HttpSession session)
     {
+        if(!authenticationService.isAuthenticated(session)){
+            return "redirect:/login";
+        }
+
         SupplyOrder supplyOrder = new SupplyOrder();
         model.addAttribute("supplyOrder", supplyOrder);
         List<Employee>employee = employeeDAO.getAllEmployee();
@@ -64,12 +73,20 @@ public class SupplyOrderController {
     @PostMapping("/supplyOrders/create")
     public String createsupplyOrdersPost(@ModelAttribute("SupplyOrder") SupplyOrder SupplyOrder, HttpSession session)
     {
+        if(!authenticationService.isAuthenticated(session)){
+            return "redirect:/login";
+        }
+
         supplyOrderDAO.insertSupplyOrder(SupplyOrder);
         return "redirect:/supplyOrders/";
     }
     @GetMapping ("/supplyOrderItem/create")
     public String createSupplyOrderItems(Model model, HttpSession session)
     {
+        if(!authenticationService.isAuthenticated(session)){
+            return "redirect:/login";
+        }
+
         SupplyOrderItem supplyOrderItem = new SupplyOrderItem();
         model.addAttribute("supplyOrderItem", supplyOrderItem);
         List<SupplyOrder>supplyOrder = supplyOrderDAO.getAllSupplyOrders();
@@ -82,6 +99,10 @@ public class SupplyOrderController {
     @PostMapping("/supplyOrderItem/create")
     public String createsupplyOrderItemsPost(@ModelAttribute("supplyOrderItem") SupplyOrderItem supplyOrderItem, HttpSession session)
     {
+        if(!authenticationService.isAuthenticated(session)){
+            return "redirect:/login";
+        }
+
         supplyOrderItemDAO.insertSupplyOrderItem(supplyOrderItem);
         String status = supplyOrderDAO.getSupplyOrderByID(supplyOrderItem.getSupplyOrderID()).getDeliveryStatus();
         int quantity = supplyOrderItem.getQuantity();

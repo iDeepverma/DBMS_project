@@ -22,6 +22,9 @@ public class MvcConfig implements WebMvcConfigurer {
         if (dirName.startsWith("../")) {
             dirName.replace("../", "");
         }
+        if(System.getProperty("os.name").startsWith("Windows")){
+            uploadPath = "/"+uploadPath;
+        }
         registry.addResourceHandler("/" + dirName + "/**").addResourceLocations("file://" + uploadPath + "/");
         System.out.println("Hello World " + uploadPath);
         System.out.println("Hello World " + "/"+dirName+"/**");
