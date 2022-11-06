@@ -102,4 +102,13 @@ public class EmployeeMysql implements EmployeeDAO {
         };
         return jdbcTemplate.update(query,args);
     }
+
+    @Override
+    public int totalSales(int id){
+        String query = "SELECT SUM((quantity*sellingPrice)) FROM CustomerOrderItem,CustomerOrder WHERE CustomerOrder.servedBy=? AND CustomerOrderItem.orderID = CustomerOrder.orderID;";
+        Object args[] = new Object[]{
+                id
+        };
+        return jdbcTemplate.queryForObject(query,args,BeanPropertyRowMapper.newInstance(Integer.class));
+    }
 }
