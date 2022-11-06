@@ -48,8 +48,4 @@ public class EmployeeService {
     public int updatePassword(int id, String password){
         return employeeDAO.updatePassword(id, password);
     }
-
-    public int totalSales(int id){
-        return employeeDAO.totalSales(id);
-    }
 }

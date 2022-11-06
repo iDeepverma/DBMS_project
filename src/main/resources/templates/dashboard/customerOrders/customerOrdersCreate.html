@@ -62,9 +62,8 @@
                         </tr>
                         <tr>
                             <td>Employee ID:</td>
-                            <td><select class="form-control" th:field=*{servedBy}>
-<!--                                 <option value="">Select EmployeeID</option> -->
-                                <option th:each="employee : ${employee}" th:value="${employee.empID}" th:text="${employee.empID}"></option>
+                            <td><select class="form-control" th:field=*{servedBy} required>
+                                <option th:value="${id}" th:text="${id}"></option>
                             </select></td>
                         </tr>
                         <tr>

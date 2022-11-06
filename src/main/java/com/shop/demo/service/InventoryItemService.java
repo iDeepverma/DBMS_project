@@ -42,4 +42,8 @@ public class InventoryItemService {
     public int updateOrderID(int itemID, int orderID){
         return inventoryItemDAO.updateOrderID(itemID, orderID);
     }
+
+    public InventoryItem getInventoryItemByID(int id){
+        return inventoryItemDAO.getInventoryItemByID(id);
+    }
 }
