@@ -64,6 +64,8 @@ public class CustomerOrderController {
         if(!authenticationService.isAuthenticated(session)){
             return "redirect:/login";
         }
+        int id = authenticationService.getCurrentUser(session);
+        model.addAttribute("id" , id);
         List<Employee>employee = employeeDAO.getAllEmployee();
         List<Customer>customer = customerDAO.getAllCustomer();
         model.addAttribute("employee" , employee);

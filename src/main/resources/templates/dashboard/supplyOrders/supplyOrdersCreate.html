@@ -64,8 +64,7 @@
               <tr>
                 <td>Supplier ID:</td>
                 <td><select class="form-control" th:field=*{supplierID} required>
-                    <option th:each="supplier : ${supplier}" th:value="${supplier.supplierID}"
-                      th:text="${supplier.supplierID}"></option>
+                    <option th:value="${id}" th:text="${id}"></option>
                   </select></td>
               </tr>
               <tr>
