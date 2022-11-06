@@ -42,6 +42,7 @@ public class SupplyOrderController {
     private SupplyOrderItemDAO supplyOrderItemDAO;
     @Autowired
     private AuthenticationService authenticationService;
+
     @GetMapping("/supplyOrders")
     public String listSupplyOrders(Model model, HttpSession session){
         if(!authenticationService.isAuthenticated(session)){
