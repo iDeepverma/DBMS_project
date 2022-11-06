@@ -8,13 +8,11 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -38,12 +36,28 @@ public class InventoryItemController {
     private AuthenticationService authenticationService;
 
     @GetMapping("/inventoryItem")
-    public String inventoryItems(Model model, HttpSession session){
+    public String inventoryItems(Model model, HttpSession session, @RequestParam(required = false) String id){
         if(!authenticationService.isAuthenticated(session)){
             return "redirect:/login";
         }
-
-        List<InventoryItem> items = inventoryItemDAO.getAllInventoryItems();
+        
+        
+        List<InventoryItem> items = new ArrayList<>();
+        if (id == null || id == "") {
+//            List<InventoryItem> items = inventoryItemDAO.getAllInventoryItems();
+            items.addAll(inventoryItemDAO.getAllInventoryItems());
+        }
+        else {
+            int intid = Integer.parseInt(id);
+            try {
+                InventoryItem item = inventoryItemDAO.getInventoryItemByID(intid);
+                items.add(item);
+            }
+            catch (Exception e) {
+                System.out.println("ITEM NOT FOUND!");
+//                System.out.println(e);
+            }
+        }
         model.addAttribute("items",items);
         return "dashboard/inventoryItem/inventoryItem";
     }
