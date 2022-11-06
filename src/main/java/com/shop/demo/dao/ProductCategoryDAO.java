@@ -21,6 +21,6 @@ public interface ProductCategoryDAO {
 
     List<ProductCategory> getAllProductCategory();
 //    select category from ProductCategory where ProductCategory.name =name;
-    List<ProductCategory>getAllNames();
+
 
 }
