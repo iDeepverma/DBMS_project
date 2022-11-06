@@ -110,6 +110,10 @@ public class CustomerOrderController {
 //            System.out.println("Hello" + items.get(i).getItemID());
             inventoryItemDAO.updateOrderID(items.get(i).getItemID() , id);
         }
+        Product product = productDAO.getProductByID(customerOrderItem.getProductID());
+        int x = product.getAmountInStock() - customerOrderItem.getQuantity();
+        product.setAmountInStock(x);
+        productDAO.updateProduct(product.getProductID() , product);
         return "redirect:/customerOrder/";
     }
 

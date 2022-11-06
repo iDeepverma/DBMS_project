@@ -121,7 +121,12 @@ public class EmployeeController {
             return "redirect:/login";
         }
         List<Employee> employee = employeeDAO.getAllEmployee();
+        List<Integer> sales = new ArrayList<>();
+        for(int i=0;i<employee.size();i++){
+            sales.add(employeeDAO.totalSales(employee.get(i).getEmpID()));
+        }
         model.addAttribute("employee", employee);
+        model.addAttribute("sales",sales);
         return "dashboard/employee/employeeList";
     }
     @GetMapping ("/employee/create")

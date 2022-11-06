@@ -91,11 +91,12 @@
                 </tr>
               </thead>
               <tbody>
-                <tr th:each="employee : ${employee}">
+                <tr th:each="employee,iter : ${employee}">
                   <th scope="row" th:text="${employee.empID}">ID</th>
                   <td th:text="${employee.name}">Name</td>
                   <td th:text="${employee.phone}">Phone</td>
                   <td th:text="${employee.email}">Email</td>
+                  <td th:text="${sales[iter.index]}">Sales</td>
                   <td><a th:href="'/employee/edit/'+${employee.empID}"><button type="button"
                         class="btn btn-info">Edit</button></a></td>
                   <td><a th:href="'/employee/delete/'+${employee.empID}"><button type="button"
