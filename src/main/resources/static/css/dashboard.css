@@ -93,13 +93,16 @@ html::-webkit-scrollbar {
 .list-group-item {
   border: none;
   padding: 20px 30px;
+  /* transition: all 0.3s ease; */
 }
 
 .list-group-item.active {
   background-color: transparent;
-  color: var(--main-text-color);
+  color: #fff;
+  box-shadow: inset 0 0 0 50px var(--main-text-color);
   font-weight: bold;
   border: none;
+  /* transition: all 0.1s ease; */
 }
 
 @media (min-width: 768px) {
