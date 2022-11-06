@@ -62,8 +62,8 @@
                                  <td>Product Category: </td>
                                 <td>
                                     <select class="form-control" th:field=*{productCategory.category}>
-                                        <option th:each="category : ${categories}" th:value="${category.category}"
-                                                th:text="${category.category}"></option>
+                                        <option th:each="cat : ${categoryName}" th:value="${cat}"
+                                                th:text="${cat}"></option>
                                     </select>
                                 </td>
                                 <td>

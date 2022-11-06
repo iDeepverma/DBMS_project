@@ -116,7 +116,12 @@ public class ProductController {
         }
         ProductComplex productComplex = new ProductComplex();
         List<ProductCategory>categories = productCategoryDAO.getAllProductCategory();
-
+        List<String> categoryName = productCategoryDAO.getAllCategory();
+        System.out.println("Hello World "+ categoryName.size());
+        for(int i=0; i<categoryName.size(); i++){
+            System.out.println(categoryName.get(i));
+        }
+        model.addAttribute("categoryName", categoryName);
         model.addAttribute("categories",categories);
         model.addAttribute("productComplex", productComplex);
         return "dashboard/product/productCreate.html";
