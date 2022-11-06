@@ -59,7 +59,7 @@ create table Product(
  	warrantyCoverage LONGTEXT,
  	MRP int,
  	costPrice int,
- 	variant int,
+ 	variant varchar(1024),
  	amountInStock int,
  	name varchar(255),
  	photoPath varchar(1024),

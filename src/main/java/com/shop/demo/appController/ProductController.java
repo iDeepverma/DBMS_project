@@ -1,5 +1,6 @@
 package com.shop.demo.appController;
 
+import com.shop.demo.FileUploadUtil;
 import com.shop.demo.dao.CustomerOrderItemDAO;
 import com.shop.demo.model.*;
 import com.shop.demo.service.AuthenticationService;
@@ -9,9 +10,12 @@ import com.shop.demo.dao.ProductDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -55,10 +59,7 @@ public class ProductController {
         for(int i=0;i<category.size();i++){
             List<Product>temp =new Vector<Product>();
             temp = productCategoryDAO.getAllProductByCategory(category.get(i).getCategory());
-            for(int j=0;j<temp.size();j++){
-                System.out.println(temp.get(j).getProductID()+ " ");
-            }
-            System.out.println(category.get(i).getCategory());
+
             productCategorri.add(temp);
         }
         model.addAttribute("productCategorri",productCategorri);
@@ -91,7 +92,6 @@ public class ProductController {
                 for(int k=0;k<allitems.size();k++){
                     if(allitems.get(k).getProductID() ==  id){
                         totalrevenue = totalrevenue + (allitems.get(k).getQuantity())*(allitems.get(k).getSellingPrice());
-                        System.out.println(totalrevenue);
                         totalprofit = totalprofit + (allitems.get(k).getQuantity()*(allitems.get(k).getSellingPrice() - productDAO.getProductByID(allitems.get(i).getProductID()).getCostPrice()));
                     }
                 }
@@ -115,7 +115,7 @@ public class ProductController {
             return "redirect:/login";
         }
         Product product = new Product();
-        List<ProductCategory>names = productCategoryDAO.getAllNames();
+        List<ProductCategory>names = productCategoryDAO.getAllProductCategory();
         model.addAttribute("names",names);
         model.addAttribute("product", product);
         return "dashboard/product/productCreate.html";
@@ -123,14 +123,19 @@ public class ProductController {
 
 
     @PostMapping("/product/create")
-    public String createProductPost(@ModelAttribute("product") Product product, HttpSession session)
-    {
+    public String createProductPost(@ModelAttribute("product") Product product, @RequestParam("image") MultipartFile multipartFile, HttpSession session) throws IOException {
         if(!authenticationService.isAuthenticated(session)){
             return "redirect:/login";
         }
+
+        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+        product.setPhotoPath(fileName);
         productDAO.insertProduct(product);
+        FileUploadUtil.saveFile("product-photos/",fileName,multipartFile);
         return "redirect:/product/";
     }
+
+
     @GetMapping ("/productCategory/create")
     public String createProductCategory(Model model, HttpSession session)
     {
@@ -152,6 +157,8 @@ public class ProductController {
         productCategoryDAO.insertProductCategory(productCategory);
         return "redirect:/product/";
     }
+
+
     @GetMapping ("/product/delete/{id}")
     public String deleteProduct(@PathVariable("id") int id, HttpSession session)
     {
@@ -174,11 +181,17 @@ public class ProductController {
     }
 
     @PostMapping ("/product/edit/{id}")
-    public String editProductPost(@PathVariable("id") int id, @ModelAttribute("product") Product product, HttpSession session)
-    {
+    public String editProductPost(@PathVariable("id") int id, @ModelAttribute("product") Product product, @RequestParam("image") MultipartFile multipartFile,HttpSession session) throws IOException {
         if(!authenticationService.isAuthenticated(session)){
             return "redirect:/login";
         }
+        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+        if(fileName!=null){
+            product.setPhotoPath(fileName);
+            FileUploadUtil.saveFile("product-photos/",fileName,multipartFile);
+        }
+
+
         productDAO.updateProduct(id,product);
         return "redirect:/product/";
     }

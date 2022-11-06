@@ -48,6 +48,7 @@ public class EmployeeController {
     @Autowired
     private AuthenticationService authenticationService;
 
+
     @GetMapping ("/getAllEmployee")
     public String getAllEmployee(Model model, HttpSession session)
     {

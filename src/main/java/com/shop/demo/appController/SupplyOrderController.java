@@ -43,14 +43,14 @@ public class SupplyOrderController {
     @Autowired
     private AuthenticationService authenticationService;
     @GetMapping("/supplyOrders")
-    public String listSupplyOrders(Model model){
+    public String listSupplyOrders(Model model, HttpSession session){
         List<SupplyOrder> supplyOrders = supplyOrderDAO.getAllSupplyOrders();
         model.addAttribute("supplyOrders" , supplyOrders);
         return "dashboard/supplyOrders/supplyOrders";
     }
 
     @GetMapping ("/supplyOrders/create")
-    public String createSupplyOrders(Model model)
+    public String createSupplyOrders(Model model, HttpSession session)
     {
         SupplyOrder supplyOrder = new SupplyOrder();
         model.addAttribute("supplyOrder", supplyOrder);
@@ -62,13 +62,13 @@ public class SupplyOrderController {
     }
 
     @PostMapping("/supplyOrders/create")
-    public String createsupplyOrdersPost(@ModelAttribute("SupplyOrder") SupplyOrder SupplyOrder)
+    public String createsupplyOrdersPost(@ModelAttribute("SupplyOrder") SupplyOrder SupplyOrder, HttpSession session)
     {
         supplyOrderDAO.insertSupplyOrder(SupplyOrder);
         return "redirect:/supplyOrders/";
     }
     @GetMapping ("/supplyOrderItem/create")
-    public String createSupplyOrderItems(Model model)
+    public String createSupplyOrderItems(Model model, HttpSession session)
     {
         SupplyOrderItem supplyOrderItem = new SupplyOrderItem();
         model.addAttribute("supplyOrderItem", supplyOrderItem);
@@ -80,7 +80,7 @@ public class SupplyOrderController {
     }
 
     @PostMapping("/supplyOrderItem/create")
-    public String createsupplyOrderItemsPost(@ModelAttribute("supplyOrderItem") SupplyOrderItem supplyOrderItem)
+    public String createsupplyOrderItemsPost(@ModelAttribute("supplyOrderItem") SupplyOrderItem supplyOrderItem, HttpSession session)
     {
         supplyOrderItemDAO.insertSupplyOrderItem(supplyOrderItem);
         String status = supplyOrderDAO.getSupplyOrderByID(supplyOrderItem.getSupplyOrderID()).getDeliveryStatus();

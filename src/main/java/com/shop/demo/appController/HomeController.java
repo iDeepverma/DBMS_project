@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -21,7 +22,7 @@ public class HomeController {
     private ProductCategoryDAO productCategoryDAO;
 
     @GetMapping({"/","/home"})
-    public String homepage(Model model){
+    public String homepage(Model model, HttpSession session){
 
         List<Product> products =productDAO.getAllProduct();
         model.addAttribute( "products",products);

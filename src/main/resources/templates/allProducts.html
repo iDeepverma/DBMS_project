@@ -11,8 +11,8 @@
             <h1 class=" heading">Our <span>Products</span></h1>
             <hr>
             <div class="productCard">
-                <div class="card box" th:each="product: ${products}" data-aos="fade-up" data-aos-duration="1500">
-                    <img src="https://cdn.shopify.com/s/files/1/0598/7919/4823/products/71AvQd3VzqL._SS1500_750x.jpg?v=1654514896"
+                <div class="card box" th:each="product: ${products}">
+                    <img th:src="${product.getPicturePath()}"
                         alt="error">
                     <div class="">
                         <ul class="list-group list-group-flush">
