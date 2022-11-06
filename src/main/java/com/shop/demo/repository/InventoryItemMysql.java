@@ -99,6 +99,15 @@ public class InventoryItemMysql implements InventoryItemDAO {
         String query="SELECT * FROM InventoryItem;";
         return jdbcTemplate.query(query, inventoryItemBeanPropertyRowMapper);
     }
-
+    @Override
+    public InventoryItem getInventoryItemByID(int id){
+        BeanPropertyRowMapper<InventoryItem> inventoryItemBeanPropertyRowMapper = new BeanPropertyRowMapper<>(InventoryItem.class);
+        inventoryItemBeanPropertyRowMapper.setPrimitivesDefaultedForNullValue(true);
+        String query = "SELECT * FROM InventoryItem WHERE itemID=?";
+        Object[] args=new Object[]{
+                id
+        };
+        return jdbcTemplate.queryForObject(query, args ,inventoryItemBeanPropertyRowMapper);
+    }
 
 }

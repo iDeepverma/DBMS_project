@@ -24,4 +24,5 @@ public interface InventoryItemDAO {
 
     int updateOrderID(int itemID, int orderID);
 
+    InventoryItem getInventoryItemByID(int id);
 }

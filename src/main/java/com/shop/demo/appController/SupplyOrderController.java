@@ -48,7 +48,6 @@ public class SupplyOrderController {
         if(!authenticationService.isAuthenticated(session)){
             return "redirect:/login";
         }
-
         List<SupplyOrder> supplyOrders = supplyOrderDAO.getAllSupplyOrders();
         model.addAttribute("supplyOrders" , supplyOrders);
         return "dashboard/supplyOrders/supplyOrders";
@@ -60,7 +59,6 @@ public class SupplyOrderController {
         if(!authenticationService.isAuthenticated(session)){
             return "redirect:/login";
         }
-
         SupplyOrder supplyOrder = new SupplyOrder();
         int id = authenticationService.getCurrentUser(session);
         model.addAttribute("supplyOrder", supplyOrder);
@@ -78,7 +76,6 @@ public class SupplyOrderController {
         if(!authenticationService.isAuthenticated(session)){
             return "redirect:/login";
         }
-
         supplyOrderDAO.insertSupplyOrder(SupplyOrder);
         return "redirect:/supplyOrders/";
     }
@@ -88,7 +85,6 @@ public class SupplyOrderController {
         if(!authenticationService.isAuthenticated(session)){
             return "redirect:/login";
         }
-
         SupplyOrderItem supplyOrderItem = new SupplyOrderItem();
         model.addAttribute("supplyOrderItem", supplyOrderItem);
         List<SupplyOrder>supplyOrder = supplyOrderDAO.getAllSupplyOrders();
@@ -104,7 +100,6 @@ public class SupplyOrderController {
         if(!authenticationService.isAuthenticated(session)){
             return "redirect:/login";
         }
-
         supplyOrderItemDAO.insertSupplyOrderItem(supplyOrderItem);
         String status = supplyOrderDAO.getSupplyOrderByID(supplyOrderItem.getSupplyOrderID()).getDeliveryStatus();
         int quantity = supplyOrderItem.getQuantity();
