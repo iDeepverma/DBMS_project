@@ -4,6 +4,7 @@ import com.shop.demo.dao.CustomerDAO;
 import com.shop.demo.dao.CustomerOrderDAO;
 import com.shop.demo.model.Customer;
 import com.shop.demo.model.CustomerOrder;
+import com.shop.demo.model.InventoryItem;
 import com.shop.demo.service.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -56,12 +57,26 @@ public class DashboardController {
     }
 
     @GetMapping ("/customers")
-    public String listCustomers(Model model, HttpSession session)
+    public String listCustomers(Model model, HttpSession session, @RequestParam(required = false) String id)
     {
         if(!authenticationService.isAuthenticated(session)){
             return "redirect:/login";
         }
-        List<Customer> customers = customerDAO.getAllCustomer();
+        List<Customer> customers = new ArrayList<>();
+        if (id == null || id == "") {
+            customers = customerDAO.getAllCustomer();
+        }
+        else {
+            int intid = Integer.parseInt(id);
+            try {
+                Customer cust = customerDAO.getCustomerByID(intid);
+                customers.add(cust);
+            }
+            catch (Exception e) {
+                System.out.println("Customer NOT FOUND!");
+//                System.out.println(e);
+            }
+        }
         model.addAttribute("customers", customers);
         return "dashboard/customers/customerList";
     }
