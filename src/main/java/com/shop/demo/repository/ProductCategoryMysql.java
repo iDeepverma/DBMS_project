@@ -74,5 +74,21 @@ public class ProductCategoryMysql implements ProductCategoryDAO {
         return jdbcTemplate.queryForList(query,String.class);
 //        return jdbcTemplate.query(query,BeanPropertyRowMapper.newInstance(String.class));
     }
+     @Override
+     public int profitByCategory(String category1){
+        String query="SELECT SUM(quantity*(sellingPrice-costPrice)) FROM Product,CustomerOrderItem,ProductCategory WHERE ProductCategory.category=? AND Product.name=ProductCategory.name AND CustomerOrderItem.productID=Product.productID;";
+        Object[] args = new Object[]{
+                category1
+        };
+        return jdbcTemplate.queryForObject(query, args,BeanPropertyRowMapper.newInstance(Integer.class));
+     }
 
+    @Override
+    public int revenueByCategory(String category1){
+        String query="SELECT SUM(quantity*(sellingPrice)) FROM ProductCategory,Product,CustomerOrderItem WHERE ProductCategory.category=? AND Product.name=ProductCategory.name AND CustomerOrderItem.productID=Product.productID;";
+        Object[] args = new Object[]{
+                category1
+        };
+        return jdbcTemplate.queryForObject(query, args,BeanPropertyRowMapper.newInstance(Integer.class));
+    }
 }
