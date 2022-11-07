@@ -29,7 +29,6 @@ public class HomeController {
 
         List<String> categories =productCategoryDAO.getAllCategory();
         model.addAttribute( "cats",categories);
-        System.out.println("Files  are "+categories.size());
 
         return "home";
     }

@@ -74,7 +74,7 @@
           <div class="swiper-slide card" th:each="product: ${products}">
             <a th:href="'/productDetail/'+${product.getProductID()}">
               <img
-                th:src="${product.getPhotoPath()}"
+                th:src="${product.getPicturePath()}"
                 alt="">
               <h3 th:text="${product.getName()}"></h3>
               <div class="stars"> <i class="fas fa-star"></i>

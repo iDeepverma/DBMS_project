@@ -117,7 +117,7 @@ public class ProductController {
         ProductComplex productComplex = new ProductComplex();
         List<ProductCategory>categories = productCategoryDAO.getAllProductCategory();
         List<String> categoryName = productCategoryDAO.getAllCategory();
-        System.out.println("Hello World "+ categoryName.size());
+
         for(int i=0; i<categoryName.size(); i++){
             System.out.println(categoryName.get(i));
         }
@@ -136,7 +136,7 @@ public class ProductController {
         Product product = productComplex.getProduct();
         ProductCategory productCategory = productComplex.getProductCategory();
         productCategory.setName(product.getName());
-        System.out.println(productCategory.getCategory());
+
         productCategoryDAO.insertProductCategory(productCategory);
         String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
         product.setPhotoPath(fileName);
