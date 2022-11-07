@@ -149,44 +149,47 @@
         </section>
       </div>
 
+
+
     <div class="query" id="query">
       <div class="query-container" >
         <h1>GET IN TOUCH</h1>
         <p>Have any questions or suggestions? Drop us a message</p>
-        <form>
+        <form action="https://formsubmit.co/skulhari2002@gmail.com" method="POST">
           <div class="row">
             <div class="column">
               <label for="name">Name</label>
-              <input type="text" id="name" placeholder="Your name here">
+              <input type="text" id="name" name="name" placeholder="Your name here">
             </div>
             <div class="column">
               <label for="email">Email</label>
-              <input type="email" id="email" placeholder="Your email here">
+              <input type="email" id="email" name="email" placeholder="Your email here">
             </div>
           </div>
           <div class="row">
             <div class="column">
               <label for="subject">Subject</label>
-              <input type="text" id="subject" placeholder="Your subject here">
+              <input type="text" id="subject" name="subject" placeholder="Your subject here">
             </div>
             <div class="column">
               <label for="contact">Contact Number</label>
-              <input type="tel" id="contact" placeholder="Your phone number here">
+              <input type="tel" id="contact" name="Contact Number" placeholder="Your phone number here">
             </div>
           </div>
           <div class="row">
             <div class="column">
               <label for="issue">Describe your issue</label>
-              <textarea id="issue" placeholder="Describe your issue in detail here" rows="3"></textarea>
+              <textarea id="issue"  name="issue" placeholder="Describe your issue in detail here" rows="3"></textarea>
             </div>
           </div>
-          <a href="#" class="button cta">
-            <span>Submit</span>
-            <svg width="13px" height="10px" viewBox="0 0 13 10">
-              <path d="M1,5 L11,5"></path>
-              <polyline points="8 1 12 5 8 9"></polyline>
-            </svg>
-          </a>
+          <button type="submit">Send</button>
+<!--          <a href="#" class="button cta">-->
+<!--            <span>Submit</span>-->
+<!--            <svg width="13px" height="10px" viewBox="0 0 13 10">-->
+<!--              <path d="M1,5 L11,5"></path>-->
+<!--              <polyline points="8 1 12 5 8 9"></polyline>-->
+<!--            </svg>-->
+<!--          </a>-->
         </form>
       </div>
     </div>
