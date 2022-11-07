@@ -3,7 +3,9 @@ package com.shop.demo.model;
 import com.shop.demo.repository.CustomerOrderMysql;
 import com.shop.demo.repository.ProductMysql;
 
-public class CustomerOrderItem {
+public class
+
+CustomerOrderItem {
 
     private int orderID;
     private int quantity;
