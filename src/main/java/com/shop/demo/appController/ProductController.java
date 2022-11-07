@@ -136,6 +136,7 @@ public class ProductController {
         Product product = productComplex.getProduct();
         ProductCategory productCategory = productComplex.getProductCategory();
         productCategory.setName(product.getName());
+        System.out.println(productCategory.getCategory());
         productCategoryDAO.insertProductCategory(productCategory);
         String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
         product.setPhotoPath(fileName);

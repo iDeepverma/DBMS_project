@@ -60,20 +60,21 @@
                         <table border="0" cellpadding="10">
                             <tr>
                                  <td>Product Category: </td>
-                                <td>
+                                <td id="categorycontainer">
                                     <select class="form-control" th:field=*{productCategory.category}>
                                         <option th:each="cat : ${categoryName}" th:value="${cat}"
                                                 th:text="${cat}"></option>
                                     </select>
                                 </td>
+<!--                                <td id="newcategorycontainer">-->
+<!--                                    <input type="text" th:field=*{productCategory.category} />-->
+<!--                                </td>-->
                                 <td>
-                                    <a th:href="@{/product/createCategory}">
-                                        <button type="button" class="btn btn-success mb-2 ml-2">
+                                        <button type="button" class="btn btn-success mb-2 ml-2" onclick="makeCategoryText()">
                                             <span>
                                                 Create New Category
                                             </span>
                                         </button>
-                                    </a>
                                 </td>
                             </tr>
                             <tr>
@@ -150,6 +151,13 @@
                 alert("Failed to load file");
             }
         })
+
+</script>
+<script>
+function makeCategoryText() {
+        const categorycontainer = document.getElementById("categorycontainer");
+        categorycontainer.innerHTML = '<input type="text" id="productCategory.category" name="productCategory.category" value="">';
+    }
 </script>
 </body>
 
