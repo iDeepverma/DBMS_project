@@ -40,4 +40,10 @@ public class ProductCategoryService {
         return productCategoryDAO.getAllCategory();
     }
 
+    public int profitByCategory(String category1){
+        return productCategoryDAO.profitByCategory(category1);
+    }
+    public int revenueByCategory(String category1){
+        return productCategoryDAO.revenueByCategory(category1);
+    }
 }

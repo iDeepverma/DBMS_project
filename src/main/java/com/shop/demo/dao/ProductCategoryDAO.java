@@ -24,4 +24,6 @@ public interface ProductCategoryDAO {
 
     List<String> getAllCategory();
 
+    int profitByCategory(String category1);
+    int revenueByCategory(String category1);
 }

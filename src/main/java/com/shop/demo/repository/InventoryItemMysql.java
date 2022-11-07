@@ -96,7 +96,7 @@ public class InventoryItemMysql implements InventoryItemDAO {
         BeanPropertyRowMapper<InventoryItem> inventoryItemBeanPropertyRowMapper = new BeanPropertyRowMapper<>(InventoryItem.class);
         inventoryItemBeanPropertyRowMapper.setPrimitivesDefaultedForNullValue(true);
 
-        String query="SELECT * FROM InventoryItem;";
+        String query="SELECT * FROM InventoryItem WHERE orderID IS NULL;";
         return jdbcTemplate.query(query, inventoryItemBeanPropertyRowMapper);
     }
     @Override
