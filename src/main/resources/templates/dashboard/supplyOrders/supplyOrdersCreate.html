@@ -63,17 +63,16 @@
               </tr>
               <tr>
                 <td>Supplier ID:</td>
-                <td><select class="form-control" th:field=*{supplierID} required>
-                    <option th:each="supplier : ${supplier}" th:value="${supplier.supplierID}"
-                      th:text="${supplier.supplierID}"></option>
-                  </select></td>
+                <td><select class="form-control" th:field=*{supplierID}>
+                  <option th:each="supplier : ${supplier}" th:value="${supplier.supplierID}"
+                          th:text="${supplier.supplierID}"></option>
+                </select></td>
               </tr>
               <tr>
                 <td>Employee ID:</td>
-                <td><select class="form-control" th:field=*{placedBy} required>
-                    <option th:each="employee : ${employee}" th:value="${employee.empID}" th:text="${employee.empID}">
-                    </option>
-                  </select></td>
+                <td><select class="form-control" th:field="*{placedBy}">
+                <option th:value="${id}" th:text="${id}"></option>
+                </select></td>
               </tr>
               <tr>
                 <td colspan="2"><button type="submit" class="btn btn-primary m-1">Save</button> </td>

@@ -114,26 +114,38 @@ public class ProductController {
         if(!authenticationService.isAuthenticated(session)){
             return "redirect:/login";
         }
-        Product product = new Product();
-        List<ProductCategory>names = productCategoryDAO.getAllProductCategory();
-        model.addAttribute("names",names);
-        model.addAttribute("product", product);
+        ProductComplex productComplex = new ProductComplex();
+        List<ProductCategory>categories = productCategoryDAO.getAllProductCategory();
+        List<String> categoryName = productCategoryDAO.getAllCategory();
+        System.out.println("Hello World "+ categoryName.size());
+        for(int i=0; i<categoryName.size(); i++){
+            System.out.println(categoryName.get(i));
+        }
+        model.addAttribute("categoryName", categoryName);
+        model.addAttribute("categories",categories);
+        model.addAttribute("productComplex", productComplex);
         return "dashboard/product/productCreate.html";
     }
 
 
     @PostMapping("/product/create")
-    public String createProductPost(@ModelAttribute("product") Product product, @RequestParam("image") MultipartFile multipartFile, HttpSession session) throws IOException {
+    public String createProductPost(@ModelAttribute("product") ProductComplex productComplex, @RequestParam("image") MultipartFile multipartFile, HttpSession session) throws IOException {
         if(!authenticationService.isAuthenticated(session)){
             return "redirect:/login";
         }
-
+        Product product = productComplex.getProduct();
+        ProductCategory productCategory = productComplex.getProductCategory();
+        productCategory.setName(product.getName());
+        System.out.println(productCategory.getCategory());
+        productCategoryDAO.insertProductCategory(productCategory);
         String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
         product.setPhotoPath(fileName);
         productDAO.insertProduct(product);
         FileUploadUtil.saveFile("product-photos/",fileName,multipartFile);
         return "redirect:/product/";
     }
+
+
 
 
     @GetMapping ("/productCategory/create")

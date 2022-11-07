@@ -68,4 +68,11 @@ public class ProductCategoryMysql implements ProductCategoryDAO {
         return jdbcTemplate.queryForObject(query,args,BeanPropertyRowMapper.newInstance(ProductCategory.class));
     }
 
+    @Override
+    public List<String> getAllCategory(){
+        String query = "SELECT DISTINCT category FROM ProductCategory;";
+        return jdbcTemplate.queryForList(query,String.class);
+//        return jdbcTemplate.query(query,BeanPropertyRowMapper.newInstance(String.class));
+    }
+
 }

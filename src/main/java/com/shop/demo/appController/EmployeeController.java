@@ -123,7 +123,14 @@ public class EmployeeController {
         List<Employee> employee = employeeDAO.getAllEmployee();
         List<Integer> sales = new ArrayList<>();
         for(int i=0;i<employee.size();i++){
-            sales.add(employeeDAO.totalSales(employee.get(i).getEmpID()));
+
+            Employee emp = employee.get(i);
+            List<CustomerOrder>orders = employeeDAO.getServedOrdersByEmployee(emp.getEmpID());
+            int total = 0;
+            for(int j=0;j<orders.size();j++){
+                total = total + orders.get(j).getTotal();
+            }
+            sales.add(total);
         }
         model.addAttribute("employee", employee);
         model.addAttribute("sales",sales);

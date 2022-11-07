@@ -77,9 +77,21 @@
                 <div class="row my-5">
                     <h3 class="fs-4 mb-3">All Inventory Items</h3>
                     <div class="col">
-                        <a href="/inventoryItem/create" class="btn btn-success mb-2">
-                            <span>Create Inventory Item</span>
-                        </a>
+<!--                        <a href="/inventoryItem/search" class="btn btn-success mb-2">-->
+<!--                            <span>Search Inventory Item</span>-->
+                        <div class="d-flex bd-highlight">
+                            <a href="/inventoryItem/create" class="btn btn-success mb-2 mx-2">
+                                <span>Create Inventory Item</span>
+                            </a>
+
+                            <a href="/inventoryItem/create" class="btn btn-success mb-2 mx-2">
+                                <span>Create Inventory Item</span>
+                            </a>
+                            <form method="GET" target="" class="mx-2">
+                                <input type="text" placeholder="Item ID" name="id"/>
+                                <button class="btn btn-info">Search</button>
+                            </form>
+                        </div>
                         <table class="table bg-white rounded shadow-sm  table-hover">
                             <thead>
                                 <tr>

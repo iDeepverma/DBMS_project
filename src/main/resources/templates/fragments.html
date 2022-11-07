@@ -14,37 +14,35 @@
                     class="fas fa-user-secret me-2"></i>RK Computers</div>
             <div class="list-group list-group-flush my-3">
                 <a th:href="@{/dashboard}"
-                    class="list-group-item list-group-item-action bg-transparent second-text active"><i
+                    class="list-group-item list-group-item-action bg-transparent second-text tablinks "><i
                         class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
-
                 <a th:href="@{/home}"
-                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                    class="list-group-item list-group-item-action bg-transparent second-text tablinks fw-bold"><i
                         class="fas fa-project-diagram me-2"></i>Home</a>
-
-                <a th:href="@{/product}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-
+                <a th:href="@{/product}"
+                    class="list-group-item list-group-item-action bg-transparent second-text tablinks fw-bold"><i
                         class="fas fa-project-diagram me-2"></i>Products</a>
                 <a th:href="@{/inventoryItem}"
-                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                    class="list-group-item list-group-item-action bg-transparent second-text tablinks fw-bold"><i
                         class="fas fa-project-diagram me-2"></i>Inventory</a>
                 <a th:href="@{/customerOrder}"
-                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                    class="list-group-item list-group-item-action bg-transparent second-text tablinks fw-bold"><i
                         class="fas fa-project-diagram me-2"></i>Orders</a>
                 <a th:href="@{/customers}"
-                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                    class="list-group-item list-group-item-action bg-transparent second-text tablinks fw-bold"><i
                         class="fa-solid fa-user me-2"></i>Customers</a>
                 <a th:href="@{/suppliers}"
-                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                    class="list-group-item list-group-item-action bg-transparent second-text tablinks fw-bold"><i
                         class="fas fa-project-diagram me-2"></i>Supplier</a>
                 <a th:href="@{/supplyOrders}"
-                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                    class="list-group-item list-group-item-action bg-transparent second-text tablinks fw-bold"><i
                         class="fas fa-project-diagram me-2"></i>Supply Orders</a>
                 <a th:href="@{/employee}" th:if="${@empSer.getEmployeeByID(session.AUTH_USER).getRole()==1}"
-                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                    class="list-group-item list-group-item-action bg-transparent second-text tablinks fw-bold"><i
                         class="fa-solid fa-user me-2"></i>Employee</a>
 
                 <a th:href="@{/logout}"
-                    class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
+                    class="list-group-item list-group-item-action bg-transparent text-danger tablinks fw-bold"><i
                         class="fas fa-power-off me-2"></i>Logout</a>
             </div>
         </div>
@@ -58,7 +56,7 @@
 
     <nav th:fragment="topnav(heading)" class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
         <div class="d-flex align-items-center" id="menu-toggle">
-            <i class="fas fa-align-left primary-text fs-4 me-3" ></i>
+            <i class="fas fa-align-left primary-text fs-4 me-3"></i>
             <h2 class="fs-2 m-0" th:text="${heading}">DASBOARD</h2>
         </div>
 
@@ -104,12 +102,27 @@
                 nav_menu.classList.toggle("show");
             }
         </script>
+
         <script type="text/javascript" th:src="@{/JavaScript/jquery-3.6.1.min.js}"></script>
         <script type="text/javascript" th:src="@{/JavaScript/bootstrap.bundle.min.js}"></script>
         <script type="text/javascript" th:src="@{/JavaScript/bootstrap.min.js}"></script>
         <script type="text/javascript" th:src="@{/boot5/js/bootstrap.bundle.js}"></script>
         <script type="text/javascript" th:src="@{/boot5/js/bootstrap.min.js}"></script>
         <script type="text/javascript" th:src="@{/font-6/js/all.min.js}"></script>
+        <script>
+            $(document).ready(function () {
+                    var sideBarButtons = $(".tablinks");
+                    for (var i in sideBarButtons) {
+                        if (!sideBarButtons[i].pathname) {
+                            continue;
+                        }
+                        if (sideBarButtons[i].pathname == window.location.pathname) {
+                            sideBarButtons[i].className += ' active';
+                            console.log("Enabled button " + sideBarButtons[i]);
+                        }
+                    }
+                });
+        </script>
 
     </div>
 </body>
