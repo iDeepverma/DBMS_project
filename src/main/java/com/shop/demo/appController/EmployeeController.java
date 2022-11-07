@@ -123,6 +123,7 @@ public class EmployeeController {
         List<Employee> employee = employeeDAO.getAllEmployee();
         List<Integer> sales = new ArrayList<>();
         for(int i=0;i<employee.size();i++){
+
             Employee emp = employee.get(i);
             List<CustomerOrder>orders = employeeDAO.getServedOrdersByEmployee(emp.getEmpID());
             int total = 0;
