@@ -31,5 +31,4 @@ public interface EmployeeDAO {
 
     int updatePassword(int id, String password);
 
-    int totalSales(int id);
 }
