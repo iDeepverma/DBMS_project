@@ -45,14 +45,24 @@ public class CustomerOrderController {
     @Autowired
     private InventoryItemDAO inventoryItemDAO;
     @GetMapping("/customerOrder")
-    public String getAllcustomerOrders(Model model, HttpSession session){
+    public String getAllcustomerOrders(Model model, HttpSession session, @RequestParam(required = false) String id){
         if(!authenticationService.isAuthenticated(session)){
             return "redirect:/login";
         }
-        List<CustomerOrder> temp = customerOrderDAO.getAllCustomerOrders();
-        List<CustomerOrder>orders = new ArrayList<>();
-        for(int i=0;i<temp.size();i++){
-            orders.add(temp.get(i));
+        List<CustomerOrder> orders = new ArrayList<>();
+        if (id == null || id == "") {
+            orders = customerOrderDAO.getAllCustomerOrders();
+        }
+        else {
+            int intid = Integer.parseInt(id);
+            try {
+                CustomerOrder item = customerOrderDAO.getCustomerOrderByID(intid);
+                orders.add(item);
+            }
+            catch (Exception e) {
+                System.out.println("ORDER NOT FOUND!");
+//                System.out.println(e);
+            }
         }
         model.addAttribute("orders",orders);
         return "dashboard/customerOrders/customerOrders.html";

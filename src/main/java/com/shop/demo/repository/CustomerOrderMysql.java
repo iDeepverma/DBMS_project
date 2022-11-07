@@ -112,7 +112,7 @@ public class CustomerOrderMysql implements CustomerOrderDAO{
 
     @Override
     public List<CustomerOrder> getAllCustomerOrders(){
-        String query="SELECT * FROM CustomerOrder";
+        String query="SELECT * FROM CustomerOrder ORDER BY orderDate DESC ";
         return jdbcTemplate.query(query,BeanPropertyRowMapper.newInstance(CustomerOrder.class));
     }
 }

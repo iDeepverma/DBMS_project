@@ -16,10 +16,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Vector;
+import java.util.*;
+
 @Controller
 public class ProductController {
     @Autowired
@@ -68,31 +66,29 @@ public class ProductController {
     }
 
     @GetMapping ("/product")
-    public String listProducts(Model model, HttpSession session)
+    public String listProducts(Model model, HttpSession session, @RequestParam(required = false) String id)
     {
         if(!authenticationService.isAuthenticated(session)){
             return "redirect:/login";
         }
-        List<Product> product = productDAO.getAllProduct();
         List<Product>best = productDAO.bestProducts();
         model.addAttribute("best" , best);
-        model.addAttribute("product", product);
-        List<ProductCategory>category = productCategoryDAO.getAllProductCategory();
+        List<String>category = productCategoryDAO.getAllCategory();
         List<Long>profit = new ArrayList<>();
         List<Long>revenue = new ArrayList<>();
         List<String>Category = new ArrayList<>();
         int temp = 0;
         for(int i=0;i<category.size();i++){
             long totalrevenue = 0,totalprofit = 0;
-            String eachcat = category.get(i).getCategory();
-            List<Product>temp1 = productCategoryDAO.getAllProductByCategory(eachcat);
-            List<CustomerOrderItem>allitems = customerOrderItemDAO.getAllCustomerOrderItem();
-            for(int j=0;j<temp1.size();j++){
-                long id = temp1.get(j).getProductID();
-                for(int k=0;k<allitems.size();k++){
-                    if(allitems.get(k).getProductID() ==  id){
-                        totalrevenue = totalrevenue + (allitems.get(k).getQuantity())*(allitems.get(k).getSellingPrice());
-                        totalprofit = totalprofit + (allitems.get(k).getQuantity()*(allitems.get(k).getSellingPrice() - productDAO.getProductByID(allitems.get(i).getProductID()).getCostPrice()));
+            String eachcat = category.get(i);
+            List<CustomerOrderItem>items = customerOrderItemDAO.getAllCustomerOrderItem();
+            List<Product> products = productCategoryDAO.getAllProductByCategory(eachcat);
+            for(int j=0;j<items.size();j++){
+                CustomerOrderItem order = items.get(j);
+                for(int k=0;k<products.size();k++){
+                    if((products.get(k).getProductID()) == items.get(j).getProductID()){
+                        totalprofit = totalprofit + (items.get(j).getQuantity())*(items.get(j).getSellingPrice() - products.get(k).getCostPrice()) ;
+                        totalrevenue = totalrevenue + (items.get(j).getQuantity()*items.get(j).getSellingPrice());
                     }
                 }
             }
@@ -100,11 +96,28 @@ public class ProductController {
             revenue.add(totalrevenue);
             Category.add(eachcat);
         }
-        List<Product>temp1 = productDAO.getAllProduct();
-        model.addAttribute("temp1",temp1);
+        List<Product>product = new ArrayList<>();
+        if(id == null || id == "") {
+            product.addAll(productDAO.getAllProduct());
+        }
+        else{
+            int intid = Integer.parseInt(id);
+            System.out.println(intid);
+            try {
+                Product item = productDAO.getProductByID(intid);
+                product.add(item);
+            }
+            catch (Exception e) {
+                System.out.println("ITEM NOT FOUND!");
+//                System.out.println(e);
+            }
+        }
+        model.addAttribute("product",product);
         model.addAttribute("profit",profit);
         model.addAttribute("revenue",revenue);
         model.addAttribute("Category",Category);
+        List<Product>temp1 = productDAO.getAllProduct();
+        model.addAttribute("temp1",temp1);
         return "dashboard/product/productList";
     }
 
