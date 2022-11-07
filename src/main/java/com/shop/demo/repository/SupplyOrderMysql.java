@@ -109,7 +109,7 @@ public class SupplyOrderMysql implements SupplyOrderDAO {
 
         supplyOrderBeanPropertyRowMapper.setPrimitivesDefaultedForNullValue(true);
 
-        String query="SELECT * FROM SupplyOrder";
+        String query="SELECT * FROM SupplyOrder ORDER BY orderDate DESC";
         return jdbcTemplate.query(query , supplyOrderBeanPropertyRowMapper);
     }
 }
