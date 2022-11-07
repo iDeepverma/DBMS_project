@@ -68,10 +68,10 @@ public class InventoryItemController {
         if(!authenticationService.isAuthenticated(session)){
             return "redirect:/login";
         }
-        if(!authenticationService.isAdmin(session)){
-            System.out.println("Non admin trying to Access Employee page");
-            return "redirect:/error";
-        }
+//        if(!authenticationService.isAdmin(session)){
+//            System.out.println("Non admin trying to Access Employee page");
+//            return "redirect:/error";
+//        }
 
         InventoryItem inventoryItem = new InventoryItem();
         model.addAttribute("inventoryItem",inventoryItem );
@@ -90,10 +90,10 @@ public class InventoryItemController {
         if(!authenticationService.isAuthenticated(session)){
             return "redirect:/login";
         }
-        if(!authenticationService.isAdmin(session)){
-            System.out.println("Non admin trying to Access Employee page");
-            return "redirect:/error";
-        }
+//        if(!authenticationService.isAdmin(session)){
+//            System.out.println("Non admin trying to Access Employee page");
+//            return "redirect:/error";
+//        }
 
 
         inventoryItemDAO.insertItem(InventoryItem);
