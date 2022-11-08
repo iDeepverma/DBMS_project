@@ -12,24 +12,30 @@
             <hr>
             <div class="productCard">
                 <div class="card box" th:each="product: ${products}">
-                    <img th:src="${product.getPicturePath()}"
-                        alt="error">
+                    <div class='Prodimg-container'>
+
+                        <img th:src="${product.getPicturePath()}" alt="error">
+                    </div>
                     <div class="">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
                                 <h3 th:text="${product.getName()}"></h3>
                             </li>
                             <li class="list-group-item itm2">
-                                <sapn >Variant:</sapn><h4 th:text="' '+${product.getVariant()}"></h4>
+                                <sapn>Variant:</sapn>
+                                <h4 th:text="' '+${product.getVariant()}"></h4>
                             </li>
                             <li class="list-group-item itm2">
-                                <span >Warranty:</span><h4 th:text="' '+${product.getWarrantyLength()}"></h4>
+                                <span>Warranty:</span>
+                                <h4 th:text="' '+${product.getWarrantyLength()}"></h4>
                             </li>
                             <li class="list-group-item itm2">
-                                <span>MRP:</span><h4 th:text="' Rs.:'+ ${product.getMRP()}"></h4>
+                                <span>MRP:</span>
+                                <h4 th:text="' Rs.:'+ ${product.getMRP()}"></h4>
                             </li>
                             <li class="list-group-item itm2">
-                                <span>Description</span><h4 th:text="${product.getDescription()}"></h4>
+                                <span>Description</span>
+                                <h4 th:text="${product.getDescription()}" class="desc" maxlength="50"></h4>
                             </li>
                         </ul>
                         <div class="card-body">
@@ -47,6 +53,17 @@
     </main>
 
     <div th:insert="base :: footer" class="footer-wrap"></div>
+    <script>
+        $(document).ready(function () {
+
+            $('.desc').each(function (f) {
+
+                var newstr = $(this).text().substring(0, 50);
+                $(this).text(newstr + ".......");
+
+            });
+        })
+    </script>
 </body>
 
 </html>

@@ -49,8 +49,48 @@
         <!-- /#sidebar-wrapper -->
     </div>
 
-    <div th:fragment="testfrag">
-        <h1>TEST FRAGMENT</h1>
+    <div th:fragment="stats">
+        <div class="row g-3 my-2">
+            <div class="col-md-3">
+                <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                    <div>
+                        <h3 class="fs-2" th:text="${totalProd}"></h3>
+                        <p class="fs-5">Products</p>
+                    </div>
+                    <i class="fas fa-gift fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                </div>
+            </div>
+        
+            <div class="col-md-3">
+                <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                    <div>
+                        <h3 class="fs-2" th:text="${totalSales}"></h3>
+                        <p class="fs-5">Sales</p>
+                    </div>
+                    <i class="fas fa-hand-holding-usd fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                </div>
+            </div>
+        
+            <div class="col-md-3">
+                <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                    <div>
+                        <h3 class="fs-2" th:text="${totalCust}"></h3>
+                        <p class="fs-5">Customers</p>
+                    </div>
+                    <i class="fa-solid fa-user fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                </div>
+            </div>
+        
+            <div class="col-md-3">
+                <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                    <div>
+                        <h3 class="fs-2" th:text="${totalSuppliers}"></h3>
+                        <p class="fs-5">Suppliers</p>
+                    </div>
+                    <i class="fa-solid fa-truck fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                </div>
+            </div>
+        </div>
     </div>
 
 

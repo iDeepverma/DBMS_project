@@ -1,12 +1,10 @@
 package com.shop.demo.appController;
 
 import com.shop.demo.FileUploadUtil;
-import com.shop.demo.dao.CustomerOrderItemDAO;
+import com.shop.demo.dao.*;
 import com.shop.demo.model.*;
 import com.shop.demo.service.AuthenticationService;
 import org.springframework.stereotype.Controller;
-import com.shop.demo.dao.ProductCategoryDAO;
-import com.shop.demo.dao.ProductDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +27,11 @@ public class ProductController {
     @Autowired
     private AuthenticationService authenticationService;
 
+    @Autowired
+    private CustomerOrderDAO customerOrderDAO;
+
+    @Autowired
+    private SupplierDAO supplierDAO;
     @Autowired
     private CustomerOrderItemDAO customerOrderItemDAO;
     @GetMapping("/getproduct")
@@ -117,6 +120,19 @@ public class ProductController {
         model.addAttribute("revenue",revenue);
         model.addAttribute("Category",Category);
         List<Product>temp1 = productDAO.getAllProduct();
+
+        int totalCust = customerOrderDAO.getAllCustomerOrders().size();
+        int totalProd = productDAO.getAllProduct().size();
+        int totalSales = 0;
+        List<CustomerOrder> totSales = customerOrderDAO.getAllCustomerOrders();
+        for(int i=0;i<totSales.size();i++){
+            totalSales = totalSales + totSales.get(i).getTotal();
+        }
+        int totalSuppliers = supplierDAO.getAllSupplier().size();
+        model.addAttribute("totalCust", totalCust);
+        model.addAttribute("totalProd", totalProd);
+        model.addAttribute("totalSales", totalSales);
+        model.addAttribute("totalSuppliers", totalSuppliers);
         model.addAttribute("temp1",temp1);
         return "dashboard/product/productList";
     }

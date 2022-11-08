@@ -2,6 +2,8 @@ package com.shop.demo.appController;
 
 import com.shop.demo.dao.CustomerDAO;
 import com.shop.demo.dao.CustomerOrderDAO;
+import com.shop.demo.dao.ProductDAO;
+import com.shop.demo.dao.SupplierDAO;
 import com.shop.demo.model.Customer;
 import com.shop.demo.model.CustomerOrder;
 import com.shop.demo.model.InventoryItem;
@@ -35,6 +37,11 @@ public class DashboardController {
 
     @Autowired
     private AuthenticationService authenticationService;
+    @Autowired
+    private SupplierDAO supplierDAO;
+
+    @Autowired
+    private ProductDAO productDAO;
 
     @GetMapping("/dashboard")
     public String showDashboard(Model model, HttpSession session)
@@ -51,7 +58,18 @@ public class DashboardController {
                 break;
             }
         }
-
+        int totalCust = customerOrderDAO.getAllCustomerOrders().size();
+        int totalProd = productDAO.getAllProduct().size();
+        int totalSales = 0;
+        List<CustomerOrder> totSales = customerOrderDAO.getAllCustomerOrders();
+        for(int i=0;i<totSales.size();i++){
+            totalSales = totalSales + totSales.get(i).getTotal();
+        }
+        int totalSuppliers = supplierDAO.getAllSupplier().size();
+        model.addAttribute("totalCust", totalCust);
+        model.addAttribute("totalProd", totalProd);
+        model.addAttribute("totalSales", totalSales);
+        model.addAttribute("totalSuppliers", totalSuppliers);
         model.addAttribute("orders",orders);
         return "dashboard/dashboard";
     }
@@ -77,6 +95,19 @@ public class DashboardController {
 //                System.out.println(e);
             }
         }
+
+        int totalCust = customerOrderDAO.getAllCustomerOrders().size();
+        int totalProd = productDAO.getAllProduct().size();
+        int totalSales = 0;
+        List<CustomerOrder> totSales = customerOrderDAO.getAllCustomerOrders();
+        for(int i=0;i<totSales.size();i++){
+            totalSales = totalSales + totSales.get(i).getTotal();
+        }
+        int totalSuppliers = supplierDAO.getAllSupplier().size();
+        model.addAttribute("totalCust", totalCust);
+        model.addAttribute("totalProd", totalProd);
+        model.addAttribute("totalSales", totalSales);
+        model.addAttribute("totalSuppliers", totalSuppliers);
         model.addAttribute("customers", customers);
         return "dashboard/customers/customerList";
     }

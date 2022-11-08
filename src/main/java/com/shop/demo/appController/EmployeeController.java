@@ -57,6 +57,18 @@ public class EmployeeController {
         }
         List<Employee> employees =employeeDAO.getAllEmployee();
         model.addAttribute( "employees",employees);
+        int totalCust = customerOrderDAO.getAllCustomerOrders().size();
+        int totalProd = productDAO.getAllProduct().size();
+        int totalSales = 0;
+        List<CustomerOrder> totSales = customerOrderDAO.getAllCustomerOrders();
+        for(int i=0;i<totSales.size();i++){
+            totalSales = totalSales + totSales.get(i).getTotal();
+        }
+        int totalSuppliers = supplierDAO.getAllSupplier().size();
+        model.addAttribute("totalCust", totalCust);
+        model.addAttribute("totalProd", totalProd);
+        model.addAttribute("totalSales", totalSales);
+        model.addAttribute("totalSuppliers", totalSuppliers);
         return "allEmployee";
     }
 
@@ -108,6 +120,18 @@ public class EmployeeController {
         }
         List<Customer> customers =customerDAO.getAllCustomer();
         model.addAttribute( "customer",customers);
+        int totalCust = customerOrderDAO.getAllCustomerOrders().size();
+        int totalProd = productDAO.getAllProduct().size();
+        int totalSales = 0;
+        List<CustomerOrder> totSales = customerOrderDAO.getAllCustomerOrders();
+        for(int i=0;i<totSales.size();i++){
+            totalSales = totalSales + totSales.get(i).getTotal();
+        }
+        int totalSuppliers = supplierDAO.getAllSupplier().size();
+        model.addAttribute("totalCust", totalCust);
+        model.addAttribute("totalProd", totalProd);
+        model.addAttribute("totalSales", totalSales);
+        model.addAttribute("totalSuppliers", totalSuppliers);
         return "allCustomer";
     }
 
@@ -134,6 +158,18 @@ public class EmployeeController {
         }
         model.addAttribute("employee", employee);
         model.addAttribute("sales",sales);
+        int totalCust = customerOrderDAO.getAllCustomerOrders().size();
+        int totalProd = productDAO.getAllProduct().size();
+        int totalSales = 0;
+        List<CustomerOrder> totSales = customerOrderDAO.getAllCustomerOrders();
+        for(int i=0;i<totSales.size();i++){
+            totalSales = totalSales + totSales.get(i).getTotal();
+        }
+        int totalSuppliers = supplierDAO.getAllSupplier().size();
+        model.addAttribute("totalCust", totalCust);
+        model.addAttribute("totalProd", totalProd);
+        model.addAttribute("totalSales", totalSales);
+        model.addAttribute("totalSuppliers", totalSuppliers);
         return "dashboard/employee/employeeList";
     }
     @GetMapping ("/employee/create")
