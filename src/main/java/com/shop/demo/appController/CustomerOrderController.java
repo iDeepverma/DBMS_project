@@ -113,6 +113,11 @@ public class CustomerOrderController {
     @PostMapping("/customerOrderItem/create")
     public String createCustomerOrderItemPost(@ModelAttribute("customerOrderItem") CustomerOrderItem customerOrderItem, HttpSession session){
         customerOrderItemDAO.insertCustomerOrderItem(customerOrderItem);
+
+        CustomerOrder customerOrder = customerOrderDAO.getCustomerOrderByID(customerOrderItem.getOrderID());
+        customerOrder.setTotal(customerOrder.getTotal()+customerOrderItem.getSellingPrice()*customerOrderItem.getQuantity());
+        customerOrderDAO.updateCustomerOrder(customerOrder.getOrderID(),customerOrder);
+
         int id = customerOrderItem.getOrderID();
         System.out.println(id);
         List<InventoryItem>items = customerOrderItemDAO.updateOrderIDInInventory(customerOrderItem.getProductID());

@@ -101,6 +101,12 @@ public class SupplyOrderController {
             return "redirect:/login";
         }
         supplyOrderItemDAO.insertSupplyOrderItem(supplyOrderItem);
+
+        SupplyOrder supplyOrder = supplyOrderDAO.getSupplyOrderByID(supplyOrderItem.getSupplyOrderID());
+        supplyOrder.setTotalAmount(supplyOrder.getTotalAmount() + supplyOrderItem.getTotal());
+        supplyOrderDAO.updateSupplyOrder(supplyOrder.getOrderID(),supplyOrder);
+
+
         String status = supplyOrderDAO.getSupplyOrderByID(supplyOrderItem.getSupplyOrderID()).getDeliveryStatus();
         int quantity = supplyOrderItem.getQuantity();
         if(status.equals("Delivered")) {
