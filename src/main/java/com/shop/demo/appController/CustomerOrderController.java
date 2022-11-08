@@ -75,10 +75,10 @@ public class CustomerOrderController {
             return "redirect:/login";
         }
         int id = authenticationService.getCurrentUser(session);
-        model.addAttribute("id" , id);
-        List<Employee>employee = employeeDAO.getAllEmployee();
+        model.addAttribute("employee" , employeeDAO.getEmployeeByID(id));
+//        List<Employee>employee = employeeDAO.getAllEmployee();
         List<Customer>customer = customerDAO.getAllCustomer();
-        model.addAttribute("employee" , employee);
+//        model.addAttribute("employee" , employee);
         model.addAttribute("customer" , customer);
         CustomerOrder customerOrder = new CustomerOrder();
         model.addAttribute("customerOrder", customerOrder);
@@ -133,9 +133,12 @@ public class CustomerOrderController {
         if(!authenticationService.isAuthenticated(session)){
             return "redirect:/login";
         }
-        List<Employee>employee = employeeDAO.getAllEmployee();
+        int uid = authenticationService.getCurrentUser(session);
+        model.addAttribute("employee" , employeeDAO.getEmployeeByID(uid));
+
+//        List<Employee>employee = employeeDAO.getAllEmployee();
         List<Customer>customer = customerDAO.getAllCustomer();
-        model.addAttribute("employee" , employee);
+//        model.addAttribute("employee" , employee);
         model.addAttribute("customer" , customer);
         CustomerOrder customerOrder = customerOrderDAO.getCustomerOrderByID(id);
         model.addAttribute("customerOrder", customerOrder);

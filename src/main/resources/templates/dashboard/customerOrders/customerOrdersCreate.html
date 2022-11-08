@@ -57,14 +57,15 @@
                             <td>Customer ID:</td>
                             <td><select class="form-control" th:field=*{customerID} required>
 <!--                                 <option value="">Select CustomerID</option> -->
-                                <option th:each="customer : ${customer}" th:value="${customer.customerID}" th:text="${customer.customerID}"></option>
+                                <option th:each="customer : ${customer}" th:value="${customer.customerID}" th:text="${customer.name+ '('+ customer.customerID+')'}"></option>
                             </select></td>
                         </tr>
                         <tr>
                             <td>Employee ID:</td>
-                            <td><select class="form-control" th:field=*{servedBy} required>
-                                <option th:value="${id}" th:text="${id}"></option>
+                            <td><select class="form-control" th:field=*{servedBy} >
+                                <option th:value="${employee.empID}" th:text="${employee.name}" ></option>
                             </select></td>
+<!--                            <input type="text" th:field="*{servedBy}" th:value="${employee.empID}" hidden />-->
                         </tr>
                         <tr>
                             <td colspan="2"><button type="submit" class="btn btn-primary mb-2">Save</button> </td>

@@ -59,15 +59,17 @@
             </tr>
             <tr>
               <td>Customer ID:</td>
-              <td><select class="form-control" th:field=*{customerID}>
+              <td><select class="form-control" th:field=*{customerID} disabled>
                 <option th:each="customer : ${customer}" th:value="${customer.customerID}" th:text="${customer.customerID}"></option>
               </select></td>
+              <input type="text" th:field="*{customerID}" hidden />
             </tr>
             <tr>
               <td>Employee ID:</td>
-              <td><select class="form-control" th:field=*{servedBy}>
-                <option th:each="employee : ${employee}" th:value="${employee.empID}" th:text="${employee.empID}"></option>
+              <td><select class="form-control" th:field=*{servedBy} disabled>
+                <option th:each="employee : ${employee}" th:value="${employee.empID}" th:text="${employee.name}"></option>
               </select></td>
+              <input type="text" th:field="*{servedBy}" hidden />
             </tr>
             <tr>
               <td colspan="2"><button type="submit" class="btn btn-primary mb-2">Update</button> </td>

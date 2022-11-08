@@ -62,11 +62,11 @@ public class SupplyOrderController {
         SupplyOrder supplyOrder = new SupplyOrder();
         int id = authenticationService.getCurrentUser(session);
         model.addAttribute("supplyOrder", supplyOrder);
-        List<Employee>employee = employeeDAO.getAllEmployee();
+//        List<Employee>employee = employeeDAO.getAllEmployee();
         List<Supplier>supplier = supplierDAO.getAllSupplier();
         model.addAttribute("supplier" , supplier);
-        model.addAttribute("employee" , employee);
-        model.addAttribute("id" , id);
+        model.addAttribute("employee" , employeeDAO.getEmployeeByID(id));
+//        model.addAttribute("id" , id);
         return "dashboard/supplyOrders/supplyOrdersCreate";
     }
 
