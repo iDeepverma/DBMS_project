@@ -47,6 +47,7 @@ public class InventoryItemController {
         
         List<InventoryItem> items = new ArrayList<>();
         if (id == null || id == "") {
+//            System.out.println(inventoryItemDAO.getAllInventoryItems());
 //            List<InventoryItem> items = inventoryItemDAO.getAllInventoryItems();
             items.addAll(inventoryItemDAO.getAllInventoryItems());
         }
@@ -74,6 +75,7 @@ public class InventoryItemController {
         model.addAttribute("totalSales", totalSales);
         model.addAttribute("totalSuppliers", totalSuppliers);
         model.addAttribute("items",items);
+        System.out.println(items);
         return "dashboard/inventoryItem/inventoryItem";
     }
 

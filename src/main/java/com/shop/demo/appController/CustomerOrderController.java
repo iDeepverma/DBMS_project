@@ -78,6 +78,7 @@ public class CustomerOrderController {
         model.addAttribute("totalProd", totalProd);
         model.addAttribute("totalSales", totalSales);
         model.addAttribute("totalSuppliers", totalSuppliers);
+        model.addAttribute("orders", orders);
         return "dashboard/customerOrders/customerOrders.html";
     }
 
@@ -180,6 +181,21 @@ public class CustomerOrderController {
         }
         List<CustomerOrderItem> items = customerOrderItemDAO.getCustomerOrderItemByCustomerOrder(id);
         model.addAttribute("items" , items);
+
+
+        int totalCust = customerOrderDAO.getAllCustomerOrders().size();
+        int totalProd = productDAO.getAllProduct().size();
+        int totalSales = 0;
+        List<CustomerOrder> totSales = customerOrderDAO.getAllCustomerOrders();
+        for(int i=0;i<totSales.size();i++){
+            totalSales = totalSales + totSales.get(i).getTotal();
+        }
+        int totalSuppliers = supplierDAO.getAllSupplier().size();
+        model.addAttribute("totalCust", totalCust);
+        model.addAttribute("totalProd", totalProd);
+        model.addAttribute("totalSales", totalSales);
+        model.addAttribute("totalSuppliers", totalSuppliers);
+
         return "dashboard/customerOrders/customerOrderSearch";
     }
 }
