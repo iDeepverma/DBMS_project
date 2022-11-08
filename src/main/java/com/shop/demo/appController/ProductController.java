@@ -86,17 +86,17 @@ public class ProductController {
             String eachcat = category.get(i);
             List<CustomerOrderItem>items = customerOrderItemDAO.getAllCustomerOrderItem();
             List<Product> products = productCategoryDAO.getAllProductByCategory(eachcat);
-            for(int j=0;j<items.size();j++){
-                CustomerOrderItem order = items.get(j);
-                for(int k=0;k<products.size();k++){
-                    if((products.get(k).getProductID()) == items.get(j).getProductID()){
-                        totalprofit = totalprofit + (items.get(j).getQuantity())*(items.get(j).getSellingPrice() - products.get(k).getCostPrice()) ;
-                        totalrevenue = totalrevenue + (items.get(j).getQuantity()*items.get(j).getSellingPrice());
-                    }
-                }
-            }
-            profit.add(totalprofit);
-            revenue.add(totalrevenue);
+//            for(int j=0;j<items.size();j++){
+//                CustomerOrderItem order = items.get(j);
+//                for(int k=0;k<products.size();k++){
+//                    if((products.get(k).getProductID()) == items.get(j).getProductID()){
+//                        totalprofit = totalprofit + (items.get(j).getQuantity())*(items.get(j).getSellingPrice() - products.get(k).getCostPrice()) ;
+//                        totalrevenue = totalrevenue + (items.get(j).getQuantity()*items.get(j).getSellingPrice());
+//                    }
+//                }
+//            }
+            profit.add(productCategoryDAO.profitByCategory(eachcat));
+            revenue.add(productCategoryDAO.revenueByCategory(eachcat));
             Category.add(eachcat);
         }
         List<Product>product = new ArrayList<>();
@@ -123,11 +123,7 @@ public class ProductController {
 
         int totalCust = customerOrderDAO.getAllCustomerOrders().size();
         int totalProd = productDAO.getAllProduct().size();
-        int totalSales = 0;
-        List<CustomerOrder> totSales = customerOrderDAO.getAllCustomerOrders();
-        for(int i=0;i<totSales.size();i++){
-            totalSales = totalSales + totSales.get(i).getTotal();
-        }
+        int totalSales = customerOrderDAO.getTotalSales();
         int totalSuppliers = supplierDAO.getAllSupplier().size();
         model.addAttribute("totalCust", totalCust);
         model.addAttribute("totalProd", totalProd);
