@@ -95,6 +95,8 @@ public class CustomerOrderController {
 //        model.addAttribute("employee" , employee);
         model.addAttribute("customer" , customer);
         CustomerOrder customerOrder = new CustomerOrder();
+//       current date
+        customerOrder.setOrderDate(new java.util.Date());
         model.addAttribute("customerOrder", customerOrder);
         return "dashboard/customerOrders/customerOrdersCreate";
     }
@@ -105,6 +107,8 @@ public class CustomerOrderController {
         if(!authenticationService.isAuthenticated(session)){
             return "redirect:/login";
         }
+//       setting date to current date
+        customerOrder.setOrderDate(new java.util.Date());
         customerOrderDAO.insertCustomerOrder(customerOrder);
         return "redirect:/customerOrder/";
     }
