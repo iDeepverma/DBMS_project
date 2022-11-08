@@ -19,7 +19,7 @@
     </div>
 
     <div class="" id="service" data-aos="slide-up" data-aos-duration="1500">
-      <section class="services" >
+      <section class="services">
 
         <h1 class="heading"> Our <span>Services</span> </h1>
 
@@ -28,21 +28,22 @@
           <div class="f-box">
             <img th:src="@{/images/anti.png}" alt="">
             <h3>Free Antivirus</h3>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt, earum!</p>
+            <p>Get your PC's and Laptop's secured with the best in industry antivirus softwares.</p>
             <!-- <div class="btn"><a href="#" class="btn">read more</a></div> -->
           </div>
 
           <div class="f-box">
-            <img th:src="@{/images/anti.png}" alt="">
+            <img th:src="@{/images/lifetime.jpg}" alt="">
             <h3>Lifetime Support</h3>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt, earum!</p>
+            <p>We provide the best after-services possible and ensure that your experience with our products is
+              seamless.</p>
             <!-- <div class="btn"><a href="#" class="btn">read more</a></div> -->
           </div>
 
           <div class="f-box">
-            <img th:src="@{/images/anti.png}" alt="">
+            <img th:src="@{/images/exwar.jpg}" alt="">
             <h3>Extended Warranty</h3>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt, earum!</p>
+            <p>To make sure the safety of your product we also provice extended warrant at nominal prices.</p>
             <!-- <div class="btn"><a href="#" class="btn">read more</a></div> -->
           </div>
 
@@ -73,9 +74,10 @@
         <div class="container  product-slider slider">
           <div class="swiper-slide card" th:each="product: ${products}">
             <a th:href="'/productDetail/'+${product.getProductID()}">
-              <img
-                th:src="${product.getPicturePath()}"
-                alt="">
+              <div class='Prodimg-container'>
+
+                <img th:src="${product.getPicturePath()}" alt="error">
+              </div>
               <h3 th:text="${product.getName()}"></h3>
               <div class="stars"> <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
@@ -95,7 +97,7 @@
     </div>
 
 
-    <div class="categories" data-aos="fade-up"  data-aos-duration="1500" id="Categories">
+    <div class="categories" data-aos="fade-up" data-aos-duration="1500" id="Categories">
       <section class="sectionHome">
         <h1 class="heading">
           OUR <span>Categories</span>
@@ -104,9 +106,7 @@
         <div class="box-container container slider">
           <div class="card box" th:each="each: ${cats}">
             <a th:href="'allProducts/'+${each}">
-              <img
-                th:src="@{/images/anti.png}"
-                alt="">
+              <img th:src="@{/images/categ.jpg}" alt="">
               <h3 class="" th:text="${each}"></h3>
               <!-- <ul class="list-group list-group-flush">
                   <li class="list-group-item">
@@ -122,37 +122,37 @@
       </section>
     </div>
 
-      <div class="" data-aos="fade-up">
-        <section class="services">
-      
-          <h1 class="heading"> Our <span>Distributers</span> </h1>
-      
-          <div class="f-box-container">
-      
-            <div class="f-box asus">
-              <img th:src="@{/images/hp.png}" alt="">
-              <!-- <h3>Free Antivirus</h3> -->
-            </div>
-      
-            <div class="f-box">
-              <img th:src="@{/images/asus.png}" alt="">
-              <!-- <h3>Lifetime Support</h3> -->
-            </div>
-      
-            <div class="f-box dell">
-              <img th:src="@{/images/deell.png}" alt="">
-              <!-- <h3>Extended Warranty</h3> -->
-            </div>
-      
+    <div class="" data-aos="fade-up">
+      <section class="services">
+
+        <h1 class="heading"> Our <span>Distributers</span> </h1>
+
+        <div class="f-box-container">
+
+          <div class="f-box asus">
+            <img th:src="@{/images/hp.png}" alt="">
+            <!-- <h3>Free Antivirus</h3> -->
           </div>
-      
-        </section>
-      </div>
+
+          <div class="f-box">
+            <img th:src="@{/images/asus.png}" alt="">
+            <!-- <h3>Lifetime Support</h3> -->
+          </div>
+
+          <div class="f-box dell">
+            <img th:src="@{/images/deell.png}" alt="">
+            <!-- <h3>Extended Warranty</h3> -->
+          </div>
+
+        </div>
+
+      </section>
+    </div>
 
 
 
     <div class="query" id="query">
-      <div class="query-container" >
+      <div class="query-container">
         <h1>GET IN TOUCH</h1>
         <p>Have any questions or suggestions? Drop us a message</p>
         <form action="https://formsubmit.co/skulhari2002@gmail.com" method="POST">
@@ -179,24 +179,26 @@
           <div class="row">
             <div class="column">
               <label for="issue">Describe your issue</label>
-              <textarea id="issue"  name="issue" placeholder="Describe your issue in detail here" rows="3"></textarea>
+              <textarea id="issue" name="issue" placeholder="Describe your issue in detail here" rows="3"></textarea>
             </div>
           </div>
-          <button type="submit">Send</button>
-<!--          <a href="#" class="button cta">-->
-<!--            <span>Submit</span>-->
-<!--            <svg width="13px" height="10px" viewBox="0 0 13 10">-->
-<!--              <path d="M1,5 L11,5"></path>-->
-<!--              <polyline points="8 1 12 5 8 9"></polyline>-->
-<!--            </svg>-->
-<!--          </a>-->
+          <button type="submit" class="button cta">Send <svg width="13px" height="10px" viewBox="0 0 13 10">-->
+              <path d="M1,5 L11,5"></path>
+              <polyline points="8 1 12 5 8 9"></polyline></button>
+          <!--          <a href="#" class="button cta">-->
+          <!--            <span>Submit</span>-->
+          <!--            <svg width="13px" height="10px" viewBox="0 0 13 10">-->
+          <!--              <path d="M1,5 L11,5"></path>-->
+          <!--              <polyline points="8 1 12 5 8 9"></polyline>-->
+          <!--            </svg>-->
+          <!--          </a>-->
         </form>
       </div>
     </div>
   </main>
   <div class="cursor"></div>
   <div th:insert="base :: footer" class="footer-wrap"></div>
-  
+
 </body>
 
 </html>

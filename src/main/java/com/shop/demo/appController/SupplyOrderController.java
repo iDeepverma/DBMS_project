@@ -27,6 +27,8 @@ public class SupplyOrderController {
     private SupplyOrderDAO supplyOrderDAO;
 
     @Autowired
+    private CustomerOrderDAO customerOrderDAO;
+    @Autowired
     private SupplierDAO supplierDAO;
 
     @Autowired
@@ -49,6 +51,19 @@ public class SupplyOrderController {
             return "redirect:/login";
         }
         List<SupplyOrder> supplyOrders = supplyOrderDAO.getAllSupplyOrders();
+
+        int totalCust = customerOrderDAO.getAllCustomerOrders().size();
+        int totalProd = productDAO.getAllProduct().size();
+        int totalSales = 0;
+        List<CustomerOrder> totSales = customerOrderDAO.getAllCustomerOrders();
+        for(int i=0;i<totSales.size();i++){
+            totalSales = totalSales + totSales.get(i).getTotal();
+        }
+        int totalSuppliers = supplierDAO.getAllSupplier().size();
+        model.addAttribute("totalCust", totalCust);
+        model.addAttribute("totalProd", totalProd);
+        model.addAttribute("totalSales", totalSales);
+        model.addAttribute("totalSuppliers", totalSuppliers);
         model.addAttribute("supplyOrders" , supplyOrders);
         return "dashboard/supplyOrders/supplyOrders";
     }
