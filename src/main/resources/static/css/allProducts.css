@@ -8,7 +8,6 @@
 
 .productCard .card {
     margin: 1.5rem 1rem;
-    min-width: 15rem;
     height: auto;
     display: flex;
     justify-content: center;
@@ -17,20 +16,42 @@
     transition-property: all;
     transition-duration: 0.2s;
     transition-timing-function: linear;
-    min-width: 23rem;
-    max-width: 23rem;
+    min-width: 25rem;
+    max-width: 25rem;
     box-sizing: border-box;
     box-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, .1);
     outline: .3rem solid var(--sec-light);
     outline-offset: -1rem;
 }
 
+.productCard .card {
+    text-align: center;
+}
+
 .card img {
-    width: 9rem;
+    /* width: 80%; */
+    /* max-width: 60%;
+    max-height: 40%;
     padding: 2rem 0px;
     margin: auto;
-    box-sizing: border-box;
+    box-sizing: border-box; */
 
+}
+
+.Prodimg-container {
+       max-width: 18rem;
+       min-width: 18rem;
+       max-height: 18rem;
+       min-height: 18rem;
+       padding: 2rem 0px;
+       margin: auto;
+       box-sizing: border-box;
+       overflow: hidden;
+}
+
+.Prodimg-container img {
+    width: 100%;
+    height: auto;
 }
 
 /* .card-body {
@@ -48,7 +69,7 @@
 
 }
 
-.list-group .list-group-item  span {
+.list-group .list-group-item span {
     font-size: 1rem;
     font-family: Roboto,
         Geneva,
