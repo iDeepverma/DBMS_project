@@ -47,15 +47,15 @@
                             </tr>
                             <tr>
                                 <td>Quantity:</td>
-                                <td><input type="text" th:field="*{quantity}" required/></td>
+                                <td><input type="text" th:field="*{quantity}" pattern="[0-9]+" required/></td>
                             </tr>
                             <tr>
                                 <td>Selling Price:</td>
-                                <td><input type="text" th:field="*{sellingPrice}" required/></td>
+                                <td><input type="text" th:field="*{sellingPrice}" pattern="[0-9]+" required/></td>
                             </tr>
                             <tr>
                                 <td>Additional Info:</td>
-                                <td><input type="text" th:field="*{additionalInfo}" required/></td>
+                                <td><input type="text" th:field="*{additionalInfo}" /></td>
                             </tr>
                             <tr>
                                 <td>Product ID:</td>

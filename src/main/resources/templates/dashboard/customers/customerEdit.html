@@ -47,7 +47,7 @@
                         </tr>
                         <tr>
                             <td>Phone:</td>
-                            <td><input type="text" th:field="*{phone}" required/></td>
+                            <td><input type="text" th:field="*{phone}" pattern="[0-9]{10}" required/></td>
                         </tr>
                         <tr>
                             <td>Email:</td>

@@ -84,7 +84,7 @@
 <!--                                <span>Create Inventory Item</span>-->
 <!--                            </a>-->
                             <form method="GET" target="" class="mx-2">
-                                <input type="text" placeholder="Item ID" name="id"/>
+                                <input type="text" placeholder="Item ID" name="id" pattern="[0-9]*"/>
                                 <button class="btn btn-info">Search</button>
                             </form>
                         </div>
@@ -94,7 +94,7 @@
                                     <th scope="col" width="50"></th>
                                     <th scope="col">Item ID</th>
                                     <th scope="col">Supply Order ID</th>
-                                    <th scope="col">orderID</th>
+                                    <th scope="col">Product Name</th>
                                     <th scope="col">product ID</th>
                                     <th scope="col"></th>
                                     <th scope="col"></th>
@@ -105,7 +105,8 @@
                                     <th scope="row"></th>
                                     <td th:text="${items.itemID}">Item ID</td>
                                     <td th:text="${items.supplyOrderID}">supplyOrderID</td>
-                                    <td th:text="${items.orderID}">orderID</td>
+                                    <td th:text="${@product_mysql_repo.getProductByID(items.productID).name}">product name</td>
+
                                     <td th:text="${items.productID}">Product ID</td>
                                     <!--                            <td><a th:href="'/customers/edit/'+${customer.customerID}"><button type="button" class="btn btn-info">Edit</button></a></td>-->
                                     <!--                            <td><a th:href="'/customers/delete/'+${customer.customerID}"><button type="button" class="btn btn-danger">Delete</button></a></td>-->

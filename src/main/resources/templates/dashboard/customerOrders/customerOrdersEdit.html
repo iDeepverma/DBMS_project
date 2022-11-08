@@ -47,7 +47,7 @@
             </tr>
             <tr>
               <td>Transaction ID:</td>
-              <td><input type="text" th:field="*{transactionID}" required/></td>
+              <td><input type="text" th:field="*{transactionID}" pattern="[0-9]+" required/></td>
             </tr>
             <tr>
               <td>Mode of Payment:</td>
@@ -55,7 +55,7 @@
             </tr>
             <tr>
               <td>Total:</td>
-              <td><input type="text" th:field="*{total}" required/></td>
+              <td><input type="text" th:field="*{total}" pattern="[0-9]+" required/></td>
             </tr>
             <tr>
               <td>Customer ID:</td>

@@ -43,7 +43,7 @@
                         </tr>
                         <tr>
                             <td>Transaction ID:</td>
-                            <td><input type="text" th:field="*{transactionID}" required/></td>
+                            <td><input type="text" th:field="*{transactionID}" pattern="[0-9]+" required/></td>
                         </tr>
                         <tr>
                             <td>Mode of Payment:</td>
