@@ -152,24 +152,32 @@ public class SupplyOrderController {
         if(!authenticationService.isAuthenticated(session)){
             return "redirect:/login";
         }
+        SupplyOrder supplyOrder1 = supplyOrderDAO.getSupplyOrderByID(id);
         String finalStatus = supplyOrder.getDeliveryStatus();
-        supplyOrderDAO.updateSupplyOrder(supplyOrder.getOrderID(), supplyOrder);
+        if(supplyOrder1.getDeliveryStatus().equals("In-transit") && finalStatus.equals("Delivered")) {
+            supplyOrderDAO.updateSupplyOrder(supplyOrder.getOrderID(), supplyOrder);
             List<SupplyOrderItem> temp = supplyOrderItemDAO.getAllSupplyOrderItems(supplyOrder.getOrderID());
             for (int i = 0; i < temp.size(); i++) {
                 SupplyOrderItem x = temp.get(i);
                 int quantity = x.getQuantity();
                 for(int j=0;j<quantity;j++){
-                    Product extra = new Product();
-                    extra = productDAO.getProductByID(x.getProductID());
-                    int amnt = extra.getAmountInStock() + quantity;
-                    extra.setAmountInStock(amnt);
-                    productDAO.updateProduct(x.getProductID() , extra);
                     InventoryItem item = new InventoryItem();
                     item.setSupplyOrderID(x.getSupplyOrderID());
                     item.setProductID(x.getProductID());
                     inventoryItemDAO.insertItemUnsold(item);
                 }
+                Product extra = new Product();
+                extra = productDAO.getProductByID(x.getProductID());
+                int amnt = extra.getAmountInStock() + quantity;
+                extra.setAmountInStock(amnt);
+                productDAO.updateProduct(x.getProductID() , extra);
             }
+            Supplier supplier = supplierDAO.getSupplierByID(supplyOrder.getSupplierID());
+            supplier.setOrdersFulfilled(supplier.getOrdersFulfilled()+1);
+            supplierDAO.updateSupplier(supplier.getSupplierID(), supplier);
+        }
+
+
         return "redirect:/supplyOrders/";
     }
 
@@ -181,6 +189,17 @@ public class SupplyOrderController {
         }
         List<SupplyOrderItem> supplyOrderItem = supplyOrderItemDAO.getAllSupplyOrderItems(id);
         model.addAttribute("supplyOrderItem", supplyOrderItem);
+
+        int totalCust = customerOrderDAO.getAllCustomerOrders().size();
+        int totalProd = productDAO.getAllProduct().size();
+        int totalSales = customerOrderDAO.getTotalSales();
+        int totalSuppliers = supplierDAO.getAllSupplier().size();
+        model.addAttribute("totalCust", totalCust);
+        model.addAttribute("totalProd", totalProd);
+        model.addAttribute("totalSales", totalSales);
+        model.addAttribute("totalSuppliers", totalSuppliers);
+
+
         return "dashboard/supplyOrders/supplyOrderSearch.html";
     }
 
