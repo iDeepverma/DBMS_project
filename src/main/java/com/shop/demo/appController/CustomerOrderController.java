@@ -181,6 +181,8 @@ public class CustomerOrderController {
         }
         List<CustomerOrderItem> items = customerOrderItemDAO.getCustomerOrderItemByCustomerOrder(id);
         model.addAttribute("items" , items);
+        CustomerOrder order = customerOrderDAO.getCustomerOrderByID(id);
+        model.addAttribute("order", order);
 
 
         int totalCust = customerOrderDAO.getAllCustomerOrders().size();
@@ -193,5 +195,30 @@ public class CustomerOrderController {
         model.addAttribute("totalSuppliers", totalSuppliers);
 
         return "dashboard/customerOrders/customerOrderSearch";
+    }
+
+    @GetMapping("/customerOrders/view/{id}/invoice")
+    public String customerOrderInvoice(@PathVariable("id") int id, Model model, HttpSession session) {
+        if(!authenticationService.isAuthenticated(session)){
+            return "redirect:/login";
+        }
+        CustomerOrder order = customerOrderDAO.getCustomerOrderByID(id);
+        List<CustomerOrderItemProduct> items =  new ArrayList<>();
+        List<CustomerOrderItem> citems = customerOrderItemDAO.getCustomerOrderItemByCustomerOrder(id);
+        for (CustomerOrderItem customerOrderItem : citems) {
+            CustomerOrderItemProduct coip = new CustomerOrderItemProduct();
+            coip.setItem(customerOrderItem);
+            int pid = customerOrderItem.getProductID();
+            Product prod = productDAO.getProductByID(pid);
+            coip.setProduct(prod);
+            items.add(coip);
+        }
+
+        Customer customer = customerDAO.getCustomerByID(order.getCustomerID());
+        model.addAttribute("order", order);
+        model.addAttribute("items", items);
+        model.addAttribute("customer", customer);
+
+        return "dashboard/customerOrders/invoice";
     }
 }
