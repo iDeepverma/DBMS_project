@@ -81,7 +81,14 @@ public class ProductCategoryMysql implements ProductCategoryDAO {
                 category1
         };
 //        return jdbcTemplate.queryForObject(query, args,BeanPropertyRowMapper.newInstance(Integer.class));
-        return jdbcTemplate.queryForObject(query, args, Long.class);
+         try {
+             return jdbcTemplate.queryForObject(query, args, Long.class);
+         }
+         catch (Exception e) {
+             System.out.println(e);
+             System.out.println("line66");
+             return 0;
+         }
      }
 
     @Override
@@ -90,6 +97,13 @@ public class ProductCategoryMysql implements ProductCategoryDAO {
         Object[] args = new Object[]{
                 category1
         };
-        return jdbcTemplate.queryForObject(query, args, Long.class);
+        try {
+            return jdbcTemplate.queryForObject(query, args, Long.class);
+        }
+        catch (Exception e) {
+            System.out.println(e);
+            System.out.println("line66");
+            return 0;
+        }
     }
 }
