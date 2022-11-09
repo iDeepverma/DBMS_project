@@ -38,11 +38,7 @@ public class SupplierController {
         List<Supplier> suppliers = supplierDAO.getAllSupplier();
         int totalCust = customerOrderDAO.getAllCustomerOrders().size();
         int totalProd = productDAO.getAllProduct().size();
-        int totalSales = 0;
-        List<CustomerOrder> totSales = customerOrderDAO.getAllCustomerOrders();
-        for(int i=0;i<totSales.size();i++){
-            totalSales = totalSales + totSales.get(i).getTotal();
-        }
+        int totalSales = customerOrderDAO.getTotalSales();
         int totalSuppliers = supplierDAO.getAllSupplier().size();
         model.addAttribute("totalCust", totalCust);
         model.addAttribute("totalProd", totalProd);

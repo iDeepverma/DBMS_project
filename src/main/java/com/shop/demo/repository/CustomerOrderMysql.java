@@ -13,7 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 @Repository("customerOrder_mysql_repo")
-public class CustomerOrderMysql implements CustomerOrderDAO{
+public class CustomerOrderMysql implements CustomerOrderDAO {
 
 //    orderID int AUTO_INCREMENT,
 //    orderDate date,
@@ -114,5 +114,11 @@ public class CustomerOrderMysql implements CustomerOrderDAO{
     public List<CustomerOrder> getAllCustomerOrders(){
         String query="SELECT * FROM CustomerOrder ORDER BY orderDate DESC ";
         return jdbcTemplate.query(query,BeanPropertyRowMapper.newInstance(CustomerOrder.class));
+    }
+
+    @Override
+    public int getTotalSales(){
+        String query="SELECT sum(total) FROM CustomerOrder";
+        return jdbcTemplate.queryForObject(query, Integer.class);
     }
 }

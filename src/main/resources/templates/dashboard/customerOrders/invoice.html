@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Invoice - RK Computers</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/invoice.css}" >
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="invoice_wrapper">
+        <div class="header">
+            <div class="logo_invoice_wrap">
+                <div class="logo_sec">
+                    <div class="title_wrap">
+                        <p class="title bold">RK Computers</p>
+                        <p class="sub_title">Private Limited</p>
+                    </div>
+                </div>
+                <div class="invoice_sec">
+                    <p class="invoice bold">INVOICE</p>
+                    <p class="invoice_no">
+                        <span class="bold">Order ID: </span>
+                        <span th:text="${order.orderID}">#(orderno)</span>
+                    </p>
+                    <p class="date">
+                        <span class="bold">Date: </span>
+                        <span th:text="${order.orderDate}">(orderdate)</span>
+                    </p>
+                </div>
+            </div>
+            <div class="bill_total_wrap">
+                <div class="bill_sec">
+                    <p>Bill To</p>
+                    <p class="bold name" th:text="${customer.name}">(Customer Name)</p>
+                    <span>
+			           <span th:text="${customer.address}">(Customer Address</span>)<br/>
+			           <span th:text="${customer.phone}">(Customer Phone)</span>
+			        </span>
+                </div>
+                <div class="total_wrap">
+                    <p>Total Due</p>
+                    <p class="bold price" th:text="'Rs. '+${order.total}">Rs. (order total)</p>
+                </div>
+            </div>
+        </div>
+        <div class="body">
+            <div class="main_table">
+                <div class="table_header">
+                    <div class="row">
+                        <div class="col col_no">NO.</div>
+                        <div class="col col_des">ITEM DESCRIPTION</div>
+                        <div class="col col_price">PRICE</div>
+                        <div class="col col_qty">QTY</div>
+                        <div class="col col_total">TOTAL</div>
+                    </div>
+                </div>
+                <div class="table_body">
+                    <div class="row" th:each="coip, iStat : ${items}">
+                        <div class="col col_no">
+                            <p th:text="${iStat.count}">01</p>
+                        </div>
+                        <div class="col col_des">
+                            <p class="bold" th:text="${coip.product.name}">Web Design</p>
+                        </div>
+                        <div class="col col_price">
+                            <p th:text="'Rs. '+${coip.item.sellingPrice}">Rs. 300</p>
+                        </div>
+                        <div class="col col_qty">
+                            <p th:text="${coip.item.quantity}">2</p>
+                        </div>
+                        <div class="col col_total">
+                            <p th:text="'Rs. ' + ${coip.item.quantity * coip.item.sellingPrice}">Rs. 700.00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="paymethod_grandtotal_wrap">
+                <div class="paymethod_sec">
+                    <p class="bold" th:text="'Payment Mode: '+${order.modeOfPayment}">Payment Method</p>
+                    <p th:text="'Transaction ID: '+${order.transactionID}">(Transaction ID)</p>
+                </div>
+                <div class="grandtotal_sec">
+                    <!-- <p class="bold">
+                        <span>SUB TOTAL</span>
+                        <span>$7500</span>
+                    </p>
+                    <p>
+                        <span>Tax Vat 18%</span>
+                        <span>$200</span>
+                    </p>
+                    <p>
+                        <span>Discount 10%</span>
+                        <span>-$700</span>
+                    </p> -->
+                    <p class="bold">
+                        <span>Grand Total</span>
+                        <span th:text="'Rs. ' + ${order.total}">$7000.0</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <p>Thank you and Best Wishes</p>
+            <div class="terms">
+                <p>Terms and Conditions Apply</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

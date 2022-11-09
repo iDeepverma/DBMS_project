@@ -51,6 +51,8 @@
                   <td th:text="${orders.total}">Total</td>
                   <td th:text="${orders.customerID}">customerID</td>
                   <td th:text="${orders.servedBy}">EmployeeID</td>
+                  <td><a th:href="'/customerOrders/view/'+${orders.orderID}"><button type="button"
+                                                                                     class="btn btn-info">View Order</button></a></td>
                 </tr>
               </tbody>
             </table>
