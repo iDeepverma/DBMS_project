@@ -7,6 +7,7 @@ COPY .mvn/ .mvn
 COPY mvnw pom.xml ./
 RUN ./mvnw dependency:go-offline
 COPY src ./src
+RUN ./mvnw package
 
 FROM eclipse-temurin:17-jdk-jammy as prod
 WORKDIR /app
