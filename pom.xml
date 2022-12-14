@@ -59,6 +59,9 @@
 	</dependencies>
 
 	<build>
+		<finalName>
+			dbms
+		</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
