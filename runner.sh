@@ -1,0 +1,1 @@
+mysql -h$MYSQLHOST -u$MYSQLUSER -p$MYSQLPASSWORD --port $MYSQLPORT --protocol=TCP railway <Total_tables.sql
